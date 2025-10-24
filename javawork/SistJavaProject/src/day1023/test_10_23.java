@@ -9,8 +9,11 @@ public class test_10_23 {
 //		test2();
 //		test3();
 //		test4();
-		test7();
+//		test7();
 //		test13();
+//		quiz02_01();
+//		quiz02_02();
+//		quiz02_03();
 
 	}
 	public static void test2() {
@@ -165,6 +168,105 @@ public class test_10_23 {
 		System.out.println("김씨성을 가진 사람의 총 합은 "+cnt+"입니다");
 		
 		sc.close();  //resource leak 경고떠서 추가했음.
+	}
+	
+	public static void quiz02_01() {
+		/* 
+		 팩토리얼 구할 숫자를 입력
+		 3
+		 3!=6
+		 */
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int num; //입력한 숫자
+		int result=1;
+		
+		System.out.println("숫자를 입력하시오");
+		num=sc.nextInt();
+		
+		for (int i=1;i<=num;i++)
+		{
+			result*=i;
+		}
+		
+		System.out.println(num+"!="+result);
+		
+		
+		
+		sc.close();
+	}
+	public static void quiz02_02() {
+		//1~100까지 중에서 5의 배수의 합을 구하시오
+		//1~100까지 중 5의 배수의 합은 ****입니다
+		
+		int sum=0;
+		
+//		for (int i=5;i<=100;i+=5)
+//		{
+//			sum+=i;
+//		}
+		
+		for (int i=1;i<=100;i++)
+		{
+			 if (i%5==0)
+				 sum+=i;
+		}
+		
+		System.out.println(sum);
+		
+		
+		
+	}
+	public static void quiz02_03() {
+		/*
+		 점수(1~100)를 입력받다가 0을 입력하면 반복문 빠져나온 후에
+		 총갯수, 총점, 평균 출력하기
+		 78
+		 90
+		 120
+		    다시입력해주세요
+		 88
+		 77
+		 0
+		 
+		 총갯수:
+		 총점:
+		 평균: 소숫점1자리
+		 */
+		
+		Scanner sc=new Scanner(System.in);
+		int num;
+		int cnt=0,tot=0;
+		double avg=0; //생략가능
+		
+		while(true)
+		{
+			System.out.println("숫자입력");
+			num=sc.nextInt();
+			
+			//break
+			if(num==0)
+				break;
+			//continue
+			if(num<1||num>100)
+			{
+				System.out.println("다시 입력해주세요");
+				continue;
+			}
+				
+			
+			cnt++;
+			tot+=num;
+						 
+		}
+		
+		avg=tot/cnt;
+		
+		System.out.println(cnt);
+		System.out.println(tot);
+		System.out.printf("평균: %.1f",avg);
+				
 	}
 
 }

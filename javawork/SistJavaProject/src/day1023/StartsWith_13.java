@@ -28,6 +28,8 @@ public class StartsWith_13 {
 		}
 		
 		System.out.println("김씨성을 가진 사람은 총 "+count+"명 입니다.");
+		
+		sc.close();
 
 	}
 

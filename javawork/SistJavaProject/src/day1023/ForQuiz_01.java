@@ -45,6 +45,7 @@ public class ForQuiz_01 {
 		}
 		//출력
 		System.out.println("1~"+x+"까지의 합은 "+sum);
+		sc.close();
 			
 		
 		

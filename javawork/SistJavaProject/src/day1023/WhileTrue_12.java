@@ -40,6 +40,8 @@ public class WhileTrue_12 {
 			sum+=score;
 		}
 		System.out.println("총 합계: "+sum);
+		
+		sc.close();
 	}
 	
 	public static void test2() {
@@ -71,7 +73,7 @@ public class WhileTrue_12 {
 		System.out.println("입력한 수의 합: "+sum);
 		System.out.println("평균: "+avg);
 		
-		
+		sc.close();
 		
 		
 		

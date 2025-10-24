@@ -57,6 +57,8 @@ public class IfSwitch_04 {
 		
 		}
 		
+		sc.close();
+		
 
 	}
 

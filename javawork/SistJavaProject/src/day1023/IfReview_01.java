@@ -13,7 +13,8 @@ public class IfReview_01 {
 		Scanner sc=new Scanner(System.in);
 		
 		// 변수
-		String name, result;
+		String name;
+//		String result;
 		int java, spring;
 		
 		//입력
@@ -48,6 +49,8 @@ public class IfReview_01 {
 		
 //		//조건_삼항
 //		System.out.println(result);
+		
+		sc.close();
 		
 		
 
