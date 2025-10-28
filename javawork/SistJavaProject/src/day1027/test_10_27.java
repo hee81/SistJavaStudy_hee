@@ -7,7 +7,7 @@ public class test_10_27 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		test1();
+//		test1();
 //		test2();
 //		test3();
 //		test4();
@@ -29,6 +29,8 @@ public class test_10_27 {
 		//st3의 길이, str4의 길이, str4의 공백 제거 길이 
 		
 		//str3에서 M의 인덱스, str4에서의 d의 인덱스
+		
+		//str4에서 day 추출
 		
 		
 		
@@ -54,6 +56,8 @@ public class test_10_27 {
 //		arr1[3]=30;
 		
 		int [] arr1 = {10,20,0,30};
+		for(int a:arr1)
+			System.out.println(a);
 		
 		System.out.println("arr1 길이 "+arr1.length);
 		
@@ -93,29 +97,28 @@ public class test_10_27 {
 		// 정수를 입력받아서 입력받은 그 수를 출력하고 합계도 구해보자
 		// 입력도 출력도 모두 배열의 반복문 이용할 것
 		
+		Scanner sc=new Scanner(System.in);
 		
+		int[] arrNum;
+		arrNum = new int[4];
+		int sum=0;
 		
+		//입력
+		for(int i=0;i<arrNum.length;i++)
+		{
+			System.out.print(i+" 인덱스 값: ");
+			arrNum[i]=sc.nextInt();
+		}
 		
-//		Scanner sc=new Scanner(System.in);
-//		
-//		int[] arrNum;
-//		arrNum = new int[4];
-//		int sum=0;
-//		
-//		for(int i=0;i<arrNum.length;i++)
-//		{
-//			System.out.print(i+" 인덱스 값: ");
-//			arrNum[i]=sc.nextInt();
-//		}
-//		
-//		for(int i=0;i<arrNum.length;i++)
-//		{
-//			System.out.println((i+1)+"번째 값:"+arrNum[i]);
-//			sum+=arrNum[i];
-//		}
-//		System.out.println(sum);
-//		
-//		sc.close();
+		//출력
+		for(int i=0;i<arrNum.length;i++)
+		{
+			System.out.println((i+1)+"번째 값:"+arrNum[i]);
+			sum+=arrNum[i];
+		}
+		System.out.println(sum);
+		
+		sc.close();
 	}
 	
 	public static void test5() {
@@ -204,10 +207,52 @@ public class test_10_27 {
 		// 찾는 숫자를 입력하여 해당 숫자의 유무,순번등을 출력.....
 		// 반복문을 입력하여 0을 입력할 때까지 계속 할 수 있다
 		
-		int [] numData= {5,36,13,74,42,74,100,47,63,14};
+		int [] numData= {5,36,13,74,42,76,100,47,63,14};
+		
+		Scanner sc=new Scanner(System.in);
+		
+		int num;
+		Boolean flag;
+		
+		while(true)
+		{
+			System.out.println("숫자를 입력하시오");
+			num=sc.nextInt();
+			
+			if(num==0)
+			{
+				System.out.println("종료되었습니다");
+				break;
+			}
+			
+			flag=false;
+			
+			for(int i=0;i<numData.length;i++)
+			{
+				if(num==numData[i])
+				{
+					flag=true;
+					System.out.println(i+"인덱스값은: "+numData[i]);
+				}
+			}
+			
+			if(!flag)
+			{
+				System.out.println(num+"는 없습니다.");
+			}
+
+		}
+		
+		
 	}
 	
 	public static void test9() {
+		// 메뉴명을 입력하여 '해당 메뉴는 2번째에 있습니다' Q or q 입력시 프로그램 종료
+		// 티본스테이크 처럼 없는 메뉴를 입력하면 '해당메뉴는 본 메뉴에 없습니다'
+		Scanner sc=new Scanner(System.in);
+		
+		String [] menu = {"아보카도 샌드위치","에그샌드위치","콥샐러드","치아바타 샌드위치"
+				,"스테이크 샐러드","까르보나라 파스타","토마토파스타"};
 		
 	}
 
