@@ -1,6 +1,5 @@
 package day1028;
 
-import java.lang.invoke.MethodHandles.Lookup;
 import java.util.Scanner;
 
 public class test_10_28 {
@@ -13,9 +12,7 @@ public class test_10_28 {
 //		test4();
 //		test5();
 //		test6();
-		test7();
-//		test8();
-//		test9();
+//		test7();
 
 	}
 	
@@ -253,6 +250,30 @@ public class test_10_28 {
 				System.out.println();
 			}
 			
+			//**빙고 초기화
+			int binggo=0;
+			//**빙고조건
+			//가로형(0,0 0,1 0,2)==[i][0~2]
+			for(int i=0;i<3;i++)
+			{
+				if(puzzle[i][0]==puzzle[i][1]&&puzzle[i][1]==puzzle[i][2])
+					binggo++;
+			}
+			//세로형(0,0 1,0 2,0)==[0~2][i]
+			for(int i=0;i<3;i++)
+			{
+				if(puzzle[0][i]==puzzle[1][i]&&puzzle[1][i]==puzzle[2][i])
+					binggo++;
+			}
+			//대각선\(0,0 1,1 2,2)
+			if(puzzle[0][0]==puzzle[1][1]&&puzzle[1][1]==puzzle[2][2])
+				binggo++;
+			//대각선/(0,2 1,1 2,0)
+			if(puzzle[0][2]==puzzle[1][1]&&puzzle[1][1]==puzzle[2][0])
+				binggo++;
+			//**빙고출력
+			System.out.println("빙고: "+binggo+"개");
+			
 			//break문
 			System.out.println("엔터를 누르면 다음 난수가 나온다 종료시:q");
 			String ent=sc.nextLine();
@@ -267,11 +288,6 @@ public class test_10_28 {
 		
 		
 	}
-	public static void test8() {
-		
-	}
-	public static void test9() {
-		
-	}	
+
 
 }
