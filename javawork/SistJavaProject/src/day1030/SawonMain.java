@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class SawonMain {
 
-	public static void getSawonPay(Sawon[] sawon)
+	public static void getSawonPay(SawonSub[] sawon)
 	{
 		//제목부터 호출
-		Sawon.sTitle();
+		SawonSub.sTitle();
 		
-		//입력한 사원수만큼 배열출력
-		for(Sawon sa:sawon) {
+		//입력한 사원수만큼 배열출력 //배열을 사용한이유->효율적으로 불러오기위해서!
+		for(SawonSub sa:sawon) {
 			System.out.println(sa.getSname()+"\t"+sa.getPay()+"\t"+sa.getFamilySu()+"\t"+sa.getTimeSu()+"\t"
 					+sa.getFamilySudnag()+"\t"+sa.getTimeSudang()+"\t"+sa.getTotalPay());
 		}
@@ -23,19 +23,19 @@ public class SawonMain {
 		
 		Scanner sc=new Scanner(System.in);
 		int inwon;
-		Sawon [] sawon; //옆class 사원 불러옴 new는 할 수가 없음.
+		SawonSub [] sawon; //옆class 사원Sub 불러옴 new는 할 수가 없음(입력된 값 사용하기 위해서)
 		
 		System.out.println("입력할 직원수는 몇명입니까?");
 		inwon=Integer.parseInt(sc.nextLine());
 		
 		//배열할당
-		sawon=new Sawon[inwon];
+		sawon=new SawonSub[inwon];
 		
 		//인원수만큼 데이타 입력
 		for(int i=0;i<inwon;i++)
 		{
 			//Sawon 생성
-			sawon[i]=new Sawon();
+			sawon[i]=new SawonSub(); //디폴트생성
 			System.out.println("사원명");
 			String name=sc.nextLine();
 			System.out.println("급여?");
@@ -54,6 +54,7 @@ public class SawonMain {
 		}
 		
 		getSawonPay(sawon);
+		
 
 	}
 
