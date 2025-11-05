@@ -13,7 +13,7 @@ abstract class Student{
 	
 	abstract void examTake(); //시험지 받는다
 	abstract void examSolve(); //문제를 푼다
-	abstract void examSubmit();//시험지 제출한다
+	abstract void examSubmit(); //시험지 제출한다
 	
 	//추상메서드
 	final void doExam() {
