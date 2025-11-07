@@ -4,9 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-//set: 순서유지 없다, 중복허용안함
-//Set: 인터페이스, 생성안됨
-//HashSet: set을 구현한 클래스 
+//set: 순서유지 없다(=인덱스 없음), 중복허용안함
+//Set: 인터페이스 HashSet: set을 구현한 클래스 
 //Set<제네릭타입> 참조변수명=new HashSet<제네릭타입>();
 //HashSet<제네릭타입> 참조변수명=new HashSet<제네릭타입>();
 
