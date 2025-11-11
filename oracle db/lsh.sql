@@ -178,14 +178,13 @@ select sysdate from dual; --현재날짜
 select sysdate+1 from dual; --내일날짜
 select sysdate+7 from dual; --일주일 뒤 날짜
 
+
 --to_char함수 통해서 날짜 및 수치데이터를 문자로 변환하기 위한 함수
 select to_char(sysdate,'year') from dual; --영어로 나옴
 select to_char(sysdate,'yyyy') from dual;
 select to_char(sysdate,'yy') from dual;
-
 select to_char(sysdate,'month') from dual;
 select to_char(sysdate,'mm') from dual;
-
 select to_char(sysdate,'yyyy-mm-dd hh-mi-ss') from dual;
 
 --to_char 숫자에도 적용가능하다
@@ -221,6 +220,7 @@ select name 학생명,jumin 주민번호,height 키 from student where height>(s
 --JAMES와 급여가 동일하거나 급여가 더 많이 받는 사원명과 급여를 조회하시오
 select ename 사원명,sal 급여 from emp where sal>=(select sal from emp where ename='JAMES');
 
+
 --Q
 --1.emp에서 표현식을 이용하여 다음처럼 출력하시오 SMITH(CLERK)
 select ename||'('||job||')' from emp;
@@ -242,27 +242,6 @@ select name 이름,height 키,weight 몸무게 from student where grade=1 order 
 select name 교수명,pay 급여 from professor where pay=(select pay from professor where name='나한열');
 --10.교수테이블에서 조인형의 직급과 같은 직급을 가진 사람의 이름 급여 직급을 조회하시오
 select name 이름,position 직급 from professor where position=(select position from professor where name='조인형');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 +
