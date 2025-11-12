@@ -1,4 +1,4 @@
- --11/11 화요일--
+--11/11 화요일--
 --조회연습하기(별칭 alias)
 select ename "사원 명" from emp; --별칭을 띄어쓰고자하면 반드시 ""(대괄호 붙이기)
 select ename 사원명, sal as 급여 from emp; --as 별칭
