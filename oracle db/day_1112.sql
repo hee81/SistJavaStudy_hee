@@ -201,6 +201,7 @@ commit;
 
 select * from person;
 
+---------------------11/13---------------------------
 ----[과제물]----
 --시퀀스 생성
 --seq_4 시작:5 증가:5
@@ -217,17 +218,37 @@ create sequence seq_4 start with 5 increment by 5;
 create table moim(no number(3) primary key,name varchar2(20),addr varchar2(30),hp varchar2(20),job varchar2(30),gaipday date);
 desc moim;
 
---최소 10개 이상 넣어오기
-insert into moim values(seq_4.nextval,'김영우','성동구','010-2314-1524','야구선수',sysdate);
-insert into moim values(seq_4.nextval,'문보경','강동구','010-4214-231','요리사',sysdate);
-insert into moim values(seq_4.nextval,'홍길동','성동구','011-2314-1524','교사',sysdate);
-insert into moim values(seq_4.nextval,'김영희','동대문구','010-2314-1524','교사',sysdate);
-insert into moim values(seq_4.nextval,'박해민','중랑구','011-2314-1524','요리사',sysdate);
-insert into moim values(seq_4.nextval,'이또치','강남구','010-2314-1524','야구선수',sysdate);
-insert into moim values(seq_4.nextval,'최여름','강동구','010-2314-1524','요리사',sysdate);
-insert into moim values(seq_4.nextval,'박중박','중구','011-2314-1524','교사',sysdate);
-insert into moim values(seq_4.nextval,'김하늘','성동구','010-2314-1524','요리사',sysdate);
-insert into moim values(seq_4.nextval,'고길동','마포구','010-2314-1524','야구선수',sysdate);
+--최소 10개 이상 넣어오기(commit필수_바리스타,카페매니저,머신수리)
+insert into moim values(seq_4.nextval,'김영우','성동구','010-2314-1524','바리스타',sysdate);
+insert into moim values(seq_4.nextval,'문보경','강동구','010-4214-231','카페매니저',sysdate);
+insert into moim values(seq_4.nextval,'홍길동','성동구','011-2314-1524','바리스타',sysdate);
+insert into moim values(seq_4.nextval,'김영희','동대문구','010-2314-1524','머신수리',sysdate);
+insert into moim values(seq_4.nextval,'박해민','중랑구','011-2314-1524','바리스타',sysdate);
+insert into moim values(seq_4.nextval,'김영우','강남구','010-2314-1524','카페매니저',sysdate);
+insert into moim values(seq_4.nextval,'최여름','강동구','010-2314-1524','카페매니저',sysdate);
+insert into moim values(seq_4.nextval,'구본혁','중구','011-2314-1524','바리스타',sysdate);
+insert into moim values(seq_4.nextval,'홍창기','성동구','010-2314-1524','머신수리',sysdate);
+insert into moim values(seq_4.nextval,'고길동','마포구','010-2314-1524','카페매니저',sysdate);
 
 select * from moim;
 commit;
+
+--moim테이블에서 직업만 중복되지 않게 조회하시오
+select DISTINCT job from moim;
+--이름이 홍씨인 사람만 조회하시오
+select * from moim where name LIKE '홍%';
+--40번의 직업을 카페대표로 수정하시오
+update moim set job='카페대표' where no=40;
+--카페매니저이거나 머신수리인 사람만 조회하시오(IN or OR)
+select * from moim where job IN('카페매니저','머신수리');
+select * from moim where job='카페매니저' OR job='머신수리';
+--카페매니저가 아닌 사람들만 조회하시오
+select * from moim where job not in '카페매니저';
+--moim회원의 총 인원수를 구하시오
+select count(*) "총인원" from moim;
+
+select * from moim;
+commit;
+
+---[test 계정에 테이블 생성]---
+--sawon테이블을 생성하여 제약 조건을 공부해보자
