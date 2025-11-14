@@ -327,7 +327,7 @@ having sum(sal)>=5000 --급여합계 5000 이상만
 order by 급여합계 desc; --급여합계 내림차순
 
 --[Rollup, Cube 함수] : 자동으로 소계/합계 구해주는 함수--
---Rollup : group by절에 주어는 조건으로 소개값을 구해준다
+--Rollup : group by절에 주어진 조건으로 소개값을 구해준다
 select deptno 학과번호,position 직위,sum(pay) 총급여
 from professor
 group by position,rollup(deptno);
