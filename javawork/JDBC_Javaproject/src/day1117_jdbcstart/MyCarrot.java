@@ -7,19 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
+/*
+3.자바에 가셔서 클래스 만든다
+	클래스명:  MyCarrot
+	메서드1: getSelectMyCarrot()
+	메서드2:  getDeleteMyCarrot()
+
+	메인에서 getSelectMyCarrot()호출시 리스트 모두 나오게 할것!!!
+	삭제시 몇번의 시퀀스를 삭제하실건가요? 질문후 번호쓰면 그번호 삭제할것!!!
+	삭제되었느지 조회해서 확인해볼것!!!
+	9번누르면 종료!!!!!
+*/
 public class MyCarrot {
-
-	/*
-	  3.자바에 가셔서 클래스 만든다
-		클래스명:  MyCarrot
-		메서드1: getSelectMyCarrot()
-		메서드2:  getDeleteMyCarrot()
-
-		메인에서 getSelectMyCarrot()호출시 리스트 모두 나오게 할것!!!
-		삭제시 몇번의 시퀀스를 삭제하실건가요? 질문후 번호쓰면 그번호 삭제할것!!!
-		삭제되었느지 조회해서 확인해볼것!!!
-		9번누르면 종료!!!!!
-	 */
 	
 	//url
 	static final String ORACLE_URL="jdbc:oracle:thin:@localhost:1521:XE";
@@ -27,7 +26,7 @@ public class MyCarrot {
 	public void getSelectMyCarrot() {
 		
 		System.out.println("등록번호\t상품명\t상품가격\t매너점수\t상대방주소");
-		System.out.println("=================================================================");
+		System.out.println("====================================================");
 		
 		Connection conn=null;
 		Statement stmt=null;
@@ -63,7 +62,6 @@ public class MyCarrot {
 		}
 
 	}
-	
 	
 	public void getDeleteMyCarrot() {
 		
@@ -101,7 +99,6 @@ public class MyCarrot {
 		}
 
 	}
-	
 	
 	public static void main(String[] args) {
 		MyCarrot mc=new MyCarrot();
