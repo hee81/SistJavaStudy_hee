@@ -149,7 +149,7 @@ public class ConnectHello {
 	//2.수정_Update
 	public void updateHello()
 	{
-		//시퀀스를 입력하여 해당 시퀀스의 이름과 나이를 수정한다
+		//시퀀스를 입력하여 해당 시퀀스의 이름과 나이 를 수정한다
 		Scanner sc=new Scanner(System.in);
 		System.out.println("수정할 번호를 입력하세요");
 		int updateNum=Integer.parseInt(sc.nextLine()); //둘의 데이터형을 맞춰줘야함

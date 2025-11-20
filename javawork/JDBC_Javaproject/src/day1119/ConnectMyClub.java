@@ -16,6 +16,7 @@ public class ConnectMyClub {
 	//인서트 성공 후 항상 developer 가서 확인할 것!!!
 	public void insertMyClub() {
 		
+		System.out.println("***회원가입하기***");
 		System.out.println("회원명을 입력하시오");
 		String name=sc.nextLine();
 		System.out.println("주소를 입력하시오");
@@ -54,7 +55,8 @@ public class ConnectMyClub {
 		
 		String sql="select * from myclub order by cno";
 	
-		System.out.println("등록번호\t이름\t주소\t직업\t전화번호\t가입일자");
+		System.out.println("***회원조회***");
+		System.out.println("회원번호\t회원명\t주소\t직업\t전화번호\t가입일자");
 		System.out.println("===================================================================");
 		
 		try {
@@ -78,7 +80,7 @@ public class ConnectMyClub {
 	//delete
 	public void deleteMyClub()
 	{
-		System.out.println("***삭제하려는 등록번호를 입력하세요***");
+		System.out.println("***삭제하려는 회원번호를 입력하세요***");
 		int delno=Integer.parseInt(sc.nextLine());
 		
 		String sql="delete from myclub where cno="+delno;
@@ -91,9 +93,9 @@ public class ConnectMyClub {
 //			stmt.execute(sql);
 			int a=stmt.executeUpdate(sql);
 			if(a==0)
-				System.out.println("**존재하지 않는 번호입니다**");
+				System.out.println("----"+delno+"번 회원은 회원 명단에 없습니다----");
 			else
-				System.out.println("**회원정보가 삭제되었습니다**");
+				System.out.println("===="+delno+"번 회원정보가 삭제되었습니다====");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -136,17 +138,18 @@ public class ConnectMyClub {
 	//,String udaddr,String udjob,String udhp
 	public void updateMyClub()
 	{
-		System.out.println("**수정을 원하는 등록번호를 입력하시오**");
+		System.out.println("***회원수정하기***");
+		System.out.println("===수정을 원하는 회원번호를 입력하시오===");
 		int udnum=Integer.parseInt(sc.nextLine());
 		
 		if(!isOneData(udnum))
 		{
-			System.out.println("**존재하지 않는 등록번호 입니다**");	
+			System.out.println("----존재하지 않는 회원번호 입니다----");	
 			return;
 		}
 			
 		
-		System.out.println("수정할 이름을 입력하시오");
+		System.out.println("수정할 회원명을 입력하시오");
 		String udname=sc.nextLine();
 		System.out.println("수정할 주소을 입력하시오");
 		String udaddr=sc.nextLine();
@@ -174,6 +177,41 @@ public class ConnectMyClub {
 
 	}
 	
+	//회원명의 일부를 입력시 모든 컬럼 조회되도록 만드시오
+	public void searchName() {
+		
+		Connection conn=db.getDbConnect();
+		Statement stmt=null;
+		ResultSet rs=null;
+		
+		System.out.println("조회하려는 회원명(일부가능)을 입력하세요");
+		String searchname=sc.nextLine();
+		
+		String sql="select * from myclub where cname LIKE '%"+searchname+"%'";
+		System.out.println(sql);
+		
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			
+			System.out.println("***검색된 회원목록***");
+			System.out.println("회원번호\t회원명\t주소\t직업\t전화번호\t가입일자");
+			System.out.println("===================================================================");
+			while(rs.next())
+			{
+				System.out.println(rs.getInt("cno")+"\t"+rs.getString("cname")+"\t"+
+			rs.getString("caddr")+"\t"+rs.getString("cjob")+"\t"+rs.getString("chp")+"\t"+rs.getDate("gaipday"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, stmt, conn);
+		}
+		
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -183,7 +221,7 @@ public class ConnectMyClub {
 
 		while(true)
 		{
-			System.out.println("1.회원가입    2.회원조회    3.회원삭제    4.회원정보수정    9.종료");
+			System.out.println("1.회원가입    2.회원조회    3.회원삭제    4.회원정보수정     5.회원검색    9.종료");
 			System.out.println("===================================================================");
 			System.out.println("원하시는 숫자를 입력하세요");
 			
@@ -197,9 +235,11 @@ public class ConnectMyClub {
 				mc.deleteMyClub();
 			else if(num==4)
 				mc.updateMyClub();
+			else if(num==5)
+				mc.searchName();
 			else if(num==9)
 			{
-				System.out.println("**종료되었습니다**");
+				System.out.println("***종료되었습니다***");
 				break;
 			}
 		}
