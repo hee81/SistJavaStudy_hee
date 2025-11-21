@@ -51,7 +51,7 @@ public class ConnectMyStudentInfo {
 		}finally {
 			db.dbClose(pstmt, conn);
 		}
-		
+			
 	}
 	
 	//select
@@ -105,7 +105,7 @@ public class ConnectMyStudentInfo {
 			int a=pstmt.executeUpdate();
 			
 			if(a==0)
-				System.out.println("------"+delnum+"번은 존재하지 않는 번호입니다------");
+				System.out.println("-------"+delnum+"번은 존재하지 않는 학생번호 입니다------");
 			else
 				System.out.println("------"+delnum+"번 학생정보는 삭제되었습니다------");
 			
@@ -119,7 +119,7 @@ public class ConnectMyStudentInfo {
 	}
 	
 	//update 1.조회용
-	public boolean isOneDate(int num)
+	public boolean isOneData(int num)
 	{
 		boolean flag=false;
 		
@@ -132,12 +132,12 @@ public class ConnectMyStudentInfo {
 		try {
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
-					
+			
 			if(rs.next())
 				flag=true;
 			else
 				flag=false;
-					
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -147,6 +147,7 @@ public class ConnectMyStudentInfo {
 
 		return flag;
 	}
+
 	
 	//update 2.수정용
 	public void updateMyStudentInfo() {
@@ -154,11 +155,12 @@ public class ConnectMyStudentInfo {
 		System.out.println("수정하려는 학생 번호를 입력하세요");
 		int upnum=Integer.parseInt(sc.nextLine());
 		
-		if(!isOneDate(upnum))
+		if(!isOneData(upnum))
 		{
-			System.out.println("------"+upnum+"번은 존재하지 않는 번호입니다------");
+			System.out.println("-------"+upnum+"번은 존재하지 않는 학생번호 입니다------");
 			return;
 		}
+
 		
 		System.out.println("수정할 이름을 입력하세요");
 		String name=sc.nextLine();

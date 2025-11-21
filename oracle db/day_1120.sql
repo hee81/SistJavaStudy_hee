@@ -25,11 +25,18 @@ stu_birth: 문자열
 writeday: 현재날짜
 */
 
-create table MyStudentInfo (stu_no number(3) primary key,
-stu_name varchar2(20),stu_addr varchar2(30),stu_grade number(3),
-stu_blood varchar2(20),stu_birth varchar2(20),writeday date);
+create table MyStudentInfo
+(stu_no number(3) primary key,
+stu_name varchar2(20),
+stu_addr varchar2(30),
+stu_grade number(3),
+stu_blood varchar2(20),
+stu_birth varchar2(20),
+writeday date);
 
 
 select * from MyStudentInfo;
+
+update mystudentinfo set stu_name='name',
 
 
