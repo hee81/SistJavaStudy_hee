@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* CSS 영역     class: .      id:#      */
+        .happy{  /* 모든 태그 happy 적용*/
+             color: blue;
+             font-size: 30pt;
+        }
+        b.nice{ /*b태그에만 적용*/
+            text-decoration: underline;
+            color: black;
+        }
+        img{ /*모든 img 공통 적용*/
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+        }
+
+        /* imga */
+        img.imga{
+            border: 10px groove gray;
+            margin-bottom: 50px;
+        }
+
+        /* imgb */
+        .imgb{
+            box-shadow: 10px 10px 10px gray;
+        }
+
+        /* fimg안의 이미지 가로정렬  >:바로아래(자식)  한칸땜: 하위(자손)*/
+        div.fimg>figure{
+            float: left;
+            text-align: center;
+        }
+        /* div.fimg>figure>figurecation>b */
+        div.fimg b{
+            /* margin-left: 60px; */
+        }
+
+        div.simg{
+            width: 1000px;
+            height: 300px;
+            border: 2px solid gray;
+        }
+
+        div.simg{
+            display: flex;
+            flex-direction: row;
+            /* row:가로방향(왼쪽->오른쪽 배치)  row-reverse:가로방향(오른쪽->왼쪽 배치) */
+            /* column:세로방향(위->아래 배치)  column-reverse:세로방향(아래->위 배치) */
+
+        }
+        div.simg img{
+            border: 2px solid green;
+            box-shadow: 10px 10px 10px gray;
+            border-radius: 20px 50px 80px 20px;
+        }
+    </style>
+</head>
+<body>
+    <font size="10" color="red">font Tag!!!</font> <br>
+    <span style="color: brown; font-size: 2em;">SpanTag</span> <br>
+    <!--height 적용X 보통 임시로 결과 확인할 때 사용??    //div태그는 높이 조절됨-->
+    <span style="border: 3px solid green;">안녕하세요</span>
+    <div class="happy">Div Tag#1</div>
+    <!--클래스명을 여러개 붙일 수 있음 CSS 각각 적용됨-->
+    <div class="happy nice">Div Tag#2</div>
+    <b class="happy nice">B tag! 굵게 속성 포함 태그</b> 
+    <br>
+    <img src="../image/연예인사진/12.jpg" alt="박보영님 없음" title="나는 박보영" class="imga">
+    <br>
+    <img src="../image/Food/12.jpg" alt="순두부라면 없음" title="순두부라면" class="imgb">
+
+    <hr>
+    
+    <div class="fimg">
+        <figure>
+            <img src="../image/Food/1.jpg" alt="">
+            <figcaption><b>에그 샌드위치</b></figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/Food/11.jpg" alt="">
+            <figcaption><b>망고빙수</b></figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/Food/12.jpg" alt="">
+            <figcaption><b>순두부 해장라면</b></figcaption>
+        </figure>
+    </div>
+
+    <hr style="clear: both;">
+    
+    <div class="simg">
+        <figure>
+            <img src="../image/연예인사진/4.jpg" alt="">
+            <figcaption><b>박서준</b></figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/연예인사진/11.jpg" alt="">
+            <figcaption><b>고준희</b></figcaption>
+        </figure>
+
+        <figure>
+            <img src="../image/연예인사진/12.jpg" alt="">
+            <figcaption><b>박보영</b></figcaption>
+        </figure>
+    </div>
+
+    <img src="../image/div_img/bottle01.jpg" alt="">
+
+
+</body>
+</html>

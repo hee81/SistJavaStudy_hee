@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 나라별 치즈종류 */
+        li{
+            list-style: none;
+        }
+        body{
+            font-family: '나눔고딕';
+        }
+        ul{
+            float: left; /**/
+        }
+        hr{clear: both;}
+
+        /* 나라별 음식_버튼*/
+        /* menu라는 클래스명을 가진 ul
+        한칸 때면 하위 전체를 말한다 */
+        ul.menu li{
+            float: left;
+            width: 150px;
+            height: 80px;
+            border: 1px solid gray;
+            text-align: center; /*가로가운데정렬*/
+            line-height: 80px; /*세로가운데정렬_높이랑 같은수치 주면된다*/
+            margin-right: 20px;
+            background-color: rgba(116, 223, 255, 0.151);
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px gray; /*5~10px gray나 한톤어두운 색으로 지정*/
+        }
+
+        /* 스타일 시트를 활용한 간단한 이벤트 */
+        ul.menu li:hover{
+            background-color: cornflowerblue;
+            color: white;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>나라별 치즈종류</h1>
+    <ul>
+        <li><img src="../image/html_img/cheese1.png"></li>
+        <li><img src="../image/html_img/flag01.jpg">프랑스</li>
+        <li>브리치즈,까망베르,꽁떼</li>
+    </ul>
+    <ul>
+        <li><img src="../image/html_img/cheese2.png"></li>
+        <li><img src="../image/html_img/flag02.jpg">영국</li>
+        <li>하드치즈,블루치즈</li>
+    </ul>
+    <ul >
+        <li><img src="../image/html_img/cheese3.png"></li>
+        <li><img src="../image/html_img/flag03.jpg">미국</li>
+        <li>에멘탈치즈,체다치즈</li>
+    </ul>
+    <ul>
+        <li><img src="../image/html_img/cheese4.png"></li>
+        <li><img src="../image/html_img/flag04.jpg">이탈리아</li>
+        <li>포르마지오 치즈,마스카포네</li>
+    </ul>
+
+    <!-- <hr style="clear: both;"> -->
+    <hr>
+
+    <h2>나라별 음식_ul을 이용한 간단한 메뉴 만들기</h2>
+    <br>
+    <ul class="menu">
+        <li>체코</li>
+        <li>베트남</li>
+        <li>대만</li>
+        <li>이탈리아</li>
+        <li>일본</li>
+    </ul>
+
+    
+</body>
+</html>

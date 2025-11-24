@@ -1,0 +1,51 @@
+/* 
+css/buttonStlye.css
+클래스명:btn(3개의 버튼에 공통-너비,높이,글꼴,가운데,그림자
+클래스명:원하는 색상(배경색,글씨색)
+ */
+
+
+/* 구글폰트 글씨체 */
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Hi+Melody&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&display=swap');
+
+.btn1{
+    width: 100px;
+    height: 30px;
+    margin: 5px;
+    box-shadow: 5px 5px 5px gray;
+    border: 2px dashed gray;
+    border-radius: 10px;
+    font-size: 18px;
+    text-align: center;
+    font-family: Gamja Flower;
+}
+
+.btn-pink{
+    background-color: pink;
+    color: deeppink;
+}
+
+.btn-green{
+    background-color: palegreen;
+    color: green;
+}
+
+.btn-blue{
+    background-color: deepskyblue;
+    color: aliceblue;
+}
+
+.btn-pink:hover{
+    background-color: lightgray;
+    color: black;
+}
+
+.btn-green:hover{
+    background-color: lightgray;
+    color: black;
+}
+
+.btn-blue:hover{
+    background-color: lightgray;
+    color: black;
+}
