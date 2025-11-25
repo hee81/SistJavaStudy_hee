@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex7</title>
+    <style>
+        .tb1 th:nth-child(2),.tb2 th{
+            height: 30px;
+            background-color: gainsboro;
+            border-top: 2px solid gray;
+            border-bottom: 2px solid gray;
+            text-align: left;
+        }
+        .tb1 td,.tb2 td{
+            border-bottom: 1px solid lightgray;
+        }
+        .tb2 td:nth-child(3){
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <div>
+        <img src="../image/연예인사진/10.jpg" alt="" width="100">
+        이상우 <br>
+        Lee Sangwoo
+    </div> -->
+
+    <table class="tb1" width="700" align="center">
+        <caption><h1>이력서</h1></caption>
+            <tr>
+                <th rowspan="6"><img src="../image/연예인사진/9.jpg" alt="" width="150"></th>
+                <th colspan="2">기본정보/Personal Information</th>
+            </tr>
+            <tr>
+                <td width="100">이름</td>
+                <td>이수진</td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td>2030.09.01</td>
+            </tr>
+            <tr>
+                <td>연락처</td>
+                <td>123-123-1234</td>
+            </tr>
+            <tr>
+                <td>메일</td>
+                <td>hello@naver.com</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td>서울시 강남구 강남대로 강남건물</td>
+            </tr>
+    </table>
+
+    <table class="tb2" width="700" align="center">
+            <tr>
+                <th colspan="3">기본정보/Personal Information</th>
+            </tr>
+            <tr>
+                <td>대학원</td>
+                <td>라리나 대학원 졸업</td>
+                <td>4.5/4.5</td>
+            </tr>
+            <tr>
+                <td>대학교</td>
+                <td>라리나 대학교 산업디자인과 학사 졸업</td>
+                <td>4.5/4.5</td>
+            </tr>
+            <tr>
+                <td>고등학교</td>
+                <td>라리나 고등학교 졸업</td>
+                <td>-</td>
+            </tr>
+    </table>
+</body>
+</html>

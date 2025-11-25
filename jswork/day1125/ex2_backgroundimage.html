@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 250px;
+            border: 1px solid gray;
+            margin-bottom: 20px;
+            margin-left: 50px;
+            background-size: 50px 70px;
+        }
+        div.a{
+            background-image:url("../image/logoImg/a01.png");
+        }
+        div.b{
+            /* background: url("../image/logoImg/a.png"); background로 주면 위에 div속성 초기화된다 */
+            background-image: url("../image/logoImg/a.png");
+            background-repeat: repeat-x; 
+        }
+        div.c{
+            background-image: url("../image/logoImg/toy05.png");
+            background-repeat: repeat-y;
+        }
+        div.d{
+            background-image: url("../image/logoImg/icon01.png");
+            background-repeat: no-repeat;
+            background-position: right bottom; /*위치지정*/
+        }
+        body{
+            background-image: url("../image/Food/1.jpg");
+            background-repeat: no-repeat;
+            background-position: 800px 200px; /*왼쪽여백(가로), 위쪽여백(세로)*/
+        }
+
+        /* 범용 클래스,모든 태그 가능 */
+        .bg{
+            background-color: antiquewhite;
+        }
+    </style>
+</head>
+<body>
+    <div class="a"></div>
+    <div class="b bg"></div>
+    <div class="c"></div>
+    <div class="d"></div>
+</body>
+</html>

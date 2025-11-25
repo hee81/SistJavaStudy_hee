@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 테이블1 */
+        .tb1{
+            width: 500px;
+            border: 2px groove gray;
+            border-collapse: collapse;
+        }
+        .tb1>thead>tr>th{   /* > : 바로 아래태그를 의미 */
+            border: 1px solid gray;
+            background-color: purple;
+            color: #ffffff;
+        }
+        .tb1>tbody>tr>td{
+            border: 1px solid gray;
+            text-align: center;
+        }
+
+        /* 테이블2 */
+        .tb2{
+            width: 500px;
+            border: 5px inset purple;
+            border-collapse: collapse;
+        }
+        .tb2 th,.tb2 td{
+            border: 2px solid gray;
+            text-align: center;
+        }
+        .tb2 img{width: 100px;}
+
+        /* 2번째 테이블 1번열의 너비 조절 */
+        .tb2 td:nth-child(1){width: 70px;}
+
+        /* 두번쨰 테이블-가격 3번열의 너비를 100px, 글자색을 blue, 우측정렬하시오 */
+        .tb2 td:nth-child(3){
+            width: 100px;
+            color: blue;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <table class="tb1">
+        <caption><h2>[표연습_1]</h2></caption>
+        <thead>
+            <tr>
+                <th>이름</th><th>주소</th><th>핸드폰</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>이미숙</td>
+                <td>서울시 강서구</td>
+                <td>010-1111-2222</td>
+            </tr>
+            <tr>
+                <td>김남길</td>
+                <td>서울시 강북구</td>
+                <td>010-1111-3333</td>
+            </tr>
+            <tr>
+                <td>전미라</td>
+                <td>서울시 용산구</td>
+                <td>010-1111-4444</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <table class="tb2">
+        <caption><h2>[표2]</h2></caption>
+        <thead>
+            <tr>
+                <th>상품명</th><th>상품이미지</th><th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>구두1</td>
+                <td><img src="../image/logoImg/shoe01.png" alt=""></td>
+                <td>120,000</td>
+            </tr>
+                <tr>
+                <td>구두2</td>
+                <td><img src="../image/logoImg/shoe02.png" alt=""></td>
+                <td>130,000</td>
+            </tr>
+                <tr>
+                <td>구두3</td>
+                <td><img src="../image/logoImg/shoe03.png" alt=""></td>
+                <td>140,000</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
