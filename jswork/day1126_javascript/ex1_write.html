@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //자바스크립트는 다양한 방식으로 출력이 가능
+        //innerHTML - <가장 많이 사용> HTML요소가 있을 때 그 안에 출력
+        //document.write() - HTML요소 없이 출력 - ()안의 것을 화면에 출력
+        //alert() : 경고 출력
+        //console.log() : 브러우저의 콘솔탭에서 출력() - ctrl+shift+i 에서 console
+        //변수 var하나임 let?컨스트?에크마6?
+        //이스케이프 문자 없이 " ' ' " or ' " " ' 사용 가능
+        var name1="임";
+        var name2="소";
+        var name3="희";
+
+        var name=name1+name2+name3;
+
+        document.write("안녕하세요?<br>"+name+"입니다<br>")
+        document.write("자바스크립트 시작<br>'JavaScript1일차'<br>")
+        // alert('안녕하세요?<br>'+name+'입니다<br>') <br>은 그대로 출력된다
+
+        //중복된 변수 사용시 초기화됨
+        var a;
+        a="변수배우자";
+        a="100"; //100만 출력
+
+        document.write(a+1+"<br>"); //1001
+    </script>
+    <script>
+        //대입연산자
+        var num=10;
+        document.write(num+"<br>"); //10
+
+        num+=5
+        document.write(num+"<br>"); //15
+
+        //증감연산자
+        var num=20;
+        num++;
+        document.write(num+"<br>"); //21
+
+        num++;
+        document.write(num+"<br>"); //22
+
+        num++;
+        console.log(num);
+
+    </script>
+</body>
+</html>

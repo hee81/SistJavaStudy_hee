@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //암시적형변환: 자바스크립트 컴파일러에 의해서 자동으로 일어나는 형변환
+        //var int
+        var result=1 + "2"; //자동으로 문자로 형변환이 된다
+        document.write("result="+result+"<br>");  //12
+
+        var result2="2"+true;
+        document.write("result="+result2+"<br>"); //2true
+
+        var test1="300";
+        document.write(test1+10+"<br>"); //30010
+
+        //명시적형변환(parseInt, Number) (String=>int)
+        document.write(parseInt(test1)+10+"<br>"); //310
+        document.write(Number(test1)+10+"<br>"); //310
+
+        var test2="300.2";
+        document.write(parseInt(test2)+10+"<br>"); //310
+        document.write(parseFloat(test2)+10+"<br>"); //310.2 - parsedouble는 존재하지 않음
+
+        //eval : 문자 안에서 계산-
+        var test3=eval("20.5+5")
+        document.write(test3+"<br>") //30.5
+        document.write(parseFloat(test3)+parseInt(test3)) //50.5  //30.5+30
+        
+
+
+        
+        
+
+    </script>
+    
+</body>
+</html>

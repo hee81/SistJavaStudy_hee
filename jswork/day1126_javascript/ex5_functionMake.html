@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write("안녕하세요 주현님 자바스크립트 재밌죠?<br>");
+        document.write("안녕하세요 현주님 자바스크립트 재밌죠?<br>");
+        document.write("안녕하세요 민영님 자바스크립트 재밌죠?<br>");
+
+        //중복되는 부분을 함수로 포장한 후
+        //중복되지 않는 부분을 파라메타로 만든 후 함수를 호출할 때 값을 넘긴다
+
+        function showName(name){
+            document.write("안녕하세요 "+name+"님 자바스크립트 재밌죠?<br>");
+        }
+        showName("주현");
+        showName("현주");
+
+        /*
+        Q.안녕하세요
+        주현님의 나이는 26세 입니다
+
+        안녕하세요
+        현주님의 나이는 28세 입니다
+        */
+
+        function hiname(name,age){
+            document.write("안녕하세요<br>"+name+"님의 나이는 "+age+"세 입니다<br>")
+        }
+        hiname("주현",26);
+        hiname("현주",28);
+
+        document.write("=======================================<br>")
+        document.write("리터럴 방식 함수만들기<br>");
+        /*
+        이름: 주현
+        키: 165cm
+        몸무게: 60kg
+        */
+
+        info=function(name,height,weight){
+            document.write("이름: "+name+"<br>");
+            document.write("키: "+height+"cm<br>");
+            document.write("몸무게: "+weight+"kg<br>");
+        }
+        info("주현",165,60);
+
+    </script>
+</body>
+</html>
