@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document1</title>
+</head>
+<body>
+    <script>
+        var a="hello";
+        var b=200;
+        var c=12.5;
+        var d="60";
+
+        //typeof:데이터의 자료형 알아보기
+        document.write(typeof(a)+"<br>");
+        document.write(typeof(b)+"<br>");
+        document.write(typeof(c)+"<br>");
+        document.write(typeof(d)+"<br>");
+
+        document.write(b+100+"<br>"); //300
+        document.write(d+100+"<br>"); //60100
+
+        var sum=parseInt(d)+100;  //문자를 형변환후 숫자를 더한값,Number도 가능
+        document.write(sum+100+"<br>"); //260
+
+
+        //eval("수식") : 실제 계산해서 출력
+        var s="5*6+3";
+        document.write(s+"<br>"); //5*6+3
+        document.write(eval(s)+"<br>"); //33
+
+        //isNan함수는 숫자가 아닌값을 찾는 함수
+        //isNaN("456") 문자형숫자도 숫자로 인식해서 false를반환
+
+        var input=prompt("숫자를 입력하시오");1
+
+        function checkNaN(input)
+        {
+            result=Number(input);
+
+            if(isNaN(result)==true)
+            {
+                document.write("숫자가 아닙니다");
+            }else{
+                document.write("숫자가 맞습니다");
+            }
+        }
+
+        checkNaN(input);  //isNaN은 NaN면 true..NaN이 아니면 false를 반환한다
+
+
+      //함수만들기
+    //   var name="사랑이";
+      var name=prompt("이름 입력","");
+      var age=8; //정수형 숫자
+      var weight=5.6;  //실수형 숫자
+
+      //name,age,weight의 값을 화면에 출력하는 함수
+      //var showInfo=function()
+      function showInfo()
+      {
+           document.write("이름: "+name+"<br>");
+           document.write("나이: "+age+"세<br>");
+           document.write("몸무게: "+weight+"Kg<br>");
+      }
+
+      showInfo();
+
+    </script>
+</body>
+</html>

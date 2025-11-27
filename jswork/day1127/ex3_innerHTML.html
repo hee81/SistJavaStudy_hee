@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    //    head단에서 js실행할 경우에는 페이지가 모두 로드가 된후 호출
+    //html의 로딩이 끝나야만 시작  window.onload()
+     window.onload=function(){
+        document.getElementById('name').innerHTML="이수연";
+     }
+
+    </script>
+</head>
+<body>
+    <!-- HTML에 자바스크립트 연동할때 순서에 따라서 작동방식이 달라진다
+     head 태그안에 넣으면 HTML element를 이용할수 없다
+     body 안에 넣으면 HTML element를 이용가능 -->
+    <div id="name" style="background-color: antiquewhite;">홍길동</div>
+    <!-- <script>
+        document.getElementById('name').innerHTML="이수연";
+          
+    </script> -->
+</body>
+</html>

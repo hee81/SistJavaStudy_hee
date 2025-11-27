@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지역변수 전역변수</title>
+</head>
+<body>
+   
+    <script>
+       //전역변수 :전체영역에서 사용하는 함수
+       var a=10;
+       var b=100;
+
+       function outFunc()
+       {
+            //지역변수: 지역내에서만 사용하는 변수
+            var a=20;
+            //a=20;  지역변수내에서 var를 안쓰면 전역변수가 됨
+
+            document.write("3. outFunc a: "+a +"<br>"); //20
+            document.write("4. outFunc b: "+b+"<br>"); //100
+       }
+       outFunc();
+
+      document.write("1. 전역변수 a: "+a +"<br>");
+      document.write("2. 전역변수 b: "+b+"<br>");
+
+      
+    </script>
+</body>
+</html>

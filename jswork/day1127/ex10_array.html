@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>1.배열테스트</h2>
+    <script>
+        var food=["파스타","샌드위치","피자","햄버거"];
+
+        document.write("일반출력<br>")
+        document.write("food[0]="+food[0]+"<br>");
+        document.write("food[1]="+food[1]+"<br>");
+        document.write("food[2]="+food[2]+"<br>");
+        document.write("food[3]="+food[3]+"<br><br>");
+
+        document.write("배열테스트<br>")
+        for(var i=0;i<food.length;i++)
+        {
+            document.write("food["+i+"]="+food[i]+"<br>")
+        }
+
+        document.write("======================<br>")
+    </script>
+
+    <h2>2.10개의 랜덤수 출력</h2>
+    <script>
+        var rnd=parseInt(Math.random()*10)+1;
+
+        for(var i=0;i<10;i++){
+            rnd=parseInt(Math.random()*100)+1;
+            // document.write('<h5>'+rnd+'</h5>')
+            document.write('<b>'+rnd+'&nbsp;&nbsp;</b>')
+        }
+    </script>
+
+    <h3>3.배열에 색상을 나열하고 h4태그의 문자색상을 배열색상으로 출력</h3>
+    <script>
+        var colors=["magenta","tomato","yellow","gray","purple"];
+
+        for(var i=0;i<colors.length;i++){
+            document.write("<h4 style='color:"+colors[i]+";'>"+colors[i]+"</h4>");
+        }
+
+    </script>
+
+    <h2>Q1. 배열에 5개의 이름을 나열한 후 배열만큼 b태그를 이용하여 출력하시오(띄어쓰기는 2칸씩)</h2>
+    <script>
+        var name2=["홍길동","유재석","강호동","박명수","이수근"];
+
+        for(var i=0;i<name2.length;i++){
+            document.write('<b>'+name2[i]+'&nbsp;&nbsp;</b>');
+        }
+    </script>
+
+
+
+    <h2>Q2. image의 연예인사진을 보면 일련번호이다 1~5번까지의 이미지를 출력하시오
+        <img src="../image/연예인사진/1.jpg" alt="" width="100"> 를 참고할 것 사이즈가 크니까 가로100으로 주기
+    </h2>
+    <script>
+        for(var i=1;i<=5;i++){
+            document.write("<img src='../image/연예인사진/"+i+".jpg' width='100'>")
+        }
+    </script>
+
+
+</body>
+</html>
