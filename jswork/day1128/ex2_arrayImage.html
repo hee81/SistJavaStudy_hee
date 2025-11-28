@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 70px;
+            height: 80px;
+            border: 1px solid green;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>배열-초기값으로 지정</h3>
+    <script>
+        var arr1=[
+            "../image/연예인사진/12.jpg",
+            "../image/Food/12.jpg",
+            "../image/logoImg/acc02.png",
+            "../image/만화이미지/07.png",
+        ];
+
+        var s="배열갯수는 "+arr1.length+"<br>";
+
+        for(var i=0;i<arr1.length;i++){
+            s+="<img src='"+arr1[i]+"'>";
+        }
+
+        document.write(s);
+
+    </script>
+
+    <h3>배열-new Array()로 선언 지정</h3>
+    <script>
+        var arr2=new Array();
+        arr2[0]= "../image/연예인사진/14.jpg";
+        arr2[1]= "../image/Food/10.jpg";
+        arr2[2]= "../image/logoImg/acc01.png";
+        arr2[3]= "../image/만화이미지/04.png";
+
+        var s="배열갯수는" + arr2.length + "<br>";
+        for(var i=0;i<arr2.length;i++){
+            s+="<img src='"+arr2[i]+"'>";
+        }
+        document.write(s);
+    </script>
+
+    <h3>배열-new Array()로 선언 지정-push()</h3>
+    <script>
+        var arr3=new Array();
+        arr3.push("../image/연예인사진/14.jpg");
+        arr3.push("../image/Food/10.jpg");
+        arr3.push("../image/logoImg/acc01.png");
+        arr3.push("../image/만화이미지/04.png");
+
+        var s="배열갯수는" + arr3.length + "<br>";
+        for(var i=0;i<arr3.length;i++){
+            s+="<img src='"+arr3[i]+"'>";
+        }
+        document.write(s);
+    </script>
+
+    <h3>바로 위의 배열에서 2개 제거 pop() 후 출력</h3>
+    <script>
+        arr3.pop();
+        arr3.pop();
+
+        var s="배열갯수는" + arr3.length + "<br>";
+        for(var i=0;i<arr3.length;i++){
+            s+="<img src='"+arr3[i]+"'>";
+        }
+        document.write(s);
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #out{
+            position: absolute;
+            top: 50px;
+            left: 100px;
+            width: 300px;
+            height: 200px;
+            padding: 10px 10px;
+            background-color: #ffc;
+            font-size: 11pt;
+        }
+        #outimg{
+            position: absolute;
+            top: 100px;
+            left: 500px;
+            width: 100px;
+            height: 120px;
+            border: 1px solid gray;
+        }
+    </style>
+    <script>
+        // event 번호 확인 enter=13
+        // 콘솔에서 키코드 조회하기(onclick 대신에 엔터(keycode=13)쳤을 때~도 가능)
+        document.addEventListener("keydown",function(e){
+            console.log("keyCode",e.keyCode);
+        });
+
+        //숫자 맞추기
+        //rnd값이 가장 먼저 발생 되어야 한다
+        var rnd;
+        var cnt=0;
+        
+
+        window.onload=function(){
+            rnd=parseInt(Math.random()*100)+1;
+        }
+        function check(su){
+            //null 값 먼저 체크하기
+            if(su<=0 || su>100){
+                alert("다시 입력바랍니다");
+            }
+            var out=document.getElementById("out"); //없이 그냥 out.innerHtml해도 상관없음
+            
+            //난수와 내가 입력한 숫자 비교해서 결과출력하기
+            cnt++;
+
+            if(su>rnd)
+                out.innerHTML += cnt+"회:"+su+"보다 작습니다<br>";
+            else if(su<rnd)
+                out.innerHTML += cnt+"회:"+su+"보다 큽니다<br>";
+            else{
+                out.innerHTML = "<h3>축하합니다 정답은 "+rnd+"입니다</h3>"
+                myimg.src="../image/Jquery_img/03.png";
+            }
+             
+            
+            //횟수 초과시
+            if(cnt>=10){
+                out.innerHTML = "<h3>다음기회에...</h3>"
+                myimg.src="../image/Jquery_img/c7.png";
+            }
+
+            frm.num.value="";
+        }
+
+    </script>
+</head>
+<body>
+    <div class="input">
+        <form action="#" name="frm" onsubmit="return false">
+            <b>숫자: </b>
+            <input type="text" name="num" size="5" onkeydown="if(event.keyCode==13) check(value)">
+        </form>
+    </div>
+    <div id="out"></div>
+    <div id="outimg">
+        <img src="" alt="" name="myimg" >
+    </div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #img_gallery img{
+            width: 120px;
+            height: 100px;
+        }
+
+        div#img_gallery{
+            position: absolute;
+            left: 600px;
+            top: 100px;
+            cursor: pointer;
+        }
+
+        #result_div{
+            position: absolute;
+            left: 500px;
+            top: 300px;
+        }
+
+        #result_div img{
+            border: 10px inset gray;
+            width: 500px;
+            height: 450px;
+            border-radius: 40px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //id객체 읽어오기
+            var img1=document.getElementById("img1");
+            var img2=document.getElementById("img2");
+            var img3=document.getElementById("img3");
+            var img4=document.getElementById("img4");
+            var imgResult=document.getElementById("img_result");
+
+            //이벤트를 주는데 속성 사용
+            img1.onclick=function(){
+                //imgResult에 img1~4 이미지를 넣어주면 된다
+                //imgResult 속성에 img1의 속성을 가져와서 세팅해준다.........속성(이미지 주소)
+                imgResult.setAttribute("src",img1.getAttribute("src"))
+            }
+            img2.onclick=function(){
+                imgResult.setAttribute("src",img2.getAttribute("src"))
+            }
+            img3.onclick=function(){
+                imgResult.setAttribute("src",img3.getAttribute("src"))
+            }
+            img4.onclick=function(){
+                imgResult.setAttribute("src",img4.getAttribute("src"))
+            }
+
+            //배열로 변경할 땐 this를 사용해야함.       
+        }
+
+    </script>
+</head>
+<body>
+    <!-- 속성:src,width,border
+     setAttribute("src","../image...")
+     getAttribute(변수) : 선택한 요소의 element 값을 정해줌?-->
+
+     <div id="img_gallery">
+        <img src="../image/Food/1.jpg" alt="" id="img1" width="200px">
+        <img src="../image/Food/2.jpg" alt="" id="img2">
+        <img src="../image/Food/3.jpg" alt="" id="img3">
+        <img src="../image/Food/4.jpg" alt="" id="img4">
+     </div>
+
+     <div id="result_div">
+        <img src="" alt="" id="img_result">
+     </div>
+</body>
+</html>

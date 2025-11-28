@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+        img{
+            width: 70px;
+            height: 80px;
+            border: 1px solid green;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>배열변수 초기값으로 5개 지정한 후 배열값을 해당색으로 출력_b태그 사용</h3>
+    <script>
+        var ex3=["Red","Green","Blue","Purple","Pink"];
+        for(var i=0;i<ex3.length;i++){
+            document.write("<b style='color: "+ex3[i]+";'>"+ex3[i]+"</b>&nbsp;&nbsp;&nbsp;")
+        }
+
+        document.write("<hr>")
+
+        //of: arr1의 배열값이 차례대로 반복해서 꺼내진다(자바의 확장 for문과 같은 경우) = for(int n:ex3) >JAVA
+        for(var n of ex3){
+            document.write("<b style='color: "+n+";'>"+n+"</b>&nbsp;&nbsp;&nbsp;")
+        }
+
+        document.write("<hr>")
+
+        //in: 배열의 인덱스 함께 출력
+        for(var idx in ex3){
+            document.write("<b>"+idx+":"+ex3[idx]+"</b>&nbsp;&nbsp;&nbsp;")
+        }
+
+        document.write("<hr>")
+    </script>
+
+    <h3>Array(3)으로 생성하고 각 배열에 이미지 넣고 출력은 of로 해보기</h3>
+    <script>
+        var arr2=new Array(3);
+        arr2[0]="<img src='../image/만화이미지/01.png' width='90'>";
+        arr2[1]="<img src='../image/만화이미지/02.png' width='90'>";
+        arr2[2]="<img src='../image/만화이미지/03.png' width='90'>";
+
+        for(var c of arr2){
+            document.write(c);
+        }
+    </script>
+
+    <h3>Food안에 모든 이미지를 출력하시오 4열씩만 배치하기</h3>
+    <script>
+        for(var i=1;i<=12;i++){
+            document.write("<img src='../image/Food/"+i+".jpg'>")
+            if(i%3==0)
+                document.write("<br>");
+        }
+    </script>
+
+    <h3>Q2. hello 가 h1태그로 5번 반복되고 
+    각 hello의 색상은 배열의 5가지 색상으로 나오게할것_배열선언(컬러)</h3>
+   <script>
+    var arr3=["Red","Green","Blue","Purple","Pink"];
+    
+    for(var i=0;i<arr3.length;i++){
+        document.write("<h1 style='color: "+arr3[i]+"'>hello</h1>")
+    }
+
+   </script>
+
+   <h3>Q3_1. 확인버튼을 누르면 정말 탈퇴하실건가요? 확인시 탈퇴되었읍니다 취소시 취소됨 이라고 출력창에 나오게 해주세요
+      Q3_2. 입력버튼을 누르면 당신이 사는지역은? 이라고 나온후 입력한 동네가 결과창에 나오게 해주세요(취소시 취소됨 이라고 나옴)
+   </h3>
+   <script>
+    function myconfirm(){
+        var delmyconfirm=confirm("정말 탈퇴하실건가요?");
+        if(delmyconfirm)
+            alert("탈퇴되었습니다.")
+        else
+            alert("취소됨")
+      }
+
+    window.onload=function(){
+            var btn3=document.getElementById('btnprompt');
+            btn3.onclick=function(){
+                var btn3in=prompt("당신이 사는 지역은?","");
+                var btnout=document.getElementById("result");
+
+                if(btn3in)
+                    btnout.innerHTML=btn3in;
+                else
+                    btnout.innerHTML="취소됨";
+            }
+    }
+
+   </script>
+   <button type="button" onclick="myconfirm()">확인</button>
+   <button type="button" id="btnprompt">입력</button>
+   <div id="result">출력</div>
+    
+</body>
+</html>

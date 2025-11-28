@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img.mi{
+            width: 60px;
+            height: 60px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <h2>만화이미지 01~20까지 출력하기</h2>
+    <script>
+        for(var i=1;i<=20;i++){
+            var imagename="../image/만화이미지/"+(i<10?"0":"")+i+".png";
+            var comicimag="<img src='"+imagename+"' class='mi'>";
+            document.write(comicimag+"&nbsp;");
+
+            //4행
+            if(i%5==0)
+            document.write("<br>");
+        }
+    </script>
+
+    <h2>자바스크립트 배열선언하는 방법_1</h2>
+    <script>
+        var arr=new Array();
+        arr[0]="장미";
+        arr[1]="백합";
+        arr[2]="국화";
+        arr[3]="프리지아";
+        arr[4]="안개꽃";
+
+        for(var i=0;i<arr.length;i++){
+            document.write(arr[i]+"<br>")
+        }
+    </script>
+
+    <h2>자바스크립트 배열선언하는 방법_2</h2>
+    <script>
+        var arr2=["장미","백합","국화","프리지아","안개꽃"]
+
+        for(var i=0;i<arr2.length;i++){
+            document.write(arr2[i]+"<br>")
+        }
+    </script>
+
+    <h2>자바스크립트 2차원 배열선언하는 방법_3</h2>
+    <script>
+        var arr3=new Array();
+        arr3[0]=['red','장미꽃'];
+        arr3[1]=['purple','백합'];
+        arr3[2]=['tomato','국화'];
+        arr3[3]=['yellow','프리지아'];
+        arr3[4]=['blue','안개꽃'];
+
+        for(var i=0;i<arr3.length;i++){
+            document.write("<font color='"+arr3[i][0]+"' size='5'>"+arr3[i][1]+"</font><br>")
+        }
+    </script>
+
+    <h2>배열에 요소추가</h2>
+    <script>
+        var foodName=new Array();
+        foodName.push("햄버거"); //배열에 마지막에 요소추가
+        console.log(foodName);
+        foodName.push("피자");
+        foodName.push("파스타");
+        foodName.push("콜라");
+
+        //출력 <h3>
+        for(var i=0;i<foodName.length;i++){
+            document.write("<h3>"+foodName[i]+"</h3>")
+        }
+
+        //배열 마지막요소 제거
+        foodName.pop();
+        foodName.pop();
+
+        //배열 첫번째요소 제거
+        foodName.shift();
+
+        document.write("----------------")
+
+        for(var i=0;i<foodName.length;i++){
+            document.write("<h3>"+foodName[i]+"</h3>")
+        }
+    </script>
+</body>
+</html>
