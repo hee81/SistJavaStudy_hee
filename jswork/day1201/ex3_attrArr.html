@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/buttonStyle.css">
+    <title>Document3</title>
+    <style>
+        #result{
+            width: 500px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 2px solid gray;
+            margin-top: 20px;
+            background: url("../image/만화이미지/01.png") no-repeat right bottom;
+            background-size: 50px 60px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            //div요소값
+            var r=document.getElementById("result");
+            //image요소값
+            var rimg=document.getElementById("imgResult");
+
+            //버튼1event..innerHTML,innerText(어느 inner인지 태그까지 출력함)
+            //btn1 누르면 당신의 이름? 그 결과를 result에 출력한다(innerHTML,innerText)
+
+            document.getElementById("btn1").onclick=function(){
+                var name=prompt("당신의 이름은?")
+                if(name==null){
+                    //태그가 그대로 출력
+                    r.innerText="<u>취소 눌렀네요~~</u>"
+                }
+                else
+                    //태그가 적용
+                    r.innerHTML="<u>당신의 이름은 "+name+"이네요~</u>"
+            }
+
+            //버튼2event
+            //이미지의 너비를 입력해서 해당 너비로 변경되도록 한다
+            //취소 시 이미지 변경하지 않겠다
+            document.getElementById("btn2").onclick=function(){
+
+                //현재width
+                var curwidth=rimg.getAttribute("width");
+                    alert(curwidth);
+
+                var newwidth=prompt("변경하려는 너비값을 입력하세요",curwidth);
+
+                if(newwidth==null)
+                    r.innerHTML="변경 취소";
+                else
+                    rimg.setAttribute("width",newwidth);
+            }
+
+            //btn3 누르면
+            //출력할 음식 번호를 누르세요.
+            //취소 누르면 현재 사진 변경하지 않음
+            //확인 누르면 해당 사진으로 사진 변경
+            //사진의 범위를 넘어서면 함수 종료..? (13번 초과시)
+            document.getElementById("btn3").onclick=function(){
+
+                var btn3=prompt("출력할 음식 번호를 누르세요.");
+
+                if(btn3==null){
+                    alert("현재 사진 변경하지 않음");
+                }
+                else if(btn3>12 || btn3<1){
+                    alert("1~12 사이값만 입력하세요");
+                    return; //함수종료
+                }
+
+                //경로 구하기
+                rimg.setAttribute("src","../image/Food/"+btn3+".jpg");
+
+ 
+
+            }
+            
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <button type="button" class="btn1 btn-pink" id="btn1">이벤트#1</button>
+    <button type="button" class="btn1 btn-green" id="btn2">이벤트#2</button>
+    <button type="button" class="btn1 btn-blue" id="btn3">이벤트#3</button>
+    <div id="result"></div>
+    <img src="../image/logoImg/a.png" alt="" id="imgResult" width="300">
+</body>
+</html>

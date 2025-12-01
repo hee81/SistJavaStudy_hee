@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document_quiz2</title>
+    <style>
+        .container{
+            position: absolute;
+            left: 200px;
+            top: 50px;
+        }
+        .container div img{
+            border: 10px inset purple;
+            margin-top: 50px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var selImage=document.getElementById("selImage");
+            var foodPhoto=document.getElementById("mainFood");
+
+            //초기이미지 매칭이 안된 것 해결가능
+            var init_img=selImage.value;
+            // alert(init_img);
+
+            //현재사진이랑 매칭
+            foodPhoto.setAttribute("src",init_img);
+
+            //select event
+            selImage.onchange=function(){
+                //모든 이벤트 함수에는 이벤트 발생객체에 this라는 변수가 기본으로 존재한다
+                console.log(this.value); //../image/Food/7.jpg 출력됨.
+                foodPhoto.setAttribute("src",this.value);
+            }
+
+            //점점작게
+            var imgSmall=document.getElementById("btnSmall");
+            var s=foodPhoto.getAttribute("width");
+            s=parseInt(s); 
+
+            imgSmall.onclick=function(){
+                s-=10;
+                foodPhoto.setAttribute("width",s);
+            }
+
+            //점점크게
+            var imgLarge=document.getElementById("btnLarge");
+            var la=foodPhoto.getAttribute("width");
+
+               
+
+            imgLarge.onclick=function(){
+
+                la=parseInt(la);
+                la+=10;
+                foodPhoto.setAttribute("width",la);
+            }
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <button type="button" id="btnSmall">점점작게</button>
+            <button type="button" id="btnLarge">점점크게</button>
+
+            <b>사진선택</b>
+            <select name="" id="selImage">
+                <option value="../image/Food/1.jpg">에그샌드위치</option>
+                <option value="../image/Food/7.jpg" selected>토마토비프</option>
+                <option value="../image/Food/9.jpg">연근조림</option>
+                <option value="../image/Food/10.jpg">스팸덮밥</option>
+            </select>
+        </div>
+
+        <div>
+            <img src="../image/Food/12.jpg" alt="" id="mainFood" width="400">
+        </div>
+    </div>
+
+
+</body>
+</html>

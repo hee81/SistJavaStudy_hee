@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document_quiz3</title>
+</head>
+<body>
+    <h3>1. 사진에 마우스 올리면 5번 이미지로, 클릭하면 10번 이미지로, 마우스 벗어나면 원래 이미지로</h3>
+    <img src="../image/Food/1.jpg" width=200>
+    <script>
+        var Q1img=document.querySelector("img");
+        var Q1src=Q1img.getAttribute("src");
+
+        Q1img.onmouseover=function(){
+            Q1img.setAttribute("src","../image/Food/5.jpg");
+        }
+
+        Q1img.onclick=function(){
+            Q1img.setAttribute("src","../image/Food/10.jpg");
+        }
+
+        Q1img.onmouseout=function(){
+            Q1img.setAttribute("src","../image/Food/1.jpg");
+        }
+    </script>
+
+    <h3>2. 연예인사진 1~20번까지 for문 반복해서 body에 출력하기_4줄로</h3>
+    <script>
+        for(var i=1;i<=20;i++){
+            var Q2="<img src='../image/연예인사진/"+i+".jpg' width=50>"
+            document.write(Q2)
+
+            if(i%5==0)
+                document.write("<br>")
+        }
+
+    </script>
+
+    <h3>3. 아래 이미지를 width=200 height=220 로 지정 후 이미지를 클릭하면
+        아래 div에 정보(src,width.height)가 나오게 할것
+    </h3>
+    <img src="../image/jquery_img/04.png" alt="" width="200" height="220" id="img3">
+    <div id="out"></div>
+    <script>
+        var Q3id=document.getElementById("img3");
+        
+        // document.write(Q3src)
+
+        var result=document.getElementById("out");
+
+        Q3id.onclick=function(){
+            var Q3src="src = "+Q3id.getAttribute("src")+"<br>";
+            var Q3width="width = "+Q3id.getAttribute("width")+"<br>";
+            var Q3height="height = "+Q3id.getAttribute("height")+"<br>";
+            result.innerHTML=Q3src+Q3width+Q3height;
+        }
+    </script>
+</body>
+</html>

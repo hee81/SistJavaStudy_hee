@@ -5,15 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/buttonStyle.css">
     <title>Document</title>
-    <style>
 
-    </style>
     <script>
         //버튼을 누르면 해당 연예인이 나오도록 합니다
         //각각의 버튼을 클릭하면 매번 박보영님을 출력할까요? 라고 나오고
         //확인을 누를 경우에만 이미지가 나오게 만든다.
         
         //박보영
+        function btnPark(){
+            var btn1=confirm("박보영님을 출력할까요?");
+            // id선언 안해도 가능
+            // var result=document.getElementById("result");
+
+            if(btn1)
+                result.innerHTML='<img src="../image/연예인사진/12.jpg" width="150px">'
+                
+        }
 
         //수지
         window.onload=function(){
@@ -21,21 +28,29 @@
             var result=document.getElementById("result");
 
             Soo.onclick=function(){
-                var Soobtn=confirm("수지님을 출력할까요?","");
-                if(Soobtn)
-                    document.write
+                var btn2=confirm("수지님을 출력할까요?","");
+                if(btn2)
+                    result.innerHTML='<img src="../image/연예인사진/19.jpg" width="150px">'
             }
+
+            //신민아
+            var Sin=document.getElementById("btnmin");
+
+            Sin.onclick=function(){
+                var btn3=confirm("신민아님을 출력할까요?","");
+                if(btn3)
+                    result.innerHTML='<img src="../image/연예인사진/17.jpg" width="150px">'
+            }
+
         }
         
-
-
     </script>
     
 </head>
 <body>
-    <button type="button" class="btn1 btn-pink" onclick="btnPark">박보영</button>
+    <button type="button" class="btn1 btn-pink" onclick="btnPark()">박보영</button>
     <button type="button" class="btn1 btn-green" id="btnSoo">수지</button>
-    <button type="button" class="btn1 btn-blue">신민아</button>
+    <button type="button" class="btn1 btn-blue" id="btnmin">신민아</button>
     <hr>
     <div id="result"></div>
 </body>

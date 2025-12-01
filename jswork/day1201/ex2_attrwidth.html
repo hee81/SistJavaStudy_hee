@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #one{
+            margin-bottom: 50px;
+            margin-left: 50px;
+            /* border: 1px solid gray; */
+        }
+    </style>
+    <script>
+        function photoSmall(){
+            var mina=document.getElementById("mina");
+            
+            var w=mina.getAttribute("width");
+
+            console.log(typeof(w)); //String타입이더라도 -,*는 숫자로 계산됨(+만 안됨)
+
+            w-=10;
+            mina.setAttribute("width",w);
+        }
+
+        function photoLarge(){
+            var mina=document.getElementById("mina");
+            var w=mina.getAttribute("width");
+            
+            console.log(typeof(w)); //String타입이더라도 -,*는 숫자로 계산됨(+만 안됨)
+            w=parseInt(w); //width속성을 int로 형변환 후 다시 w
+
+            w+=10;
+            mina.setAttribute("width",w);
+        }
+
+    </script>
+</head>
+<body>
+    <div id="one">
+        <button type="button" onclick="photoSmall()">점점작게</button>
+        <button type="button" onclick="photoLarge()">점점크게</button>
+    </div>
+
+    <img src="../image/연예인사진/17.jpg" width="200" id="mina">
+    <hr>
+
+    <h3>배열로 이미지를 5개 생성 후 출력해보기</h3>
+    <script>
+        var arrImg=[
+            '<img src="../image/만화이미지/01.png">',
+            '<img src="../image/만화이미지/02.png">',
+            '<img src="../image/만화이미지/03.png">',
+            '<img src="../image/만화이미지/04.png">',
+            '<img src="../image/만화이미지/05.png">',
+        ];
+
+        // for(var i=0;i<arrImg.length;i++){
+        //     document.write(arrImg[i]);
+        // }
+
+        var s="";
+        for(var i=0;i<arrImg.length;i++){
+            s+=arrImg[i];
+        }
+
+        document.write(s);
+        
+    </script>
+
+
+</body>
+</html>

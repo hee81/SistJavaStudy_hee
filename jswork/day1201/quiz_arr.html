@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document_quiz1</title>
+    <script>
+        window.onload=function(){
+            //배열에 이미지 5개 넣기
+            var arr1=new Array();
+            arr1[0]="1";
+            arr1[1]="2";
+            arr1[2]="3";
+            arr1[3]="4";
+            arr1[4]="5";
+
+            //이미지 출력 버튼을 누르면 출력할 인덱스를 입력해주세요 
+            //그 인덱스(0~4)에 따른 이미지를 출력해주세요
+            //이외의 번호를 누르면 해당 이미지는 없습니다 라고 출력할 것
+            var btn1=document.getElementById("btn1");
+            var resultImg=document.getElementById("resultImg");
+
+            btn1.onclick=function(){
+                var resultp=prompt("출력할 인덱스를 입력해주세요");
+
+                if(resultp<0 || resultp>4){
+                    resultImg.innerHTML="해당 이미지는 없습니다 ";
+                }
+                else{
+                    resultImg.innerHTML="<img src='../image/Food/"+arr1[resultp]+".jpg'>";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" id="btn1">이미지 출력</button>
+    <hr>
+    <div id="resultImg">이미지가 출력되는 곳</div>
+
+</body>
+</html>

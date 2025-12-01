@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document6</title>
+    <style>
+        table{
+            width: 700px;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <h2>input 태그 연습</h2>
+    <table>
+        <tr>
+            <th>종류</th>
+            <th>태그</th>
+            <th>이벤트 후 결과</th>
+        </tr>
+        <tr>
+            <td>1. input-text</td>
+            <td>
+                <input type="text" id="txt1" placeholder="값을 입력하세요">
+                : 입력시 옆칸에 바로 나오게 할것!
+            </td>
+            <td class="a"></td>
+        </tr>
+        <tr>
+            <td>2. input-text</td>
+            <td>
+                <input type="text" id="txt2" placeholder="값을 입력하세요">
+                : 입력 후 엔터를 누르면 나와요
+            </td>
+            <td class="b"></td>
+        </tr>
+        <tr>
+            <td>3. input-color</td>
+            <td>
+                <input type="color" value="#ffcccc" id="color1">
+            </td>
+            <td class="c"></td>
+        </tr>
+        <tr>
+            <td>4. input-checkbox</td>
+            <td>
+                <!-- label 글씨 눌러도 인식함 -->
+                <label><input type="checkbox" id="chk1">굵게</label>
+                <input type="checkbox" id="chk2">밑줄
+            </td>
+            <td class="d">CheckBox</td>
+        </tr>
+        <tr>
+            <td>5. input-radio</td>
+            <td>
+                <label><input type="radio" name="tcolor" value="red">빨강</label>
+                <label><input type="radio" name="tcolor" value="blue">파랑</label>
+                <label><input type="radio" name="tcolor" value="green" checked>초록</label>
+                <label><input type="radio" name="tcolor" value="pink">핑크</label>
+            </td>
+            <td class="e">Radio</td>
+        </tr>
+    </table>
+
+    <script>
+        //1번 이벤트_onkeyup
+        document.getElementById("txt1").onkeyup=function(e1){
+            //입력값 읽기
+            var v=e1.target.value;
+            document.querySelector(".a").innerHTML=v;
+        }
+
+        //2번 이벤트
+        document.getElementById("txt2").onkeydown=function(e2){
+            var v=this.value;
+
+            if(e2.keyCode==13)
+                document.querySelector(".b").innerHTML=v;
+        }
+
+        //3번 이벤트
+        document.getElementById("color1").onchange=function(){
+            //선택한 색상
+            var selColor=this.value;
+            //옆에칸 배경색으로 출력
+            document.querySelector(".c").style.backgroundColor=selColor;
+            //색상출력
+            document.querySelector(".c").innerHTML=selColor;
+        }
+        
+        //4번 이벤트
+        document.getElementById("chk1")
+    </script>
+</body>
+</html>

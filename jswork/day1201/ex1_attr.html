@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img src="../image/Food/1.jpg" alt="" width="200" id="myimg">
+    <hr>
+    <button type="button" onclick="attrTest()">속성 알아보기</button>
+    <hr>
+    <button type="button" onclick="setattr()">속성 적용하기_위의 이미지와 같은 src,width 속성을 가진 이미지 출력</button>
+    <hr>
+    <img id="someImg" src="">
+    
+
+    <script>  
+        function attrTest(){
+
+            var foodPhoto=document.getElementById("myimg");
+
+            //태그의 속성 가져오기
+            var src=foodPhoto.getAttribute("src");
+            var width=foodPhoto.getAttribute("width");
+
+            //alert안에는 <br> 대신 \n 작성해야함.
+            alert(src+"\n"+width);
+        }
+
+        function setattr(){
+            var foodPhoto=document.getElementById("myimg");
+            var resultimg=document.getElementById("someImg");
+
+            resultimg.setAttribute("src",foodPhoto.getAttribute("src"));
+            resultimg.setAttribute("width",foodPhoto.getAttribute("width"));
+
+        }
+    </script>
+</body>
+</html>
