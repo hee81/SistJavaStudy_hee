@@ -12,6 +12,7 @@
         th,td{
             border: 1px solid gray;
         }
+        
     </style>
 </head>
 <body>
@@ -72,6 +73,9 @@
             //입력값 읽기
             var v=e1.target.value;
             document.querySelector(".a").innerHTML=v;
+
+            // document.querySelector(".a").innerHTML=this.value;
+            
         }
 
         //2번 이벤트
@@ -80,6 +84,9 @@
 
             if(e2.keyCode==13)
                 document.querySelector(".b").innerHTML=v;
+
+            // if(e2.keyCode==13)
+            //     document.querySelector(".b").innerHTML=this.value;
         }
 
         //3번 이벤트
@@ -90,10 +97,49 @@
             document.querySelector(".c").style.backgroundColor=selColor;
             //색상출력
             document.querySelector(".c").innerHTML=selColor;
+            // document.querySelector(".c").innerHTML=this.value;
         }
         
         //4번 이벤트
-        document.getElementById("chk1")
+        var e4=document.querySelector(".d");
+
+        document.getElementById("chk1").onclick=function(){
+            // var v=this.value; //on (value값이 없으면 무조건 on)
+            var check=this.checked; //false로 출력됨
+
+            // alert(v+","+check);
+
+            if(check){
+                e4.style.fontWeight="bold";
+            }
+            else
+                e4.style.fontWeight="normal";
+
+        }
+
+        document.getElementById("chk2").onclick=function(){
+            var check=this.checked;
+
+            if(check)
+                e4.style.textDecoration="underline";
+                // e4.innerHTML="<u>"+e4.innerText+"</u>";
+            else
+                e4.style.textDecoration="none";
+                // e4.innerHTML=e4.innerText;
+        }
+
+        //5번 이벤트
+        var e5=document.getElementsByClassName("tcolor")
+        
+        for(var i=0;i<e5.length;i++){
+            e5[i].onclick=function(){
+                var v=this.value;
+                //.e에 적용
+                document.querySelector(".e").style.color=v;
+            }
+        }
+
+
     </script>
 </body>
 </html>

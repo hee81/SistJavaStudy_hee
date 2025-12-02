@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 스타일은 lottoStyle -->
+    <title>Document7</title>
+    <link rel="stylesheet" href="../css/lottoStyle.css">
+    <style>
+        #out>.lotto{
+            float: left;
+            margin-right: 10px;
+        }
+    </style>
+    
+    <script>
+    window.onload=function(){
+
+        var btnId=document.getElementById("btnwrite");
+        var out=document.getElementById("out")
+
+        var lotto=new Array(6);
+        //버튼 누르면 1~45까지의 난수를 구해서 배열에 넣기
+        btnId.onclick=function(){
+            for(var i=0;i<lotto.length;i++){
+                lotto[i]=parseInt(Math.random()*45)+1;
+
+                //중복제거(기준값,비교값?)
+                for(var j=0;j<i;j++){
+                    if(lotto[i]==lotto[j]){
+                        i--;
+                        break;
+                    }
+                }
+            }
+
+            //오름차순 정렬
+            for(var i=0;i<lotto.length-1;i++){
+                for(var j=i+1;j<lotto.length;j++){
+                    if(lotto[i]>lotto[j]){
+                        var temp=lotto[i];
+                        lotto[i]=lotto[j];
+                        lotto[j]=temp;
+                    }
+                }
+            }
+
+            console.log(lotto);
+
+            //div에 출력하기
+            var s="";
+
+            for(var i=0;i<lotto.length;i++){
+                s+="<div class='lotto'>"+lotto[i]+"</div>"
+            }
+
+            out.innerHTML=s;
+            
+        }
+
+    }
+    
+    </script>
+</head>
+<body>
+    <button type="button" id="btnwrite">로또 숫자 구하기</button>
+
+    <div id="out"></div>
+</body>
+</html>

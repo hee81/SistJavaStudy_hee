@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document8</title>
+    <style>
+        div>div{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border: 2px solid black;
+            border-radius: 50px;
+            box-shadow: 5px 5px 5px gray;
+            font-size: 40px;
+            text-align: center;
+            line-height: 100px;
+            margin-right: 10px;
+        }
+        div{
+            float: left;
+        }
+
+        #one{background-color: pink;}
+        #two{background-color: orange;}
+        #three{background-color: yellow;}
+        #four{background-color: greenyellow;}
+        #five{background-color: aqua;}
+        #six{background-color: violet;}
+
+        #btnstart,#btnstop{
+            width: 70px;
+            height: 70px;
+            border: 5px solid gray;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            document.getElementById("btnstart").onclick=function(){
+                var lotto=new Array(6);
+
+                interval=setInterval(function(){
+                    for(var i=0;i<lotto.length;i++){
+
+                        //랜덤수 발생
+                        lotto[i]=parseInt(Math.random()*45)+1;
+
+                        //중복제거
+                        for(var j=0;j<i;j++){
+                            if(lotto[i]==lotto[j]){
+                                i--;
+                                break;
+                            }
+                        }
+
+                    }
+
+                    one.innerText=lotto[0];
+                    two.innerText=lotto[1];
+                    three.innerText=lotto[2];
+                    four.innerText=lotto[3];
+                    five.innerText=lotto[4];
+                    six.innerText=lotto[5];
+
+                },1000)
+
+            }
+
+            document.getElementById("btnstop").onclick=function(){
+                clearInterval(interval);
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <div id="one">1</div>
+        <div id="two">1</div>
+        <div id="three">1</div>
+        <div id="four">1</div>
+        <div id="five">1</div>
+        <div id="six">1</div>
+    </div>
+    <button type="button" id="btnstart">시작</button>
+    <button type="button" id="btnstop">멈춤</button>
+</body>
+</html>

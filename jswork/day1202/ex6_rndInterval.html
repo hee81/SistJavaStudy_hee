@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document6</title>
+    <style>
+        #photo{
+            width: 400px;
+            height: 350px;
+            border: 5px dashed gray;
+        }
+        .msg{
+            font-size: 2em;
+            margin: 10px 20px;
+
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var photo=document.getElementById("photo");
+            var msg=document.querySelector(".msg");
+
+            //메세지 배열출력
+            var msgArr=["점심시간메뉴","비올 때 생각나는 음식","저렴하고 맛있는 음식","빵지순례"];
+            var colArr=["red","orange","magenta","cyan","purple","yellow"];
+
+            //1초 마다 음식 사진이 바뀌도록 한다_랜덤(1~12)
+            setInterval(function(){
+                //1~12사이의 난수 발생
+                var idx=parseInt(Math.random()*12)+1;
+                //사진의 이미지 난수로 변경시키기
+                photo.setAttribute("src","../image/Food/"+idx+".jpg");
+            },1000);
+
+            //메세지도
+            setInterval(function(){
+                var idx2=parseInt(Math.random()*4); //0~3번까지의 난수발생
+                msg.innerHTML=msgArr[idx2];
+
+                //0~5번까지의 색상랜덤발생
+                var idx3=parseInt(Math.random()*5);
+                //msg의 글자색에 랜덤적용
+                msg.style.color=colArr[idx3];
+            },500)
+
+        }
+    </script>
+</head>
+<body>
+    <img src="../image/Food/1.jpg" alt="" id="photo">
+    <div class="msg">메세지 출력</div>
+</body>
+</html>

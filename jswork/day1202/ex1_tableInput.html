@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document1</title>
+    <style>
+        table{
+            width: 400px;
+            border-collapse: collapse;
+        }
+        th,td{
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption><h3>폼태그 Quiz</h3></caption>
+        <tr>
+            <th>이름</th>
+            <td>
+                <input type="text" id="name" size="6">
+            </td>
+        </tr>
+        <tr>
+            <th>자바점수</th>
+            <td>
+                <input type="text" id="java" size="6">
+            </td>
+        </tr>
+        <tr>
+            <th>자바스크립트점수</th>
+            <td>
+                <input type="text" id="js" size="6">
+            </td>
+        </tr>
+        <tr>
+            <th>운전면허</th>
+            <td>
+                <input type="checkbox" id="driver" value="ok">있음
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button type="button" id="btn">결과확인</button>
+            </td>
+        </tr>
+        <tr height="150">
+            <td colspan="2" align="center">
+                <div id="out">결과출력(이름,자바,js점수,총점,평균,운전면허: 있음,없음으로 표시)</div>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        //버튼id
+        var btnId=document.getElementById("btn");
+        //출력id
+        var outId=document.getElementById("out");
+        
+        var jId=document.getElementById("java");
+        var jsId=document.getElementById("js");
+        var drId=document.getElementById("driver");
+        
+        btnId.onclick=function(){
+
+            var nId=document.getElementById("name").value;
+            
+            if(nId.length==0){
+                alert("이름을 입력해주세요;")
+                return;
+            }
+            else if(!isNaN(nId)){
+                alert("한글로 입력해주세요;")
+                return;
+            }
+            if(isNaN(jId.value) || isNaN(jsId.value)){
+                alert("숫자만 입력해주세요;")
+                return;
+            }
+
+            var tot1=parseInt(jId.value)+parseInt(jsId.value);
+            var avg1=tot1/2;
+
+            //eval하면 형변환 필요없음.
+            var tot2=eval(jId.value+"+"+jsId.value);
+            var avg2=tot2/2;
+
+            var s="[결과확인]<br>";
+            
+            s+="이름 : "+nId+"<br>";
+            s+="자바점수: "+jId.value+"<br>";
+            s+="자바스크립트점수: "+jsId.value+"<br>";
+            s+="총점: "+tot2+"<br>";
+            s+="평균: "+avg2+"<br>";
+
+            // var drch=drId.checked;
+            // if(drch)
+            //     outId.innerHTML+="운전면허: 있음<br>"
+            // else
+            //     outId.innerHTML+="운전면허: 없음<br>"
+
+            s+="운전면허: "+(drId.checked?"있음":"없음")+"<br>"
+
+            outId.innerHTML=s;
+
+        }
+
+    </script>
+</body>
+</html>

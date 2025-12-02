@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document5</title>
+    <style>
+        #myphoto{
+            position: absolute;
+        }
+    </style>
+    <script>
+        var myphoto;
+        var xpos=300;
+        var ypos=200;
+
+        window.onload=function(){
+            myphoto=document.getElementById("myphoto");
+            myphoto.style.left=xpos+"px";
+            myphoto.style.top=ypos+"px";
+
+            // 키보드의 아스키코드값 확인
+            // 왼쪽:37 위:38 오른쪽 39 아래:40 엔터:13
+            window.onkeydown=function(e){
+                console.log(e.keyCode);
+
+                switch(e.keyCode){
+                    case 38:
+                        ypos-=10;
+                        myphoto.style.top=ypos+"px"
+                        break;
+                    case 40:
+                        ypos+=10;
+                        myphoto.style.top=ypos+"px"
+                        break;
+                    case 37:
+                        xpos-=10;
+                        myphoto.style.left=xpos+"px"
+                        break;
+                    case 39:
+                        xpos+=10;
+                        myphoto.style.left=xpos+"px"
+                        break;
+                    case 13:
+                        xpos=700;
+                        ypos=300;
+                        myphoto.style.left=xpos+"px";
+                        myphoto.style.top=ypos+"px";
+                        break;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 초기 위치(중앙)에 이미지 하나 두고 방향키 누르면 10씩 이동(좌우상하)
+     엔터 누르면 처음 위치로-->
+
+     <img src="../image/jquery_img/06.png" alt="" id="myphoto">
+</body>
+</html>

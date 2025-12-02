@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document4</title>
+    <style>
+        #myphoto{
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var img=document.getElementById("myphoto");
+            
+            var x=30;
+            var y=200;
+
+            //초기 이미지 위치 지정
+            img.style.left=x+"px";
+            img.style.top=y+'px';
+
+            var inter;
+            //버튼이벤트
+            document.getElementById("btngo").onclick=function(){
+                inter=setInterval(function(){
+                    img.style.left=x+"px";
+                    x+=10;
+                },100);
+            }
+
+            document.getElementById("btnstop").onclick=function(){
+                clearInterval(inter); //setInterval 멈춤
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>setInterval연습</h3>
+    <br>
+    <button type="button" id="btngo">이동</button>
+    <button type="button" id="btnstop">멈춤</button>
+    <img src="../image/jquery_img/01.png" alt="" id="myphoto">
+</body>
+</html>
