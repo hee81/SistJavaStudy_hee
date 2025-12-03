@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document8</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        $(function(){
+            $("img:eq(0)").click(function(){
+                var img1Src=$(this).attr("src");
+                var img1Width=$(this).attr("width");
+                var img1irum=$(this).attr("irum");
+                
+                $("img:gt(2)").attr("src",img1Src).attr("width",img1Width);
+
+                $("h3").html(img1irum);
+
+            });
+
+            //figure 아래 이미지 누르면 역시 h3에 음식명 그 아래 이미지 나오도록 한다
+            // 클릭한 것의 다음태그 next(), 이전태그 prev()
+            // html(): js의 innerHtml
+            // text(): js의 innerText와 같다
+
+            //next()
+            $("figure>img").click(function(){
+                var img2Src=$(this).attr("src");
+                var img2W=$(this).attr("width");
+                var img2Cap=$(this).next().text();
+
+                $("img:gt(2)").attr("src",img2Src).attr("width",img2W);
+
+                $("h3").text(img2Cap);
+            });
+
+            //prev()
+            // $("figure>figcaption").click(function(){
+            //     var img2Src=$(this).prev().attr("src");
+            //     var img2W=$(this).prev().attr("width");
+            //     var img2Cap=$(this).text();
+
+            //     $("img:gt(2)").attr("src",img2Src).attr("width",img2W);
+
+            //     $("h3").text(img2Cap);
+            // });
+
+
+        });
+    </script>
+</head>
+<body>
+    <img src="../image/logoImg/captain.png" width="100" irum="캡틴아메리카">
+    <br>
+    <figure>
+        <img src="../image/Food/1.jpg" width="200">
+        <figcaption>햄에그샌드위치</figcaption>
+    </figure>
+    <figure>
+        <img src="../image/Food/10.jpg" width="200">
+        <figcaption>스팸마요덮밥</figcaption>
+    </figure>
+
+    <h3>첫번째 이미지를 클릭하면 아래 이미지에 카피하기_irum은 여기로</h3>
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+
+</body>
+</html>

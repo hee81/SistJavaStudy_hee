@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document4</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h3 class="a">복사하고 싶어요!</h3>
+    <hr>
+    <h3 class="b">h3내용을 여기에 복사</h3>
+
+    <script>
+        //a에 thml로 입력
+        $("h3.a").html("복사할 내용을 여기에 넣기").append("<img src='../image/만화이미지/01.png'>");
+
+        //a를 클릭하면 "안의 내용을 복사함"이라고 나온 후
+        $("h3.a").click(function(){
+            tag=$(this).html();
+            alert("안의 내용을 복사함");
+        });
+
+        //b를 클릭하면 그 내용이 그대로 복사
+        $("h3.b").click(function(){
+            $(this).html(tag);
+            //b내용 옆에 추가
+            // $(this).append(tag);
+        });
+    </script>
+</body>
+</html>

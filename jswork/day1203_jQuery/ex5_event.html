@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document5</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+</head>
+<body>
+    <h3>이미지 클릭 -> src, width 얻어서 hr태그 다음에 같은 이름의 사진 넣기 / 
+        사진 title 얻어서 div안에 넣고 글씨크기-25pt, 글꼴-Dongle /
+        (after 사용)
+    </h3>
+    <img src="../image/연예인사진/1.jpg" width="200" title="나는 여진구">
+    <hr>
+    <div></div>
+
+    <script>
+        $("img").click(function(){
+            //이미지에 대한 속성값 저장
+            var mySrc=$(this).attr("src");
+            var myWidth=$(this).attr("width");
+            var myTitle=$(this).attr("title");
+            
+            var copyImg="<img src='"+mySrc+"'width="+myWidth+">";
+
+            $("hr").after(copyImg);
+
+            $("div").html(myTitle).css({"fontSize":"25pt","fontFamily":"Dongle"});
+
+        });
+    </script>
+    
+</body>
+</html>

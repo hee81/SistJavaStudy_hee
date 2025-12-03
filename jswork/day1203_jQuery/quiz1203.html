@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document9</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <h3>
+        <b>햄에그샌드위치</b>
+        <br>
+        <span>../image/Food/1.jpg</span>
+    </h3>
+    <h3>
+        <b>치킨꼬치구이</b>
+        <br>
+        <span>../image/Food/2.jpg</span>
+    </h3>
+    <h3>
+        <b>스팸마요덮밥</b>
+        <br>
+        <span>../image/Food/10.jpg</span>
+    </h3>
+
+    <hr>
+
+    <img src="" class="foodPhoto" width="300">
+    <h2></h2>
+
+    <script>
+    //음식 이름을 누르면 이미지 경로가 아래 이미지에 나오도록 한다
+    //그 아래(h2)에 음식 이름이 나오도록 한다
+
+    $("h3>b").click(function(){
+
+        //햄에그샌드위치만 반복되고 아래 사진 안나옴....!!
+        // var img=$("h3>span").html(); //안됨
+        // var img=$(this).siblings("span").html(); //siblings() 형제 요소 선택
+        var img=$(this).next().next().html();
+
+        var name=$(this).text();
+
+        // 이미지
+        $("img.foodPhoto").attr("src",img);
+        // 음식 이름
+        $("h2").text(name);
+
+    });
+
+    </script>
+</body>
+</html>
