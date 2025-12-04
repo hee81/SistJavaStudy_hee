@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document5</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .shop{
+            box-shadow: 5px 5px 5px gray;
+            border-radius: 20px 50px 30px 50px;
+        }
+    </style>
+    <script>
+
+        $(function(){
+            // 1.작은 10개의 이미지는 너비-100 높이-120 보더-자유
+            $(".smallImg").css({
+                "width":"100px",
+                "height":"120px",
+                "border":"2px solid purple"
+            });
+
+            // 2.each이용해서 1~10까지 차례대로 넣기
+            $(".smallImg").each(function(index){
+                $(this).attr("src","../image/쇼핑몰사진/"+(index+1)+".jpg");
+            });
+
+            // IargeImage 너비,높이 보더 맘대로
+            $(".largeImg").css({
+                "width":"200px",
+                "height":"150px",
+                "border" : "2px dashed gray"
+            })
+
+            // 작은이미지에 마우스 올리면 큰 이미지에 나오게
+            $(".smallImg").mouseover(function(){
+                var smallSrc=$(this).attr("src");
+                $(this).addClass("shop");
+                $(".largeImg").attr("src",smallSrc).addClass("shop");
+            });
+
+            // 작은 이미지 벗어나면 addClass 삭제
+            $(".smallImg").mouseout(function(){
+                $(".largeImg").removeClass("shop");
+                $(this).removeClass("shop");
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <h3>10개의 이미지태그_each문으로 이미지넣기</h3>
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+    <img src="" class="smallImg">
+
+    <br><br>
+
+    <img src="" class="largeImg">
+    
+
+
+</body>
+</html>

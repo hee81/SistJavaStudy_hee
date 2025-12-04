@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document7</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        div{
+            border: 2px solid gray;
+            padding: 20px 20px;
+            width: 500px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h3>폼태그 연습#1</h3>
+    <div>
+        <b>아이디</b>
+        <input type="text" style="width: 120px;">
+        <br>
+        <b>패스워드</b>
+        <input type="password" style="width: 120px;">
+        <br>
+    </div>
+    <script>
+        //포커스가 갈 경우 노랑색으로 변경, 벗어나면 흰색
+        $("input:text,input:password").focus(function(){
+            $(this).css("backgroundColor","yellow");
+        });
+        $("input:text,input:password").blur(function(){
+            $(this).css("backgroundColor","white");
+        });
+    </script>
+
+    <h3>폼태그 연습#2</h3>
+    <div>
+        <input type="checkbox" id="chklic">운전면허&nbsp;&nbsp;
+        <button type="button" id="btn1">확인</button>&nbsp;&nbsp;
+        <span></span>
+    </div>
+    <script>
+        $("#btn1").click(function(){
+            var a=$("#chklic").val(); //checkbox val 확인
+            var b=$("#chklic").is(":checked"); //checkbox 체크 상태 확인
+
+            $("span:eq(0)").html(a+","+b);
+            //a출력 : on(value 미지정시)
+            //b출력 : true/false
+        });
+    </script>
+
+    <h3>폼태그 연습#3</h3>
+    <div>
+        <b>당신이 사는 지역?</b>
+        <input type="radio" name="city" value="서울시" checked>서울&nbsp;
+        <input type="radio" name="city" value="경기도">경기&nbsp;
+        <input type="radio" name="city" value="세종시">세종&nbsp;
+        <input type="radio" name="city" value="대구시">대구&nbsp;
+        <input type="radio" name="city" value="제주시">제주&nbsp;
+        <input type="radio" name="city" value="부산시">부산&nbsp;
+        <button type="button" id="btncity">확인</button>
+        <span></span>
+    </div>
+    <script>
+        $("#btncity").click(function(){
+            var cityData=$("input[name=city]:checked").val();
+            $("span:eq(1)").html(cityData);
+        });
+    </script>
+
+    <h3>폼태그 연습#4</h3>
+    <div>
+        <b>당신이 가본 나라는?</b>
+        <input type="checkbox" name="nara" value="미국">미국&nbsp;
+        <input type="checkbox" name="nara" value="호주">호주&nbsp;
+        <input type="checkbox" name="nara" value="체코">체코&nbsp;
+        <input type="checkbox" name="nara" value="일본">일본&nbsp;
+        <input type="checkbox" name="nara" value="베트남">베트남&nbsp;
+        <button type="button" id="btnNara">확인</button>
+        <span></span>
+    </div>
+    <script>
+        $("#btnNara").click(function(){
+            // 체크된 나라의 갯수 먼저 알아보기
+            var len=$("input[name=nara]:checked").length;
+
+            //체크된 나라명만 나옴
+            // var c=$("input[name=nara]:checked").val()
+            // $("span:eq(2)").html(c);
+
+            var s="<br>체크된 갯수: "+len+"&nbsp";
+
+            if(len==0){
+                s+="<br>가본 나라가 없네요~";
+            }
+            else{
+                $("input[name=nara]:checked").each(function(i,element){
+                    s+=$(this).val()+"&nbsp;";
+                });
+            }
+            $("span:eq(2)").html(s);
+        });
+    </script>
+
+    <h3>폼태그 연습#5</h3>
+    <div>
+        <!-- ../ 으로 불러오는거 아니면 name 안씀, op-val은 영문권장 -->
+        <select name="" id="selone">
+            <option value="red">빨강</option>
+            <option value="blue">파랑</option>
+            <option value="green">초록</option>
+            <option value="purple">보라</option>
+        </select>
+        <button type="button" id="btnCol">확인</button>
+        <span></span>
+    </div>
+    <script>
+        // 에크마6에서는 function이 화살표임/view,react에는 에크마6사용?
+        $("#btnCol").click(function(){
+            var colText=$("#selone option:selected").text(); //selected안하면 모든 text값 불러옴 - 빨강 파랑 초록 보라
+            var colVal=$("#selone").val();
+            $("span:eq(3)").text(colText+","+colVal);
+
+            var s="<b style='color:"+colVal+"'>"+colText+"<b>";
+            $("span:eq(3)").html(s);
+        });
+    </script>
+
+</body>
+</html>

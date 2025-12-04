@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <title>Document8</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script>
+        //선택한 글꼴로 출력이 되도록 한다.
+        $(function(){
+
+            $("button").click(function(){
+                /*
+                //이름      
+                var a=$("input:text").val();
+                
+                //운전면허
+                var b=$("#chklicense").is(":checked")?"유":"무";
+
+                //생년월일
+                var c=$("#mybirth").val();
+
+                //연령
+                var d=$("input[name=age]:checked").val();
+
+                //취미
+                var e=$("input[name=hobby]:checked").length;
+                if(e==0)
+                    e+="<br>취미가 없습니다."
+                else{
+                    e+="<br>나의 취미: ";
+                    $("input[name=hobby]:checked").each(function(){
+                        e+=$(this).val()+"&nbsp";
+                    });
+                }
+
+                //글꼴
+                var sfont=$("#selFont option:selected").val();
+                $("#out").css("fontFamily",sfont);
+
+                //출력
+                var s="";
+                s+="이름: "+a+"<br>";
+                s+="운전면허: "+b+"<br>";
+                s+="생년월일: "+c+"<br>";
+                s+="연령: "+d+"<br>";
+                s+="취미: "+e+"<br>";
+                $("#out").html(s);
+                */
+
+                var s="[개인정보]<br>"
+
+                //이름
+                s+="이름: "+$("input:text").val()+"<br>";
+
+                //운전면허
+                s+="운전면허: "+($("#chklicense").is(":checked")?"있음":"없음")+"<br>";
+
+                //생년월일
+                s+="생년월일: "+$("#mybirth").val()+"<br>";
+
+                //연령대
+                s+=$("input[name=age]:checked").val()+"<br>";
+
+                //취미
+                $("input[name=hobby]")
+
+
+
+                $("#out").html(s);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <fieldset><legend>폼태그연습</legend></fieldset>
+
+        <b>이름</b>
+        <input type="text" id="name">
+        <br>
+
+        <b>운전면허: </b>
+        <input type="checkbox" id="chklicense">운전면허
+        <br>
+
+        <b>생년월일</b>
+        <input type="date" id="mybirth" value="2000-01-01">
+        <br>
+
+        <b>당신의 연령대?</b>
+        <input type="radio" name="age" value="20대" checked>20대&nbsp;
+        <input type="radio" name="age" value="30대">30대&nbsp;
+        <input type="radio" name="age" value="40대">40대&nbsp;
+        <input type="radio" name="age" value="50대">50대&nbsp;
+        <input type="radio" name="age" value="기타">기타&nbsp;
+        <br>
+
+        <b>당신의 취미?</b>
+        <input type="checkbox" name="hobby" value="게임">게임&nbsp;
+        <input type="checkbox" name="hobby" value="여행">여행&nbsp;
+        <input type="checkbox" name="hobby" value="공부">공부&nbsp;
+        <input type="checkbox" name="hobby" value="낚시">낚시&nbsp;
+        <input type="checkbox" name="hobby" value="유튜브시청">유튜브시청&nbsp;
+        <br>
+
+        <b>글꼴선택</b>
+        <select id="selFont">
+            <option>Dongle</option>
+            <option>Gamja Flower</option>
+            <option>Nanum Myeongjo</option>
+            <option>Nanum Pen Script</option>
+        </select>
+        <br><br>
+
+        <button type="button">결과출력</button>
+
+        <div id="out">결과 출력하는 곳...</div>
+
+    </div>
+</body>
+</html>

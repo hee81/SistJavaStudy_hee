@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document4</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .bg_0{background-color: aqua;}
+        .bg_1{background-color: purple; color: white;}
+        .bg_2{background-color: yellow;}
+        .bg_3{background-color: pink;}
+        .bg_4{background-color: brown; color: white;}
+        .bg_5{background-color: blue; color: white;}
+
+        ul li{width: 200px;}
+    </style>
+</head>
+<body>
+    <!-- 태그 반복할 때 사용하는 each문 -->
+     <b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b>
+
+     <script>
+        // b태그 갯수만큼 자동반복
+        // index : 0번부터
+        // element : index에 해당하는 b태그, 생략가능(this)
+        $("b").each(function(i,element){
+            //$(element).text(i);
+            $(this).text(i);
+        })
+     </script>
+
+     <hr>
+
+     <ul>
+        <li>apple</li>
+        <li>banana</li>
+        <li>orange</li>
+        <li>kiwi</li>
+        <li>manggo</li>
+        <li>strawberry</li>
+     </ul>
+
+     <script>
+        //each는 선택한 요소가 여러개일 때 각각에 대해 반복해서 함수실행
+        $("ul li").each(function(index){
+            $(this).addClass("bg_"+index);
+        })
+
+        //li에 마우스 올리면 뒤에 ***를 출력해보자
+        //append,after
+        $("ul li").mouseover(function(){
+            // append 요소 바로 뒤에
+            // $(this).append("<b>***</b>")
+            // after li태그 뒤에
+            $(this).after("<b>***</b>")
+        });
+
+        //마우스 벗어나면 원래대로
+        $("ul li").mouseout(function(){
+            //현재 이벤트가 발생하는 li의 다음 태그를 제거(append로 추가하면 제거 안됨)
+            $(this).next().remove();
+
+            //안됨..부모로 올라가서 해야함
+            // $(this).find("b").remove; 
+        });
+     </script>
+</body>
+</html>

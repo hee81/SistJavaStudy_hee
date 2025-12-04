@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document1</title>
+    <style>
+        /* .mainPhoto{
+            position: absolute;
+            left: 600px;
+        } */
+    </style>
+</head>
+<body>
+    <div>
+        <!-- 쇼핑몰사진 1~35.jpg 이미지 가져오기(23번 없음) 너비50px-->
+         <script>
+            for(var i=1;i<=35;i++){
+                var img="<img src='../image/쇼핑몰사진/"+i+".jpg' width='50' class='shop'>";
+                if(i==23) continue;
+                document.write(img);
+            }
+        </script>
+        <hr>
+        <img src="../image/logoImg/acc03.png" alt="" width="300" class="mainPhoto">
+    </div>
+
+    <script>
+        // 1.메인포토의 위치를 left-100  top-200  border-10px solid gray
+        $("img.mainPhoto").css({
+            "position":"absolute",
+            "left":"100px",
+            "top":"200px",
+            "border":"10px solid gray"
+        });
+
+        // 2.shop에 마우스를 올리면 그 사진을 추출해서 메인포토의 사진으로 변경하기
+        $("img.shop").mouseover(function(){
+            var shopSrc=$(this).attr("src");
+            $("img.mainPhoto").attr("src",shopSrc);
+        });
+
+        // 3.벗어나면 원래대로
+        $("img.shop").mouseout(function(){
+            $("img.mainPhoto").attr("src","../image/logoImg/acc03.png");
+        });
+    
+    </script>
+
+    
+
+</body>
+</html>

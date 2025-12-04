@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document3</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .happy{
+            width: 200px;
+            height: 200px;
+            border: 10px dashed purple;
+            background: url("../image/jquery_img/01.png");
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body>
+    <h3>addClass,removeClass,toggleClass</h3>
+    <button type="button">스타일 추가</button>
+    <button type="button">스타일 제거</button>
+    <button type="button">스타일 추가/제거</button>
+
+    <div></div>
+
+    <script>
+        //추가버튼 누르면 div에 스타일 추가
+        $("button:eq(0)").click(function(){
+            $("div").addClass("happy");
+        });
+
+        //제거버튼 누르면 div에 스타일 제거
+        $("button:eq(1)").click(function(){
+            $("div").removeClass("happy");
+        });
+
+        //추가/제거버튼 누르면 div에 스타일 추가/제거 반복
+        $("button:eq(2)").click(function(){
+            $("div").toggleClass("happy");
+        });
+    </script>
+</body>
+</html>

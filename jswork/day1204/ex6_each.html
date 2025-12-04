@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/lottoStyle.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document6</title>
+    <style>
+        .lotto{
+            float: left;
+            margin-right: 10px;
+            background-color: rgb(red, green, blue);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- div에 로또 공모양 출력 -->
+    <div class="lotto"></div>
+    <div class="lotto"></div>
+    <div class="lotto"></div>
+    <div class="lotto"></div>
+    <div class="lotto"></div>
+    <div class="lotto"></div>
+
+    <hr style="clear: both;">
+
+    <!-- rgb컬러 출력 -->
+    <h2></h2>
+
+    <script>
+
+        $("div.lotto").each(function(i){
+
+            //로또 공모양에 1~6까지 출력하시오
+            $(this).text(i+1);
+
+            //로또 공모양 랜덤으로 색상 변경시키기
+            //0~255까지의 숫자 r,g,b
+            var r=parseInt(Math.random()*266);
+            var g=parseInt(Math.random()*266);
+            var b=parseInt(Math.random()*266);
+            $(this).css("background-color","rgb("+r+","+g+","+b+")");
+
+        });
+
+        // 공 위에 마우스 올리면 h2에 rgb컬러 출력할 것!
+        $("div.lotto").mouseover(function(){
+            var bgc=$(this).css("background-color")
+            $("h2").text(bgc).css("color",bgc);
+        });
+
+    </script>
+
+</body>
+</html>
