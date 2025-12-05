@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document7</title>
+    <style>
+        .a{color: blue;}
+        .b{color: purple;}
+        .c{color: green;}
+
+        div.subject b{
+            font-size: 20pt;
+            cursor: pointer;
+        }
+        div.answer h5{
+            /* 들여쓰기 */
+            text-indent: 50px;
+        }
+    </style>
+    <script>
+        $(function(){
+            //모든 댓글 숨기기
+            $("div.answer").hide();
+
+            //제목을 클릭하면 해당하는 댓글만 보이게 하기
+            //나머지 댓글은 안보이게 하기
+            $("div.subject>b").click(function(){
+                $(this).siblings().show();
+                // $(this).parent().siblings().find("div.answer").hide();
+                $(this).parent().siblings().children("div.answer").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="subject a">
+        <b>오늘은 즐거운 금요일입니다</b>
+        <div class="answer">
+            <h5>그러게요~즐겁게 보내세요</h5>
+            <h5>저는 오늘 야근입니다ㅠㅠ</h5>
+            <h5>오늘 워크샵 왔어요</h5>
+        </div>
+    </div>
+    <div class="subject b">
+        <b>제이쿼리 3일차 끝~~</b>
+        <div class="answer">
+            <h5>제이쿼리 재밌죠??</h5>
+            <h5>저는 어렵던데~~~</h5>
+            <h5>자바스크립트 하다가 하니 쉬운데요?</h5>
+        </div>
+    </div>
+    <div class="subject c">
+        <b>오늘 내 생일 파티하니깐 모이자</b>
+        <div class="answer">
+            <h5>쏘리~~난 약속이 있어서ㅜ</h5>
+            <h5>맛있는거 쏘니?</h5>
+            <h5>아무거나 입고가도 되지?</h5>
+            <h5>내가 케이크 사갈게~~</h5>
+        </div>
+    </div>
+</body>
+</html>

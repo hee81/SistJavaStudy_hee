@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document2</title>
+    <style>
+        #msg{
+            font-size: 2em;
+            position: absolute;
+            left: 100px;
+            top: 150px;
+        }
+        #img1{
+            position: absolute;
+            left: 500px;
+            top: 150px;
+        }
+        button{
+            width: 100px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" id="btn1">Hide</button>
+    <button type="button" id="btn2">Show</button>
+    <button type="button" id="btn3">Toggle</button>
+    <br>
+    <button type="button" id="btn4">SlideUp</button>
+    <button type="button" id="btn5">SlideDown</button>
+    <button type="button" id="btn6">SlideToggle</button>
+    <br>
+    <button type="button" id="btn7">FadeOut</button>
+    <button type="button" id="btn8">FadeIn</button>
+    <button type="button" id="btn9">FadeToggle</button>
+    <button type="button" id="btn10">FadeTo</button>
+    <br>
+
+    <img src="../image/jquery_img/c5.png" alt="" id="img1">
+    <div id="msg">오늘은 즐거운 금요일~</div>
+
+    <script>
+        $("#btn1").click(function(){
+            $("#msg").hide();
+            $("#img1").hide();
+        });
+        $("#btn2").click(function(){
+            $("#msg").show();
+            $("#img1").show();
+        });
+        $("#btn3").click(function(){
+            $("#msg").toggle();
+            $("#img1").toggle();
+        });
+        $("#btn4").click(function(){
+            $("#msg").slideUp('slow');
+            $("#img1").slideUp('slow');
+        });
+        $("#btn5").click(function(){
+            $("#msg").slideDown('fast');
+            $("#img1").slideDown('fast');
+        });
+        $("#btn6").click(function(){
+            $("#msg").slideToggle();
+            $("#img1").slideToggle();
+        });
+        $("#btn7").click(function(){
+            $("#msg").fadeOut();
+            $("#img1").fadeOut();
+        });
+        $("#btn8").click(function(){
+            $("#msg").fadeIn();
+            $("#img1").fadeIn();
+        });
+        $("#btn9").click(function(){
+            $("#msg").fadeToggle();
+            $("#img1").fadeToggle();
+        });
+        $("#btn10").click(function(){
+            $("#msg").fadeTo(3000,0.5,function(){
+                $(this).css("border","2px solid gray");
+            });
+            $("#img1").fadeTo(3000,0.2,function(){
+                $(this).css("opacity","1").css("border","10px dotted pink");
+            });
+        });
+    </script>
+
+    <hr>
+
+    <button type="button" id="btna">투명도 30%</button>
+    <button type="button" id="btnb">투명도 100%</button>
+    <br><br><br>
+    <h1>여기에 투명도 적용하기</h1>
+    <script>
+        $("#btna").click(function(){
+            $("h1").fadeTo(1000,0.3);
+        });
+        $("#btnb").click(function(){
+            $("h1").fadeTo(1000,1);
+        });
+    </script>
+    
+</body>
+</html>

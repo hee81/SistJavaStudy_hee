@@ -6,12 +6,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <title>Document8</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        #out{
+            width: 300px;
+            height: 300px;
+            background-color: aliceblue;
+        }
+        #mini_out{
+            margin-top: 10px;
+        }
+    </style>
     <script>
         //선택한 글꼴로 출력이 되도록 한다.
         $(function(){
 
-            $("button").click(function(){
-                /*
+            $("button:eq(0)").click(function(){
+                
                 //이름      
                 var a=$("input:text").val();
                 
@@ -22,22 +32,18 @@
                 var c=$("#mybirth").val();
 
                 //연령
-                var d=$("input[name=age]:checked").val();
+                var d=$("input[name='age']:checked").val();
 
                 //취미
-                var e=$("input[name=hobby]:checked").length;
+                var e=$("input[name='hobby']:checked").length;
                 if(e==0)
                     e+="<br>취미가 없습니다."
                 else{
                     e+="<br>나의 취미: ";
-                    $("input[name=hobby]:checked").each(function(){
+                    $("input[name='hobby']:checked").each(function(){
                         e+=$(this).val()+"&nbsp";
                     });
                 }
-
-                //글꼴
-                var sfont=$("#selFont option:selected").val();
-                $("#out").css("fontFamily",sfont);
 
                 //출력
                 var s="";
@@ -47,41 +53,27 @@
                 s+="연령: "+d+"<br>";
                 s+="취미: "+e+"<br>";
                 $("#out").html(s);
-                */
-
-                var s="[개인정보]<br>"
-
-                //이름
-                s+="이름: "+$("input:text").val()+"<br>";
-
-                //운전면허
-                s+="운전면허: "+($("#chklicense").is(":checked")?"있음":"없음")+"<br>";
-
-                //생년월일
-                s+="생년월일: "+$("#mybirth").val()+"<br>";
-
-                //연령대
-                s+=$("input[name=age]:checked").val()+"<br>";
-
-                //취미
-                $("input[name=hobby]")
 
 
+                //글꼴
+                var sfont=$("#selFont option:selected").val();
+                //글씨색상
+                var fontColor=$("input[name='fcolor']:checked").val();
+                
+                $("#out").css({"fontFamily":sfont,"color":fontColor});
 
-                $("#out").html(s);
+            });
 
+            //이미지
+            $("#btnImg").click(function(){
+                
+                // var selimg="";
+                $("input[name='chkimg']:checked").each(function(){ 
+                    var imgV=$(this).val();
+                    selimg="<img src='../image/jquery_img/"+imgV+".png'>";
+                });
 
-
-
-
-
-
-
-
-
-
-
-
+                $("#mini_out").html(selimg);
 
             });
         });
@@ -126,12 +118,32 @@
             <option>Nanum Myeongjo</option>
             <option>Nanum Pen Script</option>
         </select>
-        <br><br>
+        <br>
 
+        <b>글꼴색상?</b>
+        <input type="radio" name="fcolor" value="green" checked>초록 &nbsp;
+        <input type="radio" name="fcolor" value="blue">파랑 &nbsp;
+        <input type="radio" name="fcolor" value="purple">보라 &nbsp;
+        <input type="radio" name="fcolor" value="magenta">핑크 &nbsp;
+        <input type="radio" name="fcolor" value="cyan">연파랑 &nbsp;
+
+        <br><br>
         <button type="button">결과출력</button>
 
         <div id="out">결과 출력하는 곳...</div>
+        <br>
+
+        <b>체크된 이미지 모두 출력_jquery_img/.png</b><br>
+        <input type="checkbox" name="chkimg" value="03">춤추는 미니언즈 &nbsp;
+        <input type="checkbox" name="chkimg" value="04">바나나 미니언즈 &nbsp;
+        <input type="checkbox" name="chkimg" value="06">튜브 미니언즈 &nbsp;
+        <input type="checkbox" name="chkimg" value="11">어린이 &nbsp;
+        <br><br>
+        <button type="button" id="btnImg">이미지출력</button>
+        <div id="mini_out"></div>
 
     </div>
+
+
 </body>
 </html>

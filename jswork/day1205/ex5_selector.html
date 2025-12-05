@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document5</title>
+    <style>
+        div.one figure{
+            float: left;
+            cursor: pointer;
+        }
+        div.box{
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border: 2px dotted purple;
+            margin: 5px;
+            float: left;
+        }
+        div.result2{
+            border: 2px solid gray;
+            margin: 5px 5px;
+            padding: 5px 10px;
+        }
+
+    </style>
+    <script>
+            $(function(){
+
+            //figure에 있는 이미지 위에 마우스 올리면 아래 결과 이미지에 나오고
+            // 벗어나면 결과 이미지는 원래대로 돌아간다
+            $("div.one figure img").hover(function(){
+                //처음 결과이미지와 제목 미리 얻어두기
+                firstPhoto=$("div.result>img").attr("src");
+                firstname=$("div.result").children("h3").html();
+
+                var a=$(this).attr("src");
+                var b=$(this).siblings("figcaption").html();
+
+                $("div.result>img").attr("src",a);
+                $("div.result").children("h3").html(b);
+
+            },function(){
+                //다시 원래대로
+                $("div.result>img").attr("src",firstPhoto);
+                $("div.result").children("h3").html(firstname);
+            });
+
+            //배경색 resul2의 배경색으로 제목,별표는 각자 자리에 나오게
+            //box를 누르면 결과가 나온다 mouseover
+
+            $("div.two").children("div.box").mouseover(function(){
+                //현재 배경색 얻기
+                var bc=$(this).css("background-color");
+                //result2에 적용
+                $("div.result2").css("background-color",bc)
+
+                //메세지 얻어서 넣기
+                var text=$(this).next().text();
+                $("div.result2").children("h1").html(text);
+
+                //별표 넣기
+                var star=$(this).find("div.msg").find("span").html();
+                $("div.result2 h3").html(star);
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <div class="one">
+        <figure>
+            <img src="../image/jquery_img/03.png" alt="">
+            <figcaption><b>춤추는 미니언즈</b></figcaption>
+        </figure>
+        <figure>
+            <img src="../image/jquery_img/04.png" alt="">
+            <figcaption><b>바나나 미니언즈</b></figcaption>
+        </figure>
+        <figure>
+            <img src="../image/jquery_img/05.png" alt="">
+            <figcaption><b>안녕 미니언즈</b></figcaption>
+        </figure>
+        <figure>
+            <img src="../image/jquery_img/06.png" alt="">
+            <figcaption><b>오리튜브 미니언즈</b></figcaption>
+        </figure>
+    </div>
+
+    <hr style="clear: both;">
+
+    <div class="result">
+        <img src="../image/jquery_img/01.png" alt="">
+        <br>
+        <h3>평범한 미니언즈</h3>
+    </div>
+
+    <hr>
+
+    <div class="two">
+        <div class="box" style="background-color: aqua;"></div>
+        <h3>즐거운 금요일</h3>  
+        <div class="msg">
+            <span>☆★</span>
+        </div>
+        
+        <div class="box" style="background-color: pink;"></div>
+        <h3>불금이다</h3>
+        <div class="msg">
+            <span>☆★☆</span>
+        </div>
+
+        <div class="box" style="background-color: yellow;"></div>
+        <h3>오늘 모임</h3>
+        <div class="msg">
+            <span>☆★☆★</span>
+        </div>
+
+        <div class="box" style="background-color: orange;"></div>
+        <h3>재미있는 동아리모임</h3>
+        <div class="msg">
+            <span>☆★☆★☆</span>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="result2">
+        <h1>메세지출력</h1>
+        <h3>별표</h3>
+    </div>
+    
+</body>
+</html>

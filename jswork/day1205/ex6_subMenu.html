@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document6</title>
+    <style>
+        div.sist{
+            position: absolute;
+            left: 300px;
+            top: 200px;
+            width: 300px;
+            height: 340px;
+            border: 2px solid gray;
+            border-radius: 20px;
+        }
+        ul li{list-style: none;}
+
+        ul.menu>li{
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        ul.submenu>li{
+            font-size: 25px;
+            font-weight: normal;
+        }
+    </style>
+    <script>
+        $(function(){
+            //모든 서브메뉴 가리기
+            $("ul.submenu").hide();
+
+            //이벤트
+            //메인 메뉴명을 클릭시 해당 메뉴의 서브메뉴가 나타나도록 한다.
+            //다른 서브메뉴들은 모두 숨긴다
+            $("ul.menu>li").click(function(){
+                $(this).children("ul.submenu").show(3000);
+                $(this).siblings().children("ul.submenu").hide('slow');
+            });
+            
+        });
+    </script>
+</head>
+<body>
+    <div class="sist">
+        <ul class="menu">
+            <li>
+                File
+                <ul class="submenu">
+                    <li>New File</li>
+                    <li>Save</li>
+                    <li>Open</li>
+                    <li>Rename</li>
+                </ul>
+            </li>
+            <li>
+                Edit
+                <ul class="submenu">
+                    <li>Cut</li>
+                    <li>Copy</li>
+                    <li>Search</li>
+                    <li>Change</li>
+                </ul>
+            </li>
+            <li>
+                Help
+                <ul class="submenu">
+                    <li>Start</li>
+                    <li>Release</li>
+                    <li>Process Open</li>
+                    <li>Tip</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

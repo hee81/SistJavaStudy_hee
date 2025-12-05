@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <title>Document4</title>
+</head>
+<body>
+    <div class="one">
+        첫번째 div
+        <div class="hana">div 하나</div>
+        <div>div 둘</div>
+        <div>div 셋</div>
+        <h4>h4 Tag</h4>
+        <h3>h3 Tag</h3>
+    </div>
+    <div class="two">
+        두번째 div
+        <div class="hana">div 하나</div>
+        <div>div 둘</div>
+        <div>div 셋</div>
+        <h4>h4 Tag</h4>
+        <h3>h3 Tag</h3>
+    </div>
+
+    <script>
+        //parent():부모태그
+        //sblings():형제태그 **자주 사용**
+        //children():자식태그
+
+        //첫번째 div hana에만 글꼴색변경
+        $("div.one div.hana").css("color","pink");
+
+        //첫번째 div hana의 형제들 글꼴색-빨강
+        $("div.one div.hana").siblings().css("color","red");
+
+        //div 중에 div hana가 자식인 요소들 효과-밑줄
+        $("div").children("div.hana").css("text-decoration","underline");
+
+        //next
+        $("div.hana").next().next().css("background-color","yellow");
+
+        //find: 찾으려는 대상의 부모태그에서만 사용가능
+        $("div.two").find("h3").css("border","2px solid green");
+
+        //find: 형제태그에서 사용가능? 안됨
+        $("div.two div.hana").find("h4").css("color","purple");
+        //부모태그로 올라가면 변경됨
+        // $("div.two div.hana").parent().find("h4").css("color","purple"); 
+        
+        $("div.one").click(function(){
+            //첫번째 부모(div.one)를 클릭시 자식중에서 div만 숨겨라
+            // $(this).children("div").hide();
+            // $(this).find("div").hide();
+
+            //나의 형제태그에서 div를 찾아서 숨기기
+            $(this).siblings().find("div").hide();
+        });
+
+        //두번째 부모(div.two)를 클릭시 형님네 h3태그를 숨겨라
+        $("div.two").click(function(){
+            $(this).siblings().find("h3").hide('slow');
+        });
+        
+    </script>
+</body>
+</html>
