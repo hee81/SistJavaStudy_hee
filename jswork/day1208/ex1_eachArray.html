@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+    <title>Document1</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        div.a{
+            width: 120px;
+            height: 70px;
+            border: 1px solid black;
+            float: left;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 70px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        #out>div{
+            width: 400px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 2em;
+            border: 2px solid gray;
+        }
+    </style>
+    <script>
+        $(function(){
+
+            //7개 색상을 배열선언하기
+            var colors=["red","#fffccc","green","blue","orange","#cc00ff","lightcyan"];
+
+            //$.each : 배열로 반복문을 돌리고 싶을 때
+            // idx:0,1,2,...   item:red,#fffccc... -> 배열안의 것들
+            // this는 item임
+            $.each(colors,function(idx,item){
+                $("div.a").eq(idx).text(idx+":"+this).css("backgroundColor",item);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+    
+    <br style="clear: both;">
+    <hr>
+
+    <h3>배열 반복시 사용 $.each</h3>
+    <script>
+        // data1를 이용하여 <h2>태그 글씨색상에 출력하기
+            var data1=["red","#fffccc","green","blue","orange","#cc00ff","lightcyan"];
+            $.each(data1,function(i,elt){
+                var s="<h2 style='color:"+elt+"; width=200px;'>"+elt+"</h2>";
+                document.write(s);
+            });
+    </script>
+
+    <hr>
+    <h3>배열 반복시 사용 $.each_jquery_img 너비:70 높이:70</h3>
+    <script>
+        var images=["03","a","a02","c5","a05"];
+
+        $.each(images,function(i,elt){
+            var s="<img src='../image/jquery_img/"+elt+".png' width='70' height='70'>";
+            document.write(s);
+        });
+    </script>
+    <hr>
+    <h3>배열 안에 객체형태</h3>
+    <div id="out">
+        
+    </div>
+    <script>
+        var arr=[
+            {font:"Dongle",bcolor:"pink",fcolor:"purple"},
+            {font:"Gamja Flower",bcolor:"yellow",fcolor:"brown"},
+            {font:"Nanum Pen Script",bcolor:"cyan",fcolor:"white"}
+        ];
+
+        var s="";
+        $.each(arr,function(i,data){
+            s+="<div style='font-family:"+data.font+"; color:"+data.fcolor+"; background-color:"+data.bcolor+";'>";
+            s+=data.font;
+            s+="</div><br>";
+        });
+        $("#out").html(s);
+    </script>
+
+
+</body>
+</html>

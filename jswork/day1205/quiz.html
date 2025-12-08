@@ -25,9 +25,11 @@
             $("div.answer").hide();
 
             //제목을 클릭하면 해당하는 댓글만 보이게 하기
-            //나머지 댓글은 안보이게 하기
             $("div.subject>b").click(function(){
                 $(this).siblings().show();
+                // $(this).next().show();
+
+                //나머지 댓글은 안보이게 하기
                 // $(this).parent().siblings().find("div.answer").hide();
                 $(this).parent().siblings().children("div.answer").hide();
             });

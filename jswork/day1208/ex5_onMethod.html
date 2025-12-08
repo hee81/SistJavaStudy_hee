@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document5</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+    <button type="button" id="add">+</button>
+    <script>
+        // $("#add").click(function(){
+        //     $("body").append("<button id='add'>+</button>")
+        // });
+
+        //동적메서드 on(event,handler)
+        // 첫번째 파라메타 : 이벤트행위
+        // 2번째 파라메타 : 선택지정자
+        // 3번째 파라메타 : 구현부
+        $(document).on("click","button[id='add']",function(){
+            $("body").append("<button id='add'>+</button>")
+        });
+    </script>
+
+    <hr>
+
+    <ul id="mylang">
+        <li>Java</li>
+        <li>Jsp</li>
+        <li>Html</li>
+        <li>Oracle</li>
+    </ul>
+    <script>
+
+        // 정적이벤트
+        /*
+        $("#mylang").children().click(function(){
+            $(this).remove();
+        });
+        */
+        
+        //나중에 생성된 <li>는 이벤트안됨 -> 동적메서드로 작성해야함
+        // $("#mylang").append("<li>Jquery</li>")
+        // 동적이벤트
+        $("#mylang").on("click","li",function(e){
+            $(e.target).remove();
+        });
+        $("#mylang").append("<li>Jquery</li>");
+
+    </script>
+
+    <hr>
+
+    <h3>미래에 생기는 요소에 이벤트 처리할 경우 on사용(현재,미래 모두 가능)</h3>
+    <div class="view"></div>
+    <button type="button" id="btn1">버튼1</button>
+    <script>
+        //append한 경우는 나중에 생긴 이벤트가 아님..!
+        var b2="<button type='button' id='btn2'>버튼2</button>";
+        $("body").append(b2);
+        /*
+        // <정적이벤트>
+        // btn1,2 이벤트-둘 다 가능
+        $("#btn1").click(function(){
+            $(".view").html("<b>버튼1클릭</b>")
+        });
+        $("#btn2").click(function(){
+            $(".view").html("<b>버튼2클릭</b>")
+        });
+        */
+
+        // <동적이벤트>
+        $(document).on("click","#btn1",function(){
+            $(".view").html("<b>버튼1클릭</b>")
+        });
+        $(document).on("click","#btn2",function(){
+            $(".view").html("<b>버튼2클릭</b>")
+            var b="&nbsp;&nbsp;&nbsp;<button class='newbtn'>추가된 버튼</button>";
+            $(this).after(b);
+        });
+
+        // newbtn으로 정적이벤트
+        // $(".newbtn").click(function(){
+        //     $(".view").html("<b>추가된 버튼을 클릭함</b>")
+        // });
+        // newbtn으로 동적이벤트
+        $(document).on("click",".newbtn",function(){
+            $(".view").html("<b>추가된 버튼을 클릭함</b>");
+
+            //body에 이미지 나타내기
+            //1~10까지의 랜덤이미지
+            var ran=parseInt(Math.random()*10)+1;
+            $("body").append("<img src='../image/Food/"+ran+".jpg' width='100'>")
+
+            //이미지에 마우스 올리면 11번 오렌지빙수 나오고, 벗어나면 원래 이미지로
+            $(document).on("mouseover","img",function(){
+                mysrc=$(this).attr("src");
+                $(this).attr("src",'../image/Food/11.jpg');
+            });
+            $(document).on("mouseout","img",function(){
+                $(this).attr("src",mysrc);
+            });
+
+        })    
+        
+    </script>
+</body>
+</html>
