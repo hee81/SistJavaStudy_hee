@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>Document1</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        #wall{
+            position: absolute;
+            width: 200px;
+            height: 300px;
+            background: url("../image/jquery_img/bg2.png");
+            z-index: 2; /* z-index는 큰 값 요소가 위에 올라온다...연속 숫자아니더라도 상관없음*/
+        }
+
+        #img1{
+            position: absolute;
+            left: 130px;
+            top: 150px;
+            z-index: 1;
+        }
+        #file{
+            position: absolute;
+            top: 400px;
+        }
+        #cam{
+            position: absolute;
+            top: 450px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#img1").click(function(){
+                $(this).animate({width:"0px"},'slow',function(){
+                    $(this).animate({width:"130px"},'slow')
+                });
+            });
+
+            // trigger : 어떤 이벤트를 강제 발생
+            setInterval(function(){
+                $("#img1").trigger("click");
+            },5000)
+        });
+    </script>
+</head>
+<body>
+    <div id="wall"></div>
+    <img src="../image/jquery_img/03.png" alt="" id="img1">
+
+    <!-- 파일에 trigger -->
+     <input type="file" id="file" style="visibility: hidden;">
+     <i class="bi bi-camera-fill" id="cam" style="font-size: 5em;"></i>
+     <script>
+        // 카메라 모양을 눌렀을 때 파일이 강제 클릭되는 효과를 만들기 위해서
+        $("#cam").click(function(){
+            $("#file").trigger("click");
+        });
+     </script>
+</body>
+</html>

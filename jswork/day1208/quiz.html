@@ -5,6 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document7</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        /* 이미지 css추가 */
+        .fg{float: left;}
+        .fg img{
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+        figcaption{
+            text-align: center;
+            font-weight: bold;
+        }
+        #large{
+            position: absolute;
+            top: 210px;
+            left: 310px;
+            width: 300px;
+            border-radius: 20px;
+        }
+    </style>
+    <script>
+        $(function(){
+            //0번지 이미지를 초기 큰이미지에 넣기
+            $("#large").attr("src",$(".fg img:eq(0)").attr("src"));
+
+            //작은 이미지를 클릭하면 해당 이미지가 large에 나온다.
+            $(document).on("click","#show img",function(){
+                var imgsrc=$(this).attr("src");
+                $("#large").attr("src",imgsrc);
+            });
+
+            //작은 이미지에 마우스 올리면 45도 회전, 벗어나면 원래대로
+            $(".fg>img").hover(function(){
+                $(this).css("transform","rotate(45deg)");
+            },function(){
+                $(this).css("transform","rotate(0deg)");
+            })
+            });
+    </script>
 
 </head>
 <body>
@@ -20,42 +60,17 @@
         ];
 
         //figure태그 이용해서 show에 이미지 넣기
+        var s="";
         $.each(foodInfos,function(i,food){
-            var s="";
-            s+="<figure>"
+            s+="<figure class='fg'>"
             s+="<img src='"+food.foodSrc+"'>";
             s+="<figcaption>";
             s+=food.foodName;
             s+="</figcaption>"
             s+="</figure>"
-            $("#show").append(s);
         });
-
-        //이미지 css추가
-        $("#show>figure").css("float","left");
-        $("#show>figure img").css({
-            "position":"relative",
-            "width":"100px",
-            "height":"100px",
-            "border":"1px solid gray"
-        });
-
-        //0번지 이미지를 초기 큰이미지에 넣기
-        $("#large").attr("src","../image/Food/1.jpg");
-        $("#large").css({
-            "width":"200px",
-            "clear":"both"
-        });
-
-        //작은 이미지를 클릭하면 해당 이미지가 large에 나온다.
-        $(document).on("click","#show img",function(){
-            var imgsrc=$(this).attr("src");
-            $("#large").attr("src",imgsrc);
-        });
+        $("#show").html(s);
 
     </script>
-    <figure>
-        <figcaption></figcaption>
-    </figure>
 </body>
 </html>
