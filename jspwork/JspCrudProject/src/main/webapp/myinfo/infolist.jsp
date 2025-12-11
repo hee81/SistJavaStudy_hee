@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="myinfo.MyInfoDto"%>
+<%@page import="java.util.List"%>
+<%@page import="myinfo.MyInfoDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +14,47 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
+<%
+	MyInfoDao dao=new MyInfoDao();
+	List<MyInfoDto> list=dao.getAllDatas();
+
+%>
+
 <body>
-리스트
+<div style="width: 700px; margin: 50px 200px;">
+	<button type="button" class="btn btn-warning" onclick="location.href='insertform.jsp'">글쓰기</button>
+	<br><br>
+	<table class="table table-bordered">
+		<caption align="top"><b>MyInfo 전체목록</b></caption>
+		<tr class="table-warning">
+			<th width="80">번호</th>
+			<th width="120">이름</th>
+			<th width="280">주소</th>
+			<th width="180">등록일</th>
+			<th width="180">편집</th>
+		</tr>
+<%
+	for(int i=0;i<list.size();i++)
+	{
+		MyInfoDto dto=list.get(i);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy년 MM월 dd일");
+	%>
+		<tr>
+			<td><%=i+1 %></td>
+			<td><%=dto.getName() %></td>
+			<td><%=dto.getAddr() %></td>
+			<td><%=sdf.format(dto.getSdate()) %></td>
+			<td>
+				<button type="button" class="btn btn-info btn-sm" 
+				onclick="location.href='updateform.jsp?num=<%=dto.getNum()%>'">수정</button>
+				<button type="button" class="btn btn-danger btn-sm"
+				 onclick="location.href='delete.jsp?num=<%=dto.getNum()%>'">삭제</button>
+			</td>
+		</tr>
+	<%}
+
+%>
+	</table>
+</div>
 </body>
 </html>

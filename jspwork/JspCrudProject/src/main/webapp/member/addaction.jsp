@@ -1,5 +1,5 @@
-<%@page import="myinfo.SawonInfoDao"%>
-<%@page import="myinfo.SawonInfoDto"%>
+<%@page import="member.MemberDao"%>
+<%@page import="member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,26 +13,33 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-
 <%
-
+	/* insert처리 후 목록으로 이동...db에 값들이 들어왔는지 확인할 것 */
 	request.setCharacterEncoding("utf-8");
+
+	//입력값 읽기
 	String name=request.getParameter("name");
-	String addr=request.getParameter("addr");
+	String hp=request.getParameter("hp");
+	String driver=(request.getParameter("driver")==null?"없음":"있음");
+	String jop=request.getParameter("jop");
+	
+	/* 출력되는 값 확인가능--체크안하면null, 체크하면on */
+	System.out.print(driver);
 	
 	//dto
-	SawonInfoDto dto=new SawonInfoDto();
+	MemberDto dto=new MemberDto();
 	dto.setName(name);
-	dto.setAddr(addr);
+	dto.setHp(hp);
+	dto.setDriver(driver);
+	dto.setJop(jop);
 	
 	//dao
-	SawonInfoDao dao=new SawonInfoDao();
-	dao.insertSawoninfo(dto);
+	MemberDao dao=new MemberDao();
+	dao.insertMember(dto);
 	
-	response.sendRedirect("infolist.jsp");
-			
-
+	//목록으로 이동
+	response.sendRedirect("memberlist.jsp");
+	
 %>
-
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@page import="member.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,37 +11,13 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
+<%
+	String num=request.getParameter("num");
+	MemberDao dao=new MemberDao();
+	dao.deleteMember(num);
+	
+	response.sendRedirect("memberlist.jsp");
+%>
 <body>
-
-<form action="insertaction.jsp">
-<table class="table table-bordered" style="width: 500px;">
-	<tr>
-		<th>이름</th>
-		<td>
-			<input type="text" name="name">
-		</td>
-	</tr>
-	<tr>
-		<th>주소</th>
-		<td>
-			<input type="text" name="addr">
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2">
-			<button type="submit">전송</button>
-			<button type="button" onclick="location.href='infolist.jsp'">목록</button>
-		</td>
-	</tr>
-
-</table>
-
-
-
-
-</form>
-
-
-
 </body>
 </html>
