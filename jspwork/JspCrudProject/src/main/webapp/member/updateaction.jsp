@@ -12,6 +12,7 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
+
 <%
 	request.setCharacterEncoding("utf-8");
 
@@ -20,22 +21,46 @@
 	String hp=request.getParameter("hp");
 	String driver=(request.getParameter("driver")==null?"없음":"있음");
 	String jop=request.getParameter("jop");
-
+	
 	//dto
 	MemberDto dto=new MemberDto();
 	dto.setName(name);
 	dto.setHp(hp);
 	dto.setDriver(driver);
 	dto.setJop(jop);
+	//입력값 읽어서 dto에 바로 담기 가능
+	dto.setNum(request.getParameter("num"));
 	
 	//dao
 	MemberDao dao=new MemberDao();
-	dao.insertMember(dto);
+	dao.updateMember(dto);
 	
 	//목록으로 이동
 	response.sendRedirect("memberlist.jsp");
-
 %>
+
+
+
+<%-- 
+<!-- 자바빈즈로 변경해보기 -->
+
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+
+<!--  MemberDao dao=new MemberDao()와 같음 -->
+	<jsp:useBean id="dao" class="member.MemberDao"/>
+	<jsp:useBean id="dto" class="member.MemberDto"/>
+<!-- request로 받아서 set하는 것과 같음 -->
+	<jsp:setProperty property="*" name="dto"/>
+
+<%
+	response.sendRedirect("memberlist.jsp");
+%>
+
+--%>
+
+
 <body>
 
 </body>

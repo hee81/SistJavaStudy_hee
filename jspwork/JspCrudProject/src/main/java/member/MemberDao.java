@@ -124,7 +124,7 @@ public class MemberDao {
 				dto.setName(rs.getString("name"));
 				dto.setHp(rs.getString("hp"));
 				dto.setDriver(rs.getString("driver"));
-				dto.setJop(rs.getString("job"));
+				dto.setJop(rs.getString("jop"));
 			}
 			
 		} catch (SQLException e) {

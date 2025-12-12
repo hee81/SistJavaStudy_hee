@@ -1,5 +1,4 @@
-<%@page import="myinfo.MyInfoDto"%>
-<%@page import="myinfo.MyInfoDao"%>
+<%@page import="member.MemberDao"%>
 <%@page import="member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -15,14 +14,14 @@
 </head>
 <%
 	String num=request.getParameter("num");
-	MyInfoDao dao=new MyInfoDao();
-	MyInfoDto dto=dao.getOneData(num);
+	MemberDao dao=new MemberDao();
+	MemberDto dto=dao.getOneData(num);
 %>
 <body>
 <div style="width: 500px; margin: 50px 100px;">
-	<form action="addaction.jsp" method="post">
+	<form action="updateaction.jsp" method="post">
 		<table class="table table-bordered">
-			<caption align="top"><b>동아리 가입신청</b></caption>
+			<caption align="top"><b>동아리정보 수정</b></caption>
 			<tr>
 				<th width="100" class="table-success">회원명</th>
 				<td>
@@ -32,23 +31,24 @@
 			<tr>
 				<th width="100" class="table-success">연락처</th>
 				<td>
-					<input type="text" name="hp" class="form-control" required="required" style="width: 180px">
+					<input type="text" name="hp" class="form-control" style="width: 180px" value="<%=dto.getHp()%>">
 				</td>
 			</tr>
 			<tr>
 				<th width="100" class="table-success">운전면허</th>
 				<td>
-					<input type="checkbox" name="driver">있음
+					<input type="checkbox" name="driver" <%=dto.getDriver().equals("있음")?"checked":"" %>>있음
 				</td>
 			</tr>
 			<tr>
 				<th width="100" class="table-success">직업</th>
 				<td>
-					<input type="text" name="jop" class="form-control" required="required" style="width: 120px">
+					<input type="text" name="jop" class="form-control" style="width: 120px" value="<%=dto.getJop()%>">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
+					<input type="hidden" name="num" value="<%=num%>">
 					<button type="submit" class="btn btn-outline-warning">수정</button>
 					<button type="button" class="btn btn-outline-success" onclick="location.href='memberlist.jsp'">목록</button>
 				</td>
