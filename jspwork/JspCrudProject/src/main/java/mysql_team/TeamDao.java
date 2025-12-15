@@ -101,7 +101,40 @@ public class TeamDao {
 	}
 		
 	
-	//update
+	//update-선택한 데이터만 조회
+	public TeamDto getOneData(String num)
+	{
+		TeamDto dto=new TeamDto();
+		
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from myteam order by num";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				dto.setNum(rs.getString("num"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr(rs.getString("addr"));
+				dto.setMarry(rs.getString("marry"));
+				dto.setGaipday(rs.getTimestamp("gaipday"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		return dto;
+	}
+	
+	//u
 	
 	
 	

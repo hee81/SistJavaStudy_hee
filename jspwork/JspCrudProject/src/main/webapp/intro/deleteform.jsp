@@ -1,4 +1,3 @@
-<%@page import="mysql_team.TeamDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,13 +11,25 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <%
-	String num=request.getParameter("num");
-	TeamDao dao=new TeamDao();
-	dao.deleteMyTeam(num);
-	
-	response.sendRedirect("teamlist.jsp");
+ String num=request.getParameter("num");
+
 %>
 <body>
-삭제
+<div style="width: 300px; margin: 300px 300px;">
+	<form action="deleteaction.jsp" method="post">
+		<table class="table table-bordered">
+			<tr>
+				<td>
+					<b>삭제에 필요한<br> 비밀번호를 입력해주세요</b>
+					<br>
+					<input type="password" name="pass" required="required" class="form-control"><br>
+					<input type="hidden" name="num" value="<%=num%>">
+					<button type="submit" class="btn btn-danger" style="width: 100px;">삭제</button>
+					<button type="button" class="btn btn-success" style="width: 100px;" onclick="location.href='introlist.jsp'">목록</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
 </body>
 </html>

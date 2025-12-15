@@ -1,4 +1,5 @@
-<%@page import="mysql_team.TeamDao"%>
+<%@page import="javax.security.auth.callback.ConfirmationCallback"%>
+<%@page import="intro.IntroDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,14 +12,26 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
-<%
-	String num=request.getParameter("num");
-	TeamDao dao=new TeamDao();
-	dao.deleteMyTeam(num);
-	
-	response.sendRedirect("teamlist.jsp");
-%>
 <body>
-삭제
+	<!-- 비밀번호가 무조건 a1234면 삭제!!! 삭제 후 목록으로 이동하기
+	틀리면 경고창!!! 다시입력하기 -->
+	<%
+		String num=request.getParameter("num");
+		String pass=request.getParameter("pass");
+		
+		IntroDao dao=new IntroDao();
+		
+		if(pass.equals("a1234"))
+		{
+			dao.deleteIntro(num);
+			response.sendRedirect("introlist.jsp");
+		}
+		else{%>
+			<script type="text/javascript">
+				alert("비밀번호가 맞지않습니다")
+				history.back();
+			</script>
+		<%}
+	%>
 </body>
 </html>

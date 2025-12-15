@@ -1,5 +1,5 @@
-<%@page import="intro.IntroDto"%>
 <%@page import="intro.IntroDao"%>
+<%@page import="intro.IntroDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +12,6 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
-
 <body>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -49,12 +48,12 @@
 	dto.setHobby(hb);
 	dto.setNum(num);
 	
-	//insert메서드 호출
+	//update메서드 호출
 	IntroDao dao=new IntroDao();
-	dao.insertIntro(dto);
+	dao.updateIntro(dto);
 	
-	//목록이동
-	response.sendRedirect("introlist.jsp");
+	//디테일폼으로 넘어가려면 num이 필요함.
+	response.sendRedirect("detailpage.jsp?num="+num);
 %>
 </body>
 </html>

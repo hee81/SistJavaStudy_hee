@@ -1,3 +1,4 @@
+<%@page import="mysql_team.TeamDao"%>
 <%@page import="mysql_team.TeamDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,6 +13,11 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <%
+	String num=request.getParameter("num");
+	TeamDao dao=new TeamDao();
+	TeamDto dto=dao.getOneData(num);
+	response.sendRedirect("teamlist.jsp");
+
 %>
 <body>
 <div style="width: 500px; margin: 50px 100px;">
@@ -21,7 +27,7 @@
 			<tr>
 				<th width="100" class="table-success">회원명</th>
 				<td>
-					<input type="text" name="name" class="form-control" required="required" style="width: 120px">
+					<input type="text" name="name" class="form-control" style="width: 120px" value="<%=dto.getName()%>">
 				</td>
 			</tr>
 			<tr>
