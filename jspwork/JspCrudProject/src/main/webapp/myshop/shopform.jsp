@@ -9,39 +9,68 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//select의 첫이미지와 맞추기
+		var selImg=$("#photo").val();
+		$("#myphoto").attr("src","../image/쇼핑몰사진/"+selImg+".jpg");
+		
+		//사진을 선택하면 옆의 이미지에 사진이 나오게...
+		$("#photo").change(function(){
+			var s="../image/쇼핑몰사진/"+$(this).val()+".jpg";
+			$("#myphoto").attr("src",s);
+		});
+	});
+
+</script>
 </head>
 <body>
-<div style="width: 400px; margin: 100px 100px;">
+<div style="width: 500px; margin: 50px 100px;">
 	<form action="addproc.jsp" method="post">
 		<table class="table table-bordered">
+			<caption align="top"><a>상품입고등록</a></caption>
 			<tr>
-				<th>상품명</th>
+				<th width="100" class="table-secondary">상품명</th>
 				<td>
-					<input type="text" name="sangpum">
+					<input type="text" name="sangpum" required="required" class="form-contorl" style="width: 200px;">
 				</td>
 			</tr>
 			<tr>
-				<th>상품사진</th>
-				<td>
-					<input type="image" name="photo">
+				<th width="100" class="table-secondary">상품이미지</th>
+				<td class="input-group">
+					<select name="photo" class="form-control" id="photo">
+						<option value="30">헤어밴드</option>
+						<option value="11">단화#1</option>
+						<option value="12">단화#2</option>
+						<option value="13">단화#3</option>
+						<option value="20">진주팔찌</option>
+						<option value="22">진주반지</option>
+						<option value="26">플라워헤어밴드</option>
+						<option value="10">쁘띠스카프</option>
+						<option value="19">리본헤어핀</option>
+					</select>
+					&nbsp;&nbsp;&nbsp;
+					<img alt="" src="" width="30" height="30" id="myphoto">
 				</td>
 			</tr>
 			<tr>
-				<th>상품가격</th>
+				<th width="100" class="table-secondary">가격</th>
 				<td>
-					<input type="text" name="price">
+					<input type="number" name="price" required="required" class="form-contorl" 
+					style="width: 200px;" pattern="[0~9]{3,}">
 				</td>
 			</tr>
 			<tr>
-				<th>입고일</th>
+				<th width="100" class="table-secondary">입고일자</th>
 				<td>
-					<input type="text" name="ipgoday">
+					<input type="date" name="ipgoday" class="form-contorl" 
+					style="width: 200px;" value="2025-12-16">
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
 					<button type="submit" class="btn btn-outline-success">상품등록</button>
-					<button type="button" class="btn btn-outline-info">상품목록</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='shoplist.jsp'">상품목록</button>
 				</td>
 			</tr>
 		</table>

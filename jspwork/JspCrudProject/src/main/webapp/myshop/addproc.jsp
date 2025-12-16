@@ -1,3 +1,5 @@
+<%@page import="myshop.ShopDao"%>
+<%@page import="myshop.ShopDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,6 +12,25 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	String sangpum=request.getParameter("sangpum");
+	String photo=request.getParameter("photo");
+	int price=Integer.parseInt(request.getParameter("price")); //형변환
+	String ipgoday=request.getParameter("ipgoday");
+	
+	ShopDto dto=new ShopDto();
+	dto.setSangpum(sangpum);
+	dto.setPhoto(photo);
+	dto.setPrice(price);
+	dto.setIpgoday(ipgoday);
+	
+	ShopDao dao=new ShopDao();
+	dao.insertShop(dto);
+	
+	response.sendRedirect("shoplist.jsp");
+%>
 <body>
 
 </body>

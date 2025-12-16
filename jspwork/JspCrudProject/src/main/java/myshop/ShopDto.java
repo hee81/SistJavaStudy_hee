@@ -7,7 +7,7 @@ public class ShopDto {
 	private String num;
 	private String sangpum;
 	private String photo;
-	private String price;
+	private int price;
 	private String ipgoday;
 	private Timestamp writeday;
 	
@@ -29,10 +29,10 @@ public class ShopDto {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getIpgoday() {
