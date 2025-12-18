@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="simpleBoard.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,9 +20,23 @@
 	//dao선언
 	BoardDao dao=new BoardDao();
 	
-	if(dao.isEqualPass(num, pass))
+	boolean b=dao.isEqualPass(num, pass);
+	
+	if(b)
 	{
-		dao.deleteBoard(num);
+		//게시글을 지우기전에 업로드한 이미지 삭제
+		String imgName=dao.getOneData(num).getImgname();
+		//업로드 경로 구하기
+		String uploadPath=getServletContext().getRealPath("/save");
+		//파일생성_save 경로에 있는 선택한 사진 
+		File file=new File(uploadPath+"\\"+imgName);
+		//파일삭제
+		if(file.exists()) //파일이 존재하면
+		{
+			file.delete(); //파일을 삭제한다.
+		}
+		
+		dao.deleteBoard(num); //db만 삭제, /save파일에는 그대로!
 		response.sendRedirect("boardlist.jsp");
 	}
 	else

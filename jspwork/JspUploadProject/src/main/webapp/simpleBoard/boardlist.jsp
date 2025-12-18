@@ -27,6 +27,8 @@
 	<table class="table table-bordered">
 		<caption align="top"><b>게시판형 목록보기</b>
 			<button type="button" class="btn btn-info" onclick="location.href='addForm.jsp'">글쓰기</button>
+			<a><img alt="" src="../image/list1.png" style="width: 30px;"></a>
+			<a href="imagelist.jsp"><img alt="" src="../image/list2.png" style="width: 30px;"></a>
 		</caption>
 		<tr style="text-align: center;" class="table-secondary">
 			<th width="80">번호</th>

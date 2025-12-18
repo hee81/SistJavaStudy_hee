@@ -118,7 +118,6 @@ public class BoardDao {
 			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setString(1, num);
-			pstmt.execute();
 			
 			rs=pstmt.executeQuery();
 

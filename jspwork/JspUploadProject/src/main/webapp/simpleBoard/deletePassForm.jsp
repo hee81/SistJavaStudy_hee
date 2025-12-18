@@ -21,10 +21,10 @@
 				<td>
 					<b>삭제에 필요한<br> 비밀번호를 입력해주세요</b>
 					<br>
-					<input type="password" name="pass" required="required" class="form-control"><br>
+					<input type="password" name="pass" required="required" class="form-control" placeholder="삭제 비밀번호를 입력해주세요"><br>
 					<input type="hidden" name="num" value="<%=num%>">
 					<button type="submit" class="btn btn-danger" style="width: 100px;">삭제</button>
-					<button type="button" class="btn btn-success" style="width: 100px;" onclick="location.href='boardlist.jsp'">목록</button>
+					<button type="button" class="btn btn-success" style="width: 100px;" onclick="history.back()">이전</button>
 				</td>
 			</tr>
 		</table>
