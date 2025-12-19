@@ -11,7 +11,8 @@ import java.sql.Statement;
 public class DbConnect {
 
 	static final String MYSQLDRIVER="com.mysql.cj.jdbc.Driver";
-	static final String MYSQL_URL="jdbc:mysql://localhost:3306/coffee";
+//	static final String MYSQL_URL="jdbc:mysql://localhost:3306/coffee";
+	static final String MYSQL_URL="jdbc:mysql://localhost:3306/test";
 	
 	//생략가능하나 MySQL에서는 안됨.......
 	public DbConnect() {

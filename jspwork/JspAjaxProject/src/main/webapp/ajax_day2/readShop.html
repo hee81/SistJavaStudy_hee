@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+  div.box{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    box-shadow: 5px 5px 5px gray;
+  }
+</style>
+<script type="text/javascript">
+	$(function(){
+		$("#btn1").click(function(){
+			
+			var s="<table class='table table-bordered' style='width:700px; text-align:center;'>";
+			s+="<caption align='top'><h4>Shop Json 읽어오기</h4></caption>";
+			s+="<tr class='table-success'>";
+			s+="<th width='100'>상품번호</th>";
+			s+="<th width='150'>상품명</th>";
+			s+="<th width='80'>가격</th>";
+			s+="<th width='150'>색상</th>";
+			s+="<th width='140'>상품이미지</th>";
+			s+="</tr>";
+			
+			$.ajax({
+				type:"get",
+				url:"shopToJson.jsp",
+				dataType:"json",
+				success:function(sdata){
+					$.each(sdata,function(i,ele){
+						s+="<tr>";
+						s+="<td>"+ele.num+"</td>";
+						s+="<td>"+ele.sangpum+"</td>";
+						s+="<td>"+ele.price+"</td>";
+						s+="<td>"+ele.color+"<br><div class='box' style='background-color:"+ele.color+"'></div></td>";
+						s+="<td><img src='"+ele.imgname+"' width='70px'></td>";
+						s+="</tr>"
+					})
+					s+="</table>"
+					$("#result").html(s);
+				}
+			})
+		});
+	})
+</script>
+</head>
+<body>
+<button type="button" class="btn btn-outline-info" id="btn1">shop 데이터 불러오기_table</button>
+<button type="button" class="btn btn-outline-info" id="btn2">shop 데이터 불러오기_div</button>
+<div id="result"></div>
+
+<script type="text/javascript">	
+	$("#btn2").click(function(){
+		
+		var s="";
+		
+		$.ajax({
+			type:"get",
+			url:"shopToJson.jsp",
+			dataType:"json",
+			success:function(sdata){
+				$.each(sdata,function(i,ele){
+					s+="<div class='alert alert-secondary' style='float:left; margin:20px 20px;'>";
+					s+="상품번호: "+ele.num+"<br>";
+					s+="상품명: "+ele.sangpum+"<br>";
+					s+="가격: "+ele.price+"<br>";
+					s+="색상: <span style='color:"+ele.color+"'>"+ele.color+"</span><br>";
+					s+="상품이미지: <img src='"+ele.imgname+"' width='70px'><br>";
+					s+="</div>";
+				})
+				$("#result").html(s);
+			}
+		})
+	});
+
+</script>
+</body>
+</html>

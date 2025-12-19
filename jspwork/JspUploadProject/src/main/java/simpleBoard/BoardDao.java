@@ -187,7 +187,7 @@ public class BoardDao {
 			{
 				if(rs.getInt(1)==1)  // --> 결과의 숫자값이1(=true)인 경우는~~~ 생략가능
 					b=true;
-				//초기값이 false이므로 0인경우 false는 전달 안해도됨.....
+				//초기값이 false이므로 0인경우 false는  e32wwwwwwwwwwwwwwwwwwwwwwwwwwww전달 안해도됨.....
 			}
 			
 		} catch (SQLException e) {
