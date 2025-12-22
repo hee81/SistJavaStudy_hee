@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+</head>
+<body>
+	<h3>폼태그에 데이터 입력 후 jsp로 보내기</h3>
+	이름: <input type="text" id="name" size="10"><br> <!-- 동기일 때 name으로 설정하고 action도 필요함 / form을 통채로 이동시킬 땐 name사용 -->
+	연락처: <input type="text" id="hp" size="10"><br>
+	<button type="button" id="btn">ajax로 서버에 보내기</button>
+	<button type="button" id="btn2">ajax2로 서버에 보내기</button>
+	<br>
+	<div id="show"></div>
+	
+	<script type="text/javascript">
+		$("#btn").click(function(){
+			
+			//입력한 값들을 읽는다
+			var name=$("#name").val();
+			var hp=$("#hp").val();
+			
+			///데이터 넘기는 방법 2가지///
+			//방법1) &누락주의
+			var data="name="+name+"&hp="+hp;
+			//alert(data); //확인 후 ajax하기!
+			
+			//ajax 함수를 통해서 백앤드로 데이터를 보낸다.
+			//방법2) key-value
+			$.ajax({
+				type:"get",
+				url:"ex1_read.jsp",
+				dataType:"html", //백엔드에서 아무것도 리턴안할 경우-html 꼭 작성해야함.
+				//방법2) key-value
+				data: {"name":name,"hp":hp},
+				success:function(){ //백엔드로 값을 넘겨주기에 function안에 값이 아직은 필요없음
+					//alert("success");
+					$("#show").html("<h3 class='alert alert-success'>"+data+"</h3>")
+				},statusCode:{
+					404:function(){
+						alert("페이지를 찾을 수 없습니다");
+					},
+					500:function(){
+						alert("서버오류....");
+					}
+				}
+			})
+	
+		});
+		
+		$("#btn2").click(function(){
+			var name=$("#name").val();
+			var hp=$("#hp").val();
+			
+			$.ajax({
+				type:"get",
+				url:"ex1_read2.jsp",
+				dataType:"xml",
+				data:{"name":name,"hp":hp},
+				success:function(res){
+					//alert("보내기성공");
+					//백엔드로 넘어간 값 프론트에서 출력하기(리시브 과정)
+					var s="<h2>"+$(res).find("hp").text()+"님 데이터를 DB에 추가했어요</h2>";
+					$("#show").html(s);
+				}
+				
+			})
+		});
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
