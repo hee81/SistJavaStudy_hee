@@ -1,33 +1,33 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="java.util.List"%>
 <%@page import="org.json.simple.JSONArray"%>
+<%@page import="java.util.List"%>
+<%@page import="ajaxboard.AjaxDao"%>
+<%@page import="ajaxboard.AjaxDto"%>
 <%@page import="org.json.simple.JSONObject"%>
-<%@page import="guest.GuestDao"%>
-<%@page import="guest.GuestDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
 
-	GuestDao dao=new GuestDao();
-	List<GuestDto> list=dao.getAllDatas();
+<%
+	AjaxDao dao=new AjaxDao();
+	List<AjaxDto> list=dao.getAllDatas();
 	
 	JSONArray arr=new JSONArray();
-	
 	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-	for(GuestDto dto:list)
+	
+	for(int i=0;i<list.size();i++)
 	{
-		JSONObject ob=new JSONObject();
+		AjaxDto dto=list.get(i);
 		
+		JSONObject ob=new JSONObject();
 		ob.put("num", dto.getNum());
-		ob.put("nickname", dto.getNickname());
+		ob.put("writer", dto.getWriter());
+		ob.put("subject", dto.getSubject());
 		ob.put("content", dto.getContent());
-		ob.put("emot", dto.getEmot());
+		ob.put("avata", dto.getAvata());
 		ob.put("writeday", sdf.format(dto.getWriteday()));
 		
 		arr.add(ob);
 	}
 
 %>
-
 <%=arr.toString()%>

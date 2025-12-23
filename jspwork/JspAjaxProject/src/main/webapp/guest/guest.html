@@ -46,6 +46,14 @@
 	img.select{
 		border:3px solid red;
 	}
+	span.nick{
+		font-weight: bold;
+	}
+	
+	span.day{
+		float: right;
+		color: gray;
+	}
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -58,6 +66,7 @@
 		$("div.updateform").hide();
 		
 		$("#btnadd").click(function(){
+			$("div.updateform").hide();
 			$("div.addform").toggle();
 		});
 		
@@ -81,25 +90,149 @@
 		$("#dbsave").click(function(){
 			
 			var data=$("#addfrm").serialize();
-			
 			$.ajax({
 				type:"post",
 				url:"guestinsert.jsp",
 				dataType:"html",
 				data:data,
 				success:function(){
-					alert(data);
+					//alert 활성화 되어있으면 동기방식 안됨!!
+					//alert("입력성공");
+					//추가가 성공했다면 list()
+					list();
+					
+					//입력값 초기화
+					$("#nickname").val('');
+					$("#content").val('');
+					//이모티콘 초기화
+					$("img.emot").removeClass("select");
+					$("img.emot").eq(2).addClass("select");
+					$("#emot").val($(this).attr("src"));
+				}
+			})
+			
+			
+
+		});
+		
+		//삭제-동적메서드(on 사용하기)
+		$(document).on("click","i.del",function(){
+			var num=$(this).attr("num");
+			//alert(num);
+			
+			$.ajax({
+				type:"get",
+				url:"guestdelete.jsp",
+				dataType:"html",
+				data:{"num":num},
+				success:function(){
+					//목록 다시 출력
+					list();
+				}
+			})
+		})
+		
+		//수정폼 아이콘
+		//이모티콘 값 변경하기
+		$("img.uemot").click(function(){
+			//클릭안한 형제태그 select지우기
+			$(this).siblings().removeClass("select");
+			//현재클릭한 곳 select
+			$(this).addClass("select");
+			//현재 클릭한 이미지경로를 input에 경로로 변경해주기
+			$("#uemot").val($(this).attr("src"));
+		})
+		
+		//수정폼 띄우기-동적메서드
+		$(document).on("click","i.mod",function(){
+			var num=$(this).attr("num");
+			//alert(num); //수정폼 unum에 num을 넣어줘야한다!
+			$("#unum").val(num);
+
+			$.ajax({
+				type:"get",
+				url:"guestonedata.jsp",
+				dataType:"json",
+				data:{"num":num},
+				success:function(gdata){
+					//성공시 수정폼태그안에 넣어주기
+					$("#unum").val(gdata.num);
+					$("#unickname").val(gdata.nickname);
+					$("#ucontent").val(gdata.content);
+					
+					//해당 이미지에 select클래스 추가
+					$("img.uemot").each(function(i,ele){
+						if($(this).attr("src")==gdata.emot)
+							$(this).addClass("select");
+						else
+							$(this).removeClass("select");
+					})
+					
+					//추가폼 사라지고 수정폼 나오게
+					$("div.addform").hide();
+					$("div.updateform").show();
+	
 				}
 			})
 		});
-	
-	});
-	
+		
+		$("#dbupdate").click(function(){
+			
+			var data=$("#updatefrm").serialize();
+			//alert(data);
+			
+			$.ajax({
+				type:"post",
+				url:"guestupdate.jsp",
+				dataType:"html",
+				data:data,
+				success:function(){
+					//수정 성공시 목록 다시출력
+					list();
+				}
+			})
+		})
 
+	})		
+		
+	
 	//수시로 호출함...
 	function list()
 	{
-		
+		//list출력
+		$.ajax({
+			type:"get",
+			url:"guestlist.jsp", //guestlist.jsp에서 주석처리하면 오류남!!!
+			dataType:"json",
+			success:function(res){
+				//alert(res.length);
+				
+				var s="";
+
+				if(res.length==0){
+					s+="<h4 class='alert alert-success'>방문객이 없습니다</h4>";
+				}
+				else{
+					$.each(res,function(i,elt){
+						
+						s+="<i class='bi bi-pencil-square mod' num="+elt.num+"></i>"
+						s+="<i class='bi bi-trash del' num="+elt.num+"></i>"
+						
+						s+="<table class='table table-bordered'>";
+						s+="<tr heifht='100'><td>";
+						s+="<span class='nick'>작성자:"+elt.nickname+"</span>";
+						s+="<span class='day'>작성일:"+elt.writeday+"</span>";
+						s+="<br>"
+						s+="<pre>"+elt.content;
+						s+="<img src='"+elt.emot+"' width='80' align='right'></pre>"
+						s+="</td></tr>"
+						s+="</table>";
+						
+					});
+				}				
+				$("div.list").html(s);
+			}
+		});
 	}
 </script>
 </head>
@@ -148,7 +281,48 @@
 		</form>
 	</div>
 	
-	<div class="guest updateform">update</div>
+	<div class="guest updateform">
+		<form id="updatefrm">
+			<input type="hidden" name="unum" id="unum">
+			<table class="table table-bordered">
+				<caption align="top"><b>인사말 수정</b></caption>
+				<tr>
+					<th width="100" class="table-success">작성자</th>
+					<td>
+						<input type="text" class="form-control" name="unickname" id="unickname" style="width: 120px;">
+					</td>
+				</tr>
+				<tr>
+					<th width="100" class="table-success">인사말</th>
+					<td>
+						<textarea style="width: 300px; height: 80px;" class="form-control" name="ucontent" id="ucontent"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th width="100" class="table-success">이모티콘</th>
+					<td>
+						<input type="hidden" name="uemot" id="uemot">
+						<script type="text/javascript">
+							/* b1~b10.png까지 */
+							var s="";
+							for(var i=1;i<=10;i++)
+							{
+								s+="<img src='../image/avata/b"+i+".png' width='40' class='uemot'>";
+							}
+							document.write(s);
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button type="button" class="btn btn-warning" id="dbupdate">DB수정하기</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	
 	<div class="guest list">list</div>
 	
 

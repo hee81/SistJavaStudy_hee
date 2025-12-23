@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+	div.addform{
+		position: absolute;
+		width:400px;
+		top: 50px;
+		right: 200px;
+		left: 1200px;
+		padding: 10px 10px;
+		/* border: 1px solid gray; */
+	}
+	
+	div.list{
+		position: absolute;
+		width:400px;
+		top: 50px;
+		right: 100px;
+		left: 100px;
+		padding: 20px 20px;
+		font-family: "Gamja Flower";
+		font-size: 1.5em;
+	}
+	
+	table.a{
+		font-family: "Gamja Flower";
+		font-size: 1.3em;
+	}
+	table.a tr th{
+		text-align: center;
+	}
+	
+	table.f{
+		width: 1000px;
+		text-align: center;
+		margin: 20px 0px;
+	}
+
+</style>
+<script type="text/javascript">
+	$(function(){
+		//초기 list 고정
+		list();
+		
+		//추가폼 숨기기
+		$("div.addform").hide();
+		
+		//글쓰기 버튼 누르면 추가폼 나타나도록 한다
+		$("#write").click(function(){
+			
+			//select의 첫이미지와 맞추기
+			var aImg=$("#avata").val();
+			$("#avataphoto").attr("src",aImg);
+			
+			$("#avata").change(function(){
+				$("#avataphoto").attr("src",$(this).val());
+			});
+			
+			$("div.addform").toggle();
+
+		});
+		
+
+		//db저장
+		$("#dbsave").click(function(){
+			var data=$("#addfrm").serialize();
+			//alert(data);
+			
+			$.ajax({
+				type:"post",
+				url:"boardinsert.jsp",
+				dataType:"html",
+				data:data,
+				success:function(){
+					
+					 list();
+					
+					$("#writer").val("");
+					$("#subject").val("");
+					$("#avata").val("");
+					$("#content").val("");
+				}
+			})
+		});
+		
+		//삭제
+		
+		//수정
+		
+		
+	})
+	
+	function list()
+	{
+		$.ajax({
+			type:"get",
+			url:"boardlist.jsp",
+			dataType:"json",
+			success:function(res){
+				//alert(res.length);
+				
+				var s="";
+				
+				if(res.length==0)
+					s+="새로운 글을 작성해주세요";
+				else
+				{
+					s+="<table class='table table-bordered f'>";
+					s+="<tr>";
+					s+="<th>번호</th>";
+					s+="<th>제목</th>";
+					s+="<th>작성자</th>";
+					s+="<th>작성일</th>";
+					s+="<th>내용</th>";
+					s+="<th>아바타</th>";
+					s+="</tr>";
+					$.each(res,function(i,elt){
+						s+="<tr>";
+						s+="<td>"+elt.num+"</td>"
+						s+="<td>"+elt.subject+"</td>"
+						s+="<td>"+elt.writer+"</td>"
+						s+="<td>"+elt.writeday+"</td>"
+						s+="<td>"+elt.subject+"</td>"
+						s+="<td><img src='"+elt.avata+"' width='50'></td>"
+					})
+					s+="<table>";
+				}
+				
+				$("#boardlist").html(s);
+			}
+		})
+	}
+</script>
+</head>
+<body>
+	<div class="list">
+		<button id="write">글쓰기</button>
+		<div id="boardlist"></div>
+	</div>
+
+	<div class="addform">
+		<form id="addfrm">
+			<table class="table table-bordered a">
+				<caption align="top"><b>새로운 글 작성하기</b></caption>
+				<tr>
+					<th width="100" class="table-info">작성자</th>
+					<td>
+						<input type="text" class="form-control" name="writer" id="writer" style="width: 120px;">
+					</td>
+				</tr>
+				<tr>
+					<th width="100" class="table-info">제목</th>
+					<td>
+						<input type="text" class="form-control" name="subject" id="subject" style="width: 120px;">
+					</td>
+				</tr>
+				<tr>
+					<th width="100" class="table-info">이모티콘</th>
+					<td>
+						<select name="avata" id="avata">
+							<option value="../image/avata/b1.png">사랑해</option>
+							<option value="../image/avata/b2.png">심심</option>
+							<option value="../image/avata/b3.png">Hi</option>
+							<option value="../image/avata/b5.png">배고픔</option>
+							<option value="../image/avata/b6.png">좌절</option>
+							<option value="../image/avata/b7.png">신남</option>
+							<option value="../image/avata/b8.png">최고</option>
+						</select>
+						<img src="" width="30" height="30" id="avataphoto">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<textarea style="width: 300px; height: 80px;" class="form-control" name="content" id="content"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button type="button" class="btn btn-outline-info" id="dbsave">DB에 저장하기</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+</body>
+</html>
