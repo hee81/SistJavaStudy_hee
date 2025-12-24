@@ -6,6 +6,8 @@
 
 	request.setCharacterEncoding("utf-8");	
 
+	//동기는 name만 읽어주고
+	//비동기는 id값도 읽기 가능!
 	String writer=request.getParameter("writer");
 	String subject=request.getParameter("subject");
 	String content=request.getParameter("content");

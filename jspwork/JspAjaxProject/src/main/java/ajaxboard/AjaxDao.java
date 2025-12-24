@@ -94,8 +94,68 @@ public class AjaxDao {
 			db.dbClose(pstmt, conn);
 		}
 	}
-	//
-	//
+	
+	//one data
+	public AjaxDto getOneData(String num)
+	{
+		AjaxDto dto=new AjaxDto();
+		
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select * from ajaxboard where num="+num;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				dto.setNum(rs.getString("num"));
+				dto.setWriter(rs.getString("writer"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setAvata(rs.getString("avata"));
+				dto.setWriteday(rs.getTimestamp("writeday"));			
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return dto;
+	}
+	
+	//update
+	public void updateBoard(AjaxDto dto)
+	{
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		
+		String sql="update ajaxboard set writer=?,subject=?,content=?,avata=? where num=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			//?바인딩
+			pstmt.setString(1, dto.getWriter());
+			pstmt.setString(2, dto.getSubject());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setString(4, dto.getAvata());
+			pstmt.setString(5, dto.getNum());
+			
+			pstmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
 	
 	
 	

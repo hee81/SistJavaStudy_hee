@@ -202,7 +202,7 @@
 		//list출력
 		$.ajax({
 			type:"get",
-			url:"guestlist.jsp", //guestlist.jsp에서 주석처리하면 오류남!!!
+			url:"guestlist.jsp", //guestlist.jsp에서 주석처리하면 오류남!!!<json으로 변환할 때 방해됨!>
 			dataType:"json",
 			success:function(res){
 				//alert(res.length);

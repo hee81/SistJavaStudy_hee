@@ -4,7 +4,6 @@
 
 <%
 	String num=request.getParameter("num");
-	
 	AjaxDao dao=new AjaxDao();
 	dao.deleteBoard(num);
 %>
