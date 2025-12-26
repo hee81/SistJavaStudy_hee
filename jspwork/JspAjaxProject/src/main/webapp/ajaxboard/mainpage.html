@@ -30,7 +30,9 @@
 	div.detailform{
 		position: absolute;
 		top: 150px;
-		width:800px;
+		width:800
+		
+		px;
 		left: 100px;
 		padding: 20px 20px;
 	}
@@ -229,6 +231,7 @@
 		
 		//수정하기 버튼 누르면 수정 되도록
 		$("#dbupdate").click(function(){
+			//form과 각각의 값에 name이 있어야지 serizlize() 사용 가능!
 			var data=$("#upfrm").serialize();
 			//alert(data);
 			
