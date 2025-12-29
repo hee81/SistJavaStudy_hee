@@ -21,7 +21,7 @@
 <!-- num,readcount,wirteday는 안만듬!! -->
 <div style="margin: 50px 100px; width: 500px;">
 	<form action="updateAction.jsp" method="post">
-		<input type="text" name="num" value="<%=dto.getNum()%>">
+		<input type="hidden" name="num" value="<%=num%>">
 		<table class="table table-bordered">
 			<tr>
 				<th width="100" class="table-secondary">작성자</th>
