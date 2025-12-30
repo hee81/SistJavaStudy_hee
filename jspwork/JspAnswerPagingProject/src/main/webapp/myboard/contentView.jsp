@@ -63,11 +63,87 @@
 					list();
 				}
 			})
+		})
+		
+		//댓글삭제
+		$(document).on("click",".adel",function(){
+			
+			var a=confirm("댓글을 정말 삭제하려면 [확인]을 눌러주세요~");
+			
+			//idx
+			var idx=$(this).attr("idx");
+			//alert(idx);
+			
+			if(a){
+				$.ajax({
+					type:"get",
+					url:"../myboardanswer/deleteAnswer.jsp",
+					dataType:"html",
+					data:{"idx":idx},
+					success:function(res){
+						alert("삭제되었습니다");
+						list();
+					}
+				})
+			}
 			
 			
 		})
 		
+		//수정폼 가리기
+		$(".uform").hide();
+				
+		//수정버튼 누르면 입력창 가리고 수정창 보여지게
+		//update-선택댓글출력
+		$(document).on("click",".aupdate",function(){
+			
+			$(".aform").hide();
+			$(".uform").show();
+			
+			var idx=$(this).attr("idx");
+			
+			$.ajax({
+				type:"get",
+				url:"../myboardanswer/getOneAnswer.jsp",
+				dataType:"json",
+				data:{"idx":idx},
+				success:function(res){
+					
+					$("#idx").val(res.idx);
+					$("#unickname").val(res.nickname);
+					$("#ucomment").val(res.comment);
+
+				}
+			})			
+		})
 		
+		//update
+		$("#btnUSend").click(function(){
+			
+			var idx=$("#idx").val();
+			var nickname=$("#unickname").val();
+			var comment=$("#ucomment").val();
+			
+			$.ajax({
+				type:"post",
+				url:"../myboardanswer/updateAnswer.jsp",
+				dataType:"html",
+				data:{"idx":idx,"nickname":nickname,"comment":comment},
+				success:function(){
+					
+					list();
+					
+					$(".aform").show();
+					$(".uform").hide();
+				}
+			})			
+		})
+		
+		
+		
+		
+		
+		//list
 		function list(){
 			
 			$.ajax({
@@ -90,8 +166,8 @@
 							s+="<i class='bi bi-person-circle'></i>"
 							s+=elt.nickname+" : "+elt.comment+"&nbsp;";
 							s+="<span class='aday'>"+elt.writeday+"</span>";
-							s+="<i class='bi bi-pencil-square'></i>";
-							s+="<i class='bi bi-x-circle'></i>";
+							s+="<i class='bi bi-pencil-square aupdate' idx='"+elt.idx+"'></i>";
+							s+="<i class='bi bi-x-circle adel' idx='"+elt.idx+"'></i>";
 							s+="</div>";
 						})
 					}				
@@ -137,10 +213,18 @@
 				<div class="alist">
 					댓글목록...
 				</div>
+				<!-- 입력폼 -->
 				<div class="aform input-group">
 					<input type="text" id="nickname" class="form-control" style="width: 120px;" placeholder="닉네임">&nbsp;&nbsp;
 					<input type="text" id="comment" class="form-control" style="width: 200px;" placeholder="댓글을 입력하세요">&nbsp;&nbsp;
 					<button type="button" id="btnSend" class="btn btn-info">저장</button>
+				</div>
+				<!-- 수정폼 -->
+				<div class="uform input-group">
+					<input type="hidden" id="idx">
+					<input type="text" id="unickname" class="form-control" style="width: 120px;" placeholder="닉네임수정">&nbsp;&nbsp;
+					<input type="text" id="ucomment" class="form-control" style="width: 200px;" placeholder="댓글을 수정하세요">&nbsp;&nbsp;
+					<button type="button" id="btnUSend" class="btn btn-success">수정</button>
 				</div>
 			</td>
 		</tr>
