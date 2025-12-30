@@ -35,7 +35,6 @@
 		<br>
 		<input type="checkbox" name="save" <%=save?"checked":"" %>>아이디저장
 	</form>
-
 </div>
 </body>
 </html>
