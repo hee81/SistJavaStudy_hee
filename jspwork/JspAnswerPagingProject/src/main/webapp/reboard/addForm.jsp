@@ -44,9 +44,9 @@
 					<input type="hidden" name="num" value="<%=num%>">
 					<input type="hidden" name="regroup" value="<%=regroup%>">
 					<input type="hidden" name="restep" value="<%=restep%>">
-					<input type="hidden" name="relevel" value="<%=relevel%>">
-					
+					<input type="hidden" name="relevel" value="<%=relevel%>">				
 					<!-- 답글쓰기 버튼에 위에 hidden 넘겨야함! -->
+					
 				<%}
 			%>
 			
@@ -62,7 +62,7 @@
 				<tr>
 					<th class="table-success">제목</th>
 					<td>
-						<input type="text" name="subject" class="form-control" style="width: 320px;" required="required">
+						<input type="text" name="subject" class="form-control" style="width: 320px;" required="required" value="<%=subject%>">
 					</td>
 				</tr>
 				<tr>

@@ -10,6 +10,24 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
 </head>
+<%
+	request.setCharacterEncoding("utf-8");
+	
+	
+%>
+<jsp:useBean id="dto" class="reboard.ReboardDto"/>
+<jsp:useBean id="dao" class="reboard.ReboardDao"/>
+<jsp:setProperty property="*" name="dto"/>
+
+<%
+	//insert
+	dao.insertReboard(dto);
+	//insert된 num값 얻기
+	int num=dao.getMaxNum();
+	//이동
+	response.sendRedirect("detailPage.jsp?num="+num);
+	
+%>
 <body>
 
 </body>
