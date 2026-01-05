@@ -13,7 +13,6 @@
 <%
 	request.setCharacterEncoding("utf-8");
 	
-	
 %>
 <jsp:useBean id="dto" class="reboard.ReboardDto"/>
 <jsp:useBean id="dao" class="reboard.ReboardDao"/>
@@ -22,10 +21,17 @@
 <%
 	//insert
 	dao.insertReboard(dto);
+	//페이지번호 읽기
+	String currentPage=request.getParameter("currentPage");
 	//insert된 num값 얻기
 	int num=dao.getMaxNum();
+	
+	//새글은 currentPage 1로
+	if(currentPage==null)
+		currentPage="1";
+	
 	//이동
-	response.sendRedirect("detailPage.jsp?num="+num);
+	response.sendRedirect("detailPage.jsp?num="+num+"&currentPage="+currentPage);
 	
 %>
 <body>

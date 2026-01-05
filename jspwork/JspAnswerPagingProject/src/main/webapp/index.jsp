@@ -16,8 +16,11 @@
 %>
  
 	<!-- <button type="button" class="btn btn-info" onclick="location.href='/JspProject/login/loginForm.jsp'">로그인</button> -->
+<div style="margin: 200px 200px;">
+	<button type="button" class="btn btn-info" onclick="location.href='<%=path %>/reboard/boardList.jsp'">답변형게시판</button><br><br>
+	<button type="button" class="btn btn-info" onclick="location.href='<%=path %>/login/loginForm.jsp'">로그인</button><br><br>
+	<button type="button" class="btn btn-info" onclick="location.href='<%=path %>/memguest/guestList.jsp'">회원방명록</button>
+</div>
 	
-	<button type="button" class="btn btn-info" onclick="location.href='<%=path %>/reboard/boardList.jsp'">답변형게시판</button>
-
 </body>
 </html>

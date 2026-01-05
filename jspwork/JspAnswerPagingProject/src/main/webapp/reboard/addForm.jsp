@@ -15,8 +15,9 @@
 	//새글,답글 구별해야함
 	//답글일 경우 읽어야할 것들 처리하기
 	String num=request.getParameter("num");
+	//String currentPage=request.getParameter("currentPage"); //첫페이지가 아닌 댓글이 있던 페이지로 넘어가도록 하기 위해서
 	//새글 null, 답글 원글의 num이 넘어온다
-	String regroup="",restep="",relevel="",subject="";
+	String regroup="",restep="",relevel="",subject="",currentPage="";
 	//dao
 	ReboardDao dao=new ReboardDao();
 	
@@ -25,6 +26,7 @@
 		regroup=request.getParameter("regroup");
 		restep=request.getParameter("restep");
 		relevel=request.getParameter("relevel");
+		currentPage=request.getParameter("currentPage");
 		
 		//답글일 경우 원글의 제목 넘어오도록
 		subject="[답글]"+dao.getData(num).getSubject();
@@ -42,6 +44,7 @@
 				if(num!=null)
 				{%>
 					<input type="hidden" name="num" value="<%=num%>">
+					<input type="hidden" name="currentPage" value="<%=currentPage%>">
 					<input type="hidden" name="regroup" value="<%=regroup%>">
 					<input type="hidden" name="restep" value="<%=restep%>">
 					<input type="hidden" name="relevel" value="<%=relevel%>">				

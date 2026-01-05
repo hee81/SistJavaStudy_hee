@@ -97,7 +97,8 @@
 						<tr>
 							<td><%=no-- %></td>
 							
-							<td><!-- 제목부분..대댓글일 경우 공백 1레벨당 2칸 -->
+							<td>
+							<!-- 제목부분..대댓글일 경우 공백 1레벨당 2칸 -->
 							<%
 								for(int i=1;i<dto.getRelevel();i++)
 								{%>
@@ -111,9 +112,21 @@
 							{%>
 								<img alt="" src="../image/re.png">
 							<%}
+							
+							boolean flag=dao.isGroupStep(dto.getRegroup());
+							
+							if(dto.getRestep()>0)
+							{
+								if(!flag)
+								{%>
+									<span style="color: red;">[원글이 삭제된 답글]</span>
+								<%}
+							}
+							
 							%>
 							
-							<a href="detailPage.jsp?num=<%=dto.getNum()%>">
+							
+							<a href="detailPage.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>">
 							<%=dto.getSubject() %>
 							</a>
 							

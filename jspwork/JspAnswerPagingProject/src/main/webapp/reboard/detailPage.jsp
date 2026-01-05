@@ -15,6 +15,7 @@
 </head>
 <%
 	String num=request.getParameter("num");
+	String currentPage=request.getParameter("currentPage");
 	//dao
 	ReboardDao dao=new ReboardDao();
 	//선택한 데이터 dto로 가져오기
@@ -44,13 +45,19 @@
 				<td align="right">
 					<button type="button" class="btn btn-outline-info" onclick="location.href='addForm.jsp'">글쓰기</button>
 					<button type="button" class="btn btn-outline-info" 
-					onclick="location.href='addForm.jsp?num=<%=num%>&regroup=<%=dto.getRegroup()%>&restep=<%=dto.getRestep()%>&relevel=<%=dto.getRelevel()%>'">답글</button>
-					<button type="button" class="btn btn-outline-info" onclick="location.href=''">수정</button>
-					<button type="button" class="btn btn-outline-info" onclick="location.href=''">삭제</button>
-					<button type="button" class="btn btn-outline-info" onclick="location.href='boardList.jsp'">목록</button>
+					onclick="location.href='addForm.jsp?num=<%=num%>&regroup=<%=dto.getRegroup()%>&restep=<%=dto.getRestep()%>&relevel=<%=dto.getRelevel()%>&currentPage=<%=currentPage%>'">답글</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='updatePassForm.jsp?num=<%=num%>&currentPage=<%=currentPage%>'">수정</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='deletePassForm.jsp?num=<%=num%>&currentPage=<%=currentPage%>'">삭제</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='boardList.jsp?currentPage=<%=currentPage%>'">목록</button>
 				</td>
 			</tr>
 		</table>
 	</div>
+	
+	<pre>
+		num=<%=num %>
+		currentPage=<%=currentPage %>
+	</pre>
+	
 </body>
 </html>
