@@ -14,11 +14,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
-<style type="text/css">
-	table{
-		
-	}
-</style>
 </head>
 <%
 	//dao선언
@@ -71,11 +66,6 @@
 	//페이지에서 보여질 글만 가져오기
 	List<MemGuestDto> list=dao.getPagingList(startNum, perPage);
 	
-	//for문 안에서 하면 dto 사용하면됨
-	//String myid=(String)session.getAttribute("idok");
-	//LoginDao logdao=new LoginDao();
-	//String name=logdao.getName(myid);
-	
 %>
 <body>
 
@@ -86,42 +76,76 @@
 		<b>총 <%=totalCount %>개의 방명록 글이 있습니다</b>
 		<br><br>
 		 <%
+		 LoginDao logdao=new LoginDao();
+		 
 		 for(MemGuestDto dto:list){
-			 LoginDao logdao=new LoginDao();
+			 
 			 String name=logdao.getName(dto.getMyid());
 		 %>
 			 <table class="table table-bordered" style="margin: 10px 10px ; width: 400px;">
 				
-				 <tr height="130">
-				 	<td>
+				 <tr height="130" >
+				 	<td style="position: relative; padding-top: 25px;">
+				 	
+			 			<!-- 로그인한 본인이 쓴 글의 수정,삭제버튼만 보여야 한다 -->
+				 		<div style="position: absolute; top: 0; left: 10;">
+					 		<%	
+					 			//현재 로그인한 상태
+					 			String loginok=(String)session.getAttribute("loginok");
+					 			//로그인(세션)
+					 			String sessionId=(String)session.getAttribute("idok");
+								//로그인 중이면서 로그인한 아이디와 글쓴 아이디가 같다면
+					 			if(loginok!=null && sessionId.equals(dto.getMyid())){%>
+					 			
+					 			<span style="color: green; float: right; size: 2em;" >
+					 				<i class="bi bi-pencil-square" onclick="location.href='updateForm.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
+					 				<i class="bi bi-trash3" onclick="location.href='delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'"></i>
+					 			</span>
+					 			<input type="hidden" name="num" value=<%=dto.getNum()%>>
+					 			<input type="hidden" name="currentPage" value=<%=currentPage%>>
+					 			<%}
+					 		%>
+					 	</div>
+				 		
+				 		<!-- 공통으로 출력될 데이터(이름,작성일,사진,본문) -->
 				 		<b><%=name %> (<%=dto.getMyid() %>) </b>
 				 		<span style="float: right; color: gray"><%=sdf.format(dto.getWriteday()) %></span><br>		
 				 		<%
-				 			if(!(dto.getPhoto()).equals("no")){%>
-				 				<img src="../save/<%=dto.getPhoto()%>" style="max-width: 100px;" align="left"><br>
+				 			if(!dto.getPhoto().equals("no")){%>
+				 				<img src="../save/<%=dto.getPhoto()%>" style="max-width: 100px;" align="left" hspace="20"><br>
 				 			<%}
 				 		%>
 				 		<div class="content"><%=dto.getContent().replace("\n", "<br>") %></div>
-				 	</td>
-				 </tr>
-				 <tr>
-				 	<td>
-				 		<!-- 로그인한 본인이 쓴 글의 수정,삭제버튼만 보여야 한다 -->
+
+				 		<!-- 1/6 댓글창 추가 -->
+				 		<div style="clear: both;"></div>
+				 		<div class="answer" >댓글 0</div>
+				 		<div class="list">
+				 			목록출력<br>
+				 			
+				 		<!-- 회원만 댓글작성가능&댓글창 내용 확인가능 -->	
 				 		<%	
 				 			//현재 로그인한 상태
-				 			String loginok=(String)session.getAttribute("loginok");
-				 			//로그인(세션)
-				 			String sessionId=(String)session.getAttribute("idok");
-							//로그인 중이면서 로그인한 아이디와 글쓴 아이디가 같다면
-				 			if(loginok!=null && sessionId.equals(dto.getMyid())){%>
-				 				<button type="button" class="btn btn-outline-success btn-sm" onclick="location.href=''">수정</button>
-					 			<button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='delete.jsp?num=<%=dto.getNum()%>&currentPage=<%=currentPage%>'">삭제</button>
-					 			<input type="hidden" name="num" value=<%=dto.getNum()%>>
-					 			<input type="hidden" name="currentPage" value=<%=currentPage%>>
+				 			String loginoka=(String)session.getAttribute("loginok");
+							
+				 			if(loginoka!=null){%>
+				 				<form action="../memanswer/answerAddAction.jsp" method="post">
+					 				<div class="input-group">
+					 					<input type="text" name="memo" 
+					 					class="form-control" required="required" 
+					 					placeholder="댓글을 입력하세요" style="width: 250px;">		
+					 						
+					 					&nbsp;&nbsp;&nbsp;
+					 					
+					 					<button type="submit" class="btn btn-info btn-sm">저장</button>
+					 				</div>
+					 			</form>
 				 			<%}
-				 		%>
-				 	</td>
-				 </tr>
+				 		%>	
+						</div>
+				 		
+				 		</td>
+			 		</tr>
 			 </table>
 		 <%}
 		 %>	  

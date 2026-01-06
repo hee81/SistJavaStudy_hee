@@ -171,6 +171,44 @@ public class MemGuestDao {
 		return dto;
 	}
 	
+	//수정
+	public void updateGuest(MemGuestDto dto)
+	{
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		
+		//String sql="update memguest set photo=?, content=? where num=?";
+		
+		try {
+			
+			if(dto.getPhoto().equals("no"))
+			{
+				String sql="update memguest set content=? where num=?";
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getContent());
+				pstmt.setString(2, dto.getNum());
+			}
+			else
+			{
+				String sql="update memguest set photo=?, content=? where num=?";
+				
+				pstmt=conn.prepareStatement(sql);
+				
+				pstmt.setString(1, dto.getPhoto());
+				pstmt.setString(2, dto.getContent());
+				pstmt.setString(3, dto.getNum());
+			}
+			
+			pstmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
 	
 	
 }
