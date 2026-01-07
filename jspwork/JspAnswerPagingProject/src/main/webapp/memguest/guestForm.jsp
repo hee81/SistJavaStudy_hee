@@ -72,7 +72,7 @@
 							<input type="file" name="photo" id="photo" style="display: none;" onchange="readURL(this)">
 							<br>
 							<textarea name="content" style="width: 400px; height: 100px;" class="form-control" required="required"></textarea>
-							<button type="submit" class="btn btn-secondary" style="width: 100px; height: 100px;">저장</button>
+							<button type="submit" class="btn btn-secondary save" style="width: 100px; height: 100px;">저장</button>
 						</td>
 					</tr>
 				</table>

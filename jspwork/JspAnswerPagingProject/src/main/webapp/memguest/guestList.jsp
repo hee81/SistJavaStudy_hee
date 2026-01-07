@@ -1,3 +1,5 @@
+<%@page import="memanswer.AnswerDao"%>
+<%@page import="memanswer.AnswerDto"%>
 <%@page import="login.LoginDao"%>
 <%@page import="memguest.MemGuestDto"%>
 <%@page import="java.util.List"%>
@@ -14,6 +16,58 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+	div.answer{
+		cursor: pointer;
+	}
+	span.day{
+		color: gray;
+		float:right;
+		font-size: 0.9em;
+	}
+	i.aupdate,i.adel{
+		cursor: pointer;
+		color: orange;
+		font-weight: bold;
+	}
+</style>
+<script type="text/javascript">
+	$(function(){
+		
+		//전체댓글이랑 입력창 안보이게 하기
+		$("div.answer").next().hide();
+		
+		//댓글 부분 클릭이벤트
+		//클릭한 부분의 다음태그(div show/hide 반복)
+		$("div.answer").click(function(){
+			//모든 댓글태그 다음 숨기기
+			$(this).next().toggle();
+		})
+		
+		//댓글삭제 누르면 모달창 뜬 후 삭제진행
+		$("i.adel").click(function(){
+			
+			var a=confirm("정말 삭제하실건가요??");
+			
+			if(a){
+				var idx=$(this).attr("idx");
+				//alert(idx);	
+
+				$.ajax({
+					type:"post",
+					url:"../memanswer/answerDelete.jsp",
+					dataType:"html",
+					data:{"idx":idx},
+					success:function(){
+						//새로고침
+						location.reload();
+					}
+				})
+			}
+		})
+		
+	})
+</script>
 </head>
 <%
 	//dao선언
@@ -87,6 +141,8 @@
 				 <tr height="130" >
 				 	<td style="position: relative; padding-top: 25px;">
 				 	
+				 	
+				 	
 			 			<!-- 로그인한 본인이 쓴 글의 수정,삭제버튼만 보여야 한다 -->
 				 		<div style="position: absolute; top: 0; left: 10;">
 					 		<%	
@@ -107,6 +163,8 @@
 					 		%>
 					 	</div>
 				 		
+				 		
+				 		
 				 		<!-- 공통으로 출력될 데이터(이름,작성일,사진,본문) -->
 				 		<b><%=name %> (<%=dto.getMyid() %>) </b>
 				 		<span style="float: right; color: gray"><%=sdf.format(dto.getWriteday()) %></span><br>		
@@ -117,11 +175,56 @@
 				 		%>
 				 		<div class="content"><%=dto.getContent().replace("\n", "<br>") %></div>
 
+
+
 				 		<!-- 1/6 댓글창 추가 -->
 				 		<div style="clear: both;"></div>
-				 		<div class="answer" >댓글 0</div>
+				 		<div class="answer" >
+				 		<%
+				 			AnswerDao tadao=new AnswerDao();
+				 			int total=tadao.totalAnswer(dto.getNum());
+				 		%>
+				 		댓글 <%=total %>
+				 		</div>
 				 		<div class="list">
 				 			목록출력<br>
+				 			
+			 			<%
+			 				AnswerDao adao=new AnswerDao();
+			 				SimpleDateFormat sdf2=new SimpleDateFormat("yy-MM-dd HH:mm");
+			 			
+			 				List<AnswerDto> alist=adao.getAllAnswers(dto.getNum());
+			 				
+			 				for(int i=0;i<alist.size();i++)
+			 				{
+			 					AnswerDto adto=alist.get(i);
+			 					//댓글쓴 사람이름
+			 					String writer=logdao.getName(adto.getMyid());	
+			 				%>
+			 					 					
+			 					<%=writer %>(<%=adto.getMyid() %>) : 							 					
+			 					<%=adto.getMemo() %>
+			 					
+			 					<!-- 댓글 작성자만 수정,삭제 아이콘 보이도록 한다 -->
+				 				<%
+				 				if(sessionId.equals(dto.getMyid()))
+				 				{%>
+				 					<!-- ajax로 하려면 idx값 주어야 함!!!!! -->
+				 					<i class="bi bi-pencil-fill aupdate" idx="<%=adto.getIdx()%>"></i>
+					 				<i class="bi bi-x-circle adel" idx="<%=adto.getIdx()%>"></i>
+				 				<%}
+				 				%>
+				 				
+				 				<span class="day"><%=sdf2.format(adto.getWriteday()) %></span>
+			 					<br>
+			 				<%
+			 				
+			 				}
+			 				
+		 				%>
+				 		</div>
+				 			
+				 			
 				 			
 				 		<!-- 회원만 댓글작성가능&댓글창 내용 확인가능 -->	
 				 		<%	
@@ -138,11 +241,14 @@
 					 					&nbsp;&nbsp;&nbsp;
 					 					
 					 					<button type="submit" class="btn btn-info btn-sm">저장</button>
+					 					<input type="hidden" name="num" value=<%=dto.getNum()%>>
+					 					<input type="hidden" name="myid" value=<%=sessionId%>>
+					 					<input type="hidden" name="currentPage" value=<%=currentPage%>>
 					 				</div>
 					 			</form>
 				 			<%}
 				 		%>	
-						</div>
+						
 				 		
 				 		</td>
 			 		</tr>
@@ -150,6 +256,8 @@
 		 <%}
 		 %>	  
 	</div>
+
+
 
 	<!-- 페이지 번호 출력 -->
 	<div>
