@@ -136,13 +136,60 @@ public class AnswerDao {
 		
 	}
 	
+	//idx에 따른 dto반환
+	public String getMemo(String idx)
+	{
+		String memo="";
+		
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		String sql="select memo from memanswer where idx=?";		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, idx);
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				memo=rs.getString("memo");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(rs, pstmt, conn);
+		}
+		
+		return memo;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	//댓글수정
+	public void updateAnswer(AnswerDto dto)
+	{
+		Connection conn=db.getDbConnect();
+		PreparedStatement pstmt=null;
+		
+		String sql="update memanswer set memo=? where idx=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setString(1, dto.getMemo());
+			pstmt.setString(2, dto.getIdx());
+			
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.dbClose(pstmt, conn);
+		}
+	}
 	
 }

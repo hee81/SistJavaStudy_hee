@@ -13,7 +13,9 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Gamja+Flower&family=Nanum+Myeongjo&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
@@ -44,7 +46,7 @@
 			$(this).next().toggle();
 		})
 		
-		//댓글삭제 누르면 모달창 뜬 후 삭제진행
+		//댓글삭제
 		$("i.adel").click(function(){
 			
 			var a=confirm("정말 삭제하실건가요??");
@@ -60,10 +62,56 @@
 					data:{"idx":idx},
 					success:function(){
 						//새로고침
-						location.reload();
+						swal("삭제성공!", "You clicked the button!", "success")
+						.then(function(){
+							location.reload();
+						})
 					}
 				})
 			}
+		})
+		
+		//댓글수정버튼 누르면 모달창뜨도록!
+		$("i.aupdate").click(function(){
+			
+			var idx=$(this).attr("idx");
+			//alert(idx);
+			
+			
+			//댓글 수정폼의 hidden idx에 idx 넣어주기
+			$("#idx").val(idx);
+			
+			//json으로 본 memo를 수정창안에 넣어주기
+			$.ajax({
+				type:"get",
+				url:"../memanswer/answerMemo.jsp",
+				dataType:"json",
+				data:{"idx":idx},
+				success:function(res){
+					$("#memo").val(res.memo);
+				}
+			})
+			
+			$("#updateAnsModal").modal('show');
+		});
+		
+		//**모달창에 댓글수정하기 누르면 해당 idx의 메모값 수정후 성공시 새로고침(idx,memo 둘다 넘어가야함!)**
+		$(".ansupdate").click(function(){
+			
+			var idx=$("#idx").val();
+			var memo=$("#memo").val();
+			//alert(idx+","+memo);
+			
+			$.ajax({
+				type:"post",
+				url:"../memanswer/answerUpdate.jsp",
+				dataType:"html",
+				data:{"idx":idx,"memo":memo},
+				success:function(){
+					location.reload();
+				}
+			})
+			
 		})
 		
 	})
@@ -298,6 +346,28 @@
 
 			</ul>
 		</nav>
+	</div>
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="updateAnsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="staticBackdropLabel">댓글수정창</h1>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	      	<input type="hidden" id="idx" value="">
+	        <input type="text" class="form-control" id="memo">
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	        <button type="button" class="btn btn-primary ansupdate">댓글수정하기</button>
+	      </div>
+	    </div>
+	  </div>
 	</div>
 	 
 	
