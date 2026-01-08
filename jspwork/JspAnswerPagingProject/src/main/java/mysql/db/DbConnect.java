@@ -11,8 +11,9 @@ import java.sql.Statement;
 public class DbConnect {
 
 	static final String MYSQLDRIVER="com.mysql.cj.jdbc.Driver";
-	static final String MYSQL_URL="jdbc:mysql://localhost:3306/coffee";
+	static final String MYSQL_URL="jdbc:mysql://myhee.che2a2mk0gqm.ap-northeast-2.rds.amazonaws.com:3306/moviereview";
 //	static final String MYSQL_URL="jdbc:mysql://localhost:3306/test";
+//	static final String MYSQL_URL="jdbc:mysql://localhost:3306/coffee";
 	
 	//생략가능하나 MySQL에서는 안됨.......
 	public DbConnect() {
@@ -32,7 +33,7 @@ public class DbConnect {
 		Connection conn=null;
 		
 		try {
-			conn=DriverManager.getConnection(MYSQL_URL, "root", "1234"); //생성한 계정으로 해도됨
+			conn=DriverManager.getConnection(MYSQL_URL, "adminhee", "awsSIST2025"); //생성한 계정으로 해도됨
 			System.out.println("MYSQL 서버연결 성공~~");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
