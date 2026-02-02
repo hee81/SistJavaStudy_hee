@@ -11,6 +11,8 @@
 		<config>src/main/resources/appContext1.xml</config>
 		<config>src/main/resources/appContext2.xml</config>
 		<config>src/main/resources/sawonConfig.xml</config>
+		<config>src/main/resources/annoContext4.xml</config>
+		<config>src/main/resources/quizContext.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>

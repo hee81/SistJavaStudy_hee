@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- @Component 사용하면 생략가능
+	<bean id="mydao" class="spring.ex4.di.MyDao"/>
+	<bean id="logic" class="spring.ex4.di.LogicController">
+		<constructor-arg ref="mydao"></constructor-arg>
+	</bean>
+	 -->
+	 
+	 <!-- @(어노테이션)을 인식할 패키지 등록하기_ Namespaces에서 context 체크 해야함..!!!!-->
+	 <!-- base-package="spring.ex4.anno -->
+	 <!-- base-package="spring.*.anno >> 등록1번만 하면됨-->
+	 <context:component-scan base-package="spring.*.anno"/>
+</beans>
