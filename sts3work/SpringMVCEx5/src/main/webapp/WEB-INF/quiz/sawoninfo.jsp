@@ -11,8 +11,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<button type="button" class="btn btn-info" onclick="location.href='data/myform'">입력폼 연습</button>
+	<h4>sawoninfo</h4>
+	<h5>사원명: ${dto.name }</h5>
+	<h5>급여: ${dto.pay }</h5>
+	<h5>나이: ${dto.age }</h5>
+	<h5>혈액형: ${dto.blood }형</h5>
 	
-	<button type="button" class="btn btn-info" onclick="location.href='quiz/form'">과제폼 연습</button>
 </body>
 </html>
