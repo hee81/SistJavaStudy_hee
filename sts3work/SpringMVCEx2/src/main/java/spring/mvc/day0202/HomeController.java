@@ -18,7 +18,9 @@ public class HomeController {
 	
 	
 	//@RequestMapping(value = "/",method=RequestMethod.GET) //3버전
-	@GetMapping("/dragon/sist") //5버전 이후에 사용가능(pom.xml에서 3.1.1.RELEASE > 5.2.9.RELEASE 로 변경하기)
+	//5버전 이후에 사용가능(pom.xml에서 3.1.1.RELEASE > 5.2.9.RELEASE 로 변경하기)
+	@GetMapping("/dragon/sist") //home.jsp sist뒤에 .do .nhn 를 붙여도 다 호출된다
+	//@GetMapping("/dragon/sist.do") //home.jsp sist뒤에 .do 없으면 호출 안된다. //확장자 붙이면 헷갈리므로 비권장사항임.
 	public String hello1(Model model) {
 		/*
 		 model1
