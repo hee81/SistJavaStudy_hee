@@ -1,0 +1,14 @@
+@charset "EUC-KR";
+table{
+	border: 2px solid gray;
+}
+tr,th,td{
+	border: 1px dotted green;
+}
+img{
+	width: 300px;
+	margin: 10px;
+}
+h2{
+	color: purple;
+}

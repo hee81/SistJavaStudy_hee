@@ -43,11 +43,7 @@
 				<td colspan="2"><button type="submit" class="btn btn-outline-warning">과제출력</button></td>
 			</tr>
 		</table>
-		
-		
-		
-		
-		
+
 	</form>
 </body>
 </html>
