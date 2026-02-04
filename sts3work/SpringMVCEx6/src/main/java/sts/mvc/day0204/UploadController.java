@@ -2,6 +2,7 @@ package sts.mvc.day0204;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -60,9 +61,7 @@ public class UploadController {
 		
 		return mv;
 	}
-	
-	
-	
+
 	
 	
 	//uploadform2로 이동
@@ -70,5 +69,44 @@ public class UploadController {
 	public String form2() {
 		return "upload/uploadform2";
 	}
+	//2번 업로드 처리
+		@PostMapping("/uploadproc2")
+		public ModelAndView upload2(@RequestParam String title,
+				@RequestParam ArrayList<MultipartFile> photo //ArrayList<MultipartFile>변경하기
+				,HttpServletRequest request
+				) {
+			
+			ModelAndView mv=new ModelAndView();
+			
+			//업로드 실제경로 구하기
+			String realPath=request.getSession().getServletContext().getRealPath("/WEB-INF/image");
+			System.out.println(realPath);
+			
+			
+			ArrayList<String> files=new ArrayList<String>();
+			//파일명담기
+			for(MultipartFile f:photo) {
+				String fileName=f.getOriginalFilename();
+				files.add(fileName);
+				//업로드하기
+				try {
+					f.transferTo(new File(realPath+"\\"+fileName));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+			mv.addObject("files", files);
+			mv.addObject("title", title);
+			mv.addObject("path", realPath);
+			
+			mv.setViewName("upload/uploadresult2");
+			
+			return mv;
+		}
 
 }

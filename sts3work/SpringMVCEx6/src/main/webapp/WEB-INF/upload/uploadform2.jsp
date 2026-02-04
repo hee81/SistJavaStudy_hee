@@ -12,5 +12,30 @@
 </head>
 <body>
 	<h4>uploadform2페이지</h4>
+	<!-- upload는 post방식이어야함!!(get안됨) -->
+	<form action="uploadproc2" method="post" enctype="multipart/form-data">
+		<table class="table table-bordered" style="width: 400px;">
+			<caption align="top"><b>스프링 파일업로드(여러개)</b></caption>
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type="text" name="title" class="form-control" style="width: 200px;">
+				</td>
+			</tr>
+			<tr>
+				<th>업로드</th>
+				<td>
+					<!-- type-file name-db명이랑 다르게 해야함!!! -->
+					<input type="file" name="photo" class="form-control" 
+					style="width: 200px;" multiple="multiple"> <!-- multiple만 추가하면 됨 -->
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" class="btn btn-outline-success" value="업로드#2">
+				</td>
+			</tr>
+		</table>
+	</form>
 </body>
 </html>
