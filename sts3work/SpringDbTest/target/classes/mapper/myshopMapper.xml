@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.sts.sist.MyshopDao"> <!-- namespace: 부트는 필수,프레임워크 필수아님 -->
+	<select id="getAllOfMyshop" resultType="mdto"> <!-- id:유일한 값(내맘대로) -->
+		select * from myshop order by num desc <!-- ;쓰면 오류남 -->
+	</select>
+</mapper>
