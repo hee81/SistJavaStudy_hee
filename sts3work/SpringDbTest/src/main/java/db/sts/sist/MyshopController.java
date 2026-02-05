@@ -27,10 +27,10 @@ public class MyshopController {
 	@Autowired
 	MyshopDao dao;
 	
-	@GetMapping("/")
-	public String home() {
-		return "redirect:/myshop/list"; //@GetMapping({"/","myshop/list"}) 보다 안정적임
-	}
+//	@GetMapping("/")
+//	public String home() {
+//		return "redirect:/myshop/list"; //@GetMapping({"/","myshop/list"}) 보다 안정적임
+//	}
 	
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -106,14 +106,26 @@ public class MyshopController {
 	}
 	
 	//삭제 후 디테일로 이동
-	@GetMapping("/del")
-	public ModelAndView delete(@RequestParam String num) {
-		ModelAndView mv=new ModelAndView();
+	@GetMapping("/del") //postMappig도 가능
+	public String delete(@RequestParam String num,HttpSession session) {
 		
+		//photo폴더의 사진까지 삭제하기
+		String oldPhoto=dao.getOneData(num).getPhoto();
+		if(!oldPhoto.equals("no")) {
+			//,로 분리해서 배열에 넣기
+			String [] fName=oldPhoto.split(",");
+			//실제경로
+			String path=session.getServletContext().getRealPath("/WEB-INF/photo");
+			
+			for(String f:fName) {
+				File file=new File(path+"\\"+f);
+				file.delete();
+			}
+		}
+		//db삭제
 		dao.deleteMyshop(num);
 		
-		mv.setViewName("redirect:list");
-		return mv;
+		return "redirect:list";
 	}
 	
 	

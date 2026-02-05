@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="mdto" type="db.sts.sist.MyshopDto"/>
+		<typeAlias alias="cdto" type="db.data.car.CarDto"/>
 	</typeAliases>
 </configuration>
