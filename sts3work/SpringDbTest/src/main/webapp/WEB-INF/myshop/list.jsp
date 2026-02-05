@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +13,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3 class="alert alert-info">총 ${count }개의 상품이 입고중입니다.</h3>
+	
+	<c:if test="${count==0 }">
+		<h6 class="alert alert-info">입고된 상품이 없습니다.</h6>
+	</c:if>
+	<c:if test="${count>0 }">
+		<h6 class="alert alert-info">총 ${count }개의 상품이 입고중입니다.</h6>
+	</c:if>
+	<br>
+	
+	<button type="button" class="btn btn-outline-info" onclick="location.href='addform'">입력폼</button>
+	
+	<hr>
+	<table class="table table-bordered" style="width: 800px;">
+		<tr class="table-secondary" align="center">
+			<th>상품번호</th>
+			<th>상품명</th>
+			<th>상품가격</th>
+			<th>상품입고일</th>
+		</tr>
+		<c:forEach items="${list }" var="dto" varStatus="i">
+			<tr align="center">
+				<td>${i.count }</td>
+				<td><a href="detail?num=${dto.num }">${dto.sangpum }</a></td>
+				<td><fmt:formatNumber value="${dto.price }" type="currency"/></td>
+				<td>${dto.ipgoday }</td>
+			</tr>
+		</c:forEach>
+
+	</table>
 </body>
 </html>

@@ -17,5 +17,16 @@ public class MyshopDao {
 		return session.selectList("getAllOfMyshop"); //파라메타 없으면 1개~
 	}
 	
+	public void insertMyshop(MyshopDto dto) {
+		session.insert("insertOfMyshop", dto); //parmater있으면 이거!
+	}
 	
+	public MyshopDto getOneData(String num) {
+		return session.selectOne("getOneOfMyshop", num);
+	}
+	
+	public void deleteMyshop(String num) {
+		session.delete("deleteOfMyshop", num);
+	}
+
 }

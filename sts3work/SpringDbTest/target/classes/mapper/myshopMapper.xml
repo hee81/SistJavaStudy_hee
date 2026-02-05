@@ -4,4 +4,14 @@
 	<select id="getAllOfMyshop" resultType="mdto"> <!-- id:유일한 값(내맘대로) -->
 		select * from myshop order by num desc <!-- ;쓰면 오류남 -->
 	</select>
+	<insert id="insertOfMyshop" parameterType="mdto"> <!-- void이므로 resultType 없음 -->
+		insert into myshop (sangpum,photo,price,ipgoday,writeday) 
+		values (#{sangpum},#{photo},#{price},#{ipgoday},now()) <!-- 아이바티스?는 $였음 -->
+	</insert>
+	<select id="getOneOfMyshop" parameterType="String" resultType="mdto">
+		select * from myshop where num=#{num} <!-- ${}변수이자 바인딩 동시에 된다 -->
+	</select>
+	<delete id="deleteOfMyshop" parameterType="String">
+		delete from myshop where num=#{num}
+	</delete>
 </mapper>
