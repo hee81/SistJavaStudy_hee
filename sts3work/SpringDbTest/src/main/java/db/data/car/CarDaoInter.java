@@ -6,5 +6,7 @@ public interface CarDaoInter {
 	public int getTotalCount();
 	public void insertCar(CarDto dto);
 	public List<CarDto> getAllDatas();
-	public void deleteCar(int num);
+	public void deleteCar(String num);
+	public CarDto getOneData(String num);
+	public void updateCar(CarDto dto);
 }

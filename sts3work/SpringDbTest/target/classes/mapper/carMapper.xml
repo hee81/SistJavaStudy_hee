@@ -10,7 +10,13 @@
 	<select id="GetAllDatasOfCar" resultType="cdto">
 		select * from carinfo order by num desc
 	</select>
-	<delete id="deleteOfCar" parameterType="int">
+	<delete id="deleteOfCar" parameterType="String">
 		delete from carinfo where num=#{num}
 	</delete>
+	<select id="GetOneDataOfCar" resultType="cdto" parameterType="String">
+		select * from carinfo where num=#{num}
+	</select>
+	<update id="updateOfCar" parameterType="cdto">
+		update carinfo set carname=#{carname},carcolor=#{carcolor},carprice=#{carprice},carguip=#{carguip} where num=#{num}
+	</update>
 </mapper>

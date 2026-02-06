@@ -28,7 +28,19 @@ public class CarDao implements CarDaoInter {
 	}
 
 	@Override
-	public void deleteCar(int num) {
+	public void deleteCar(String num) {
 		session.delete("deleteOfCar", num);
+	}
+
+	@Override
+	public CarDto getOneData(String num) {
+		// TODO Auto-generated method stub
+		return session.selectOne("GetOneDataOfCar", num);
+	}
+
+	@Override
+	public void updateCar(CarDto dto) {
+		// TODO Auto-generated method stub
+		session.update("updateOfCar", dto);
 	}
 }

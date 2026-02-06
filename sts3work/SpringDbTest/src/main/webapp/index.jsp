@@ -14,6 +14,7 @@
 	<div style="margin: 50px 50px;">
 	<button type="button" class="btn btn-info" onclick="location.href='myshop/list'">Myshop</button><br>
 	<button type="button" class="btn btn-info" onclick="location.href='carinfo/list'">CarInfo</button><br>
+	<button type="button" class="btn btn-info" onclick="location.href='carmember/list'">고객명단</button><br>
 	</div>
 </body>
 </html>

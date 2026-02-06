@@ -13,26 +13,31 @@
 <body>
 	<h4>updateform페이지</h4>
 	<form action="update" method="post">
+		
+		
 		<table class="table table-bordered" style="width: 500px;">
 			<caption align="top"><b>자동차정보입력</b></caption>
 			<tr>
 				<th>자동차명</th>
-				<td><input type="text" name="carname" class="form-control" style="width: 120px;" value="${c.getcarname }"></td>
+				<td><input type="text" name="carname" class="form-control" style="width: 120px;" value="${dto.carname }"></td>
 			</tr>
 			<tr>
 				<th>색상</th>
-				<td><input type="color" name="carcolor" class="form-control" style="width: 250px;" required></td>
+				<td><input type="color" name="carcolor" class="form-control" style="width: 250px;" value="${dto.carcolor }"></td>
 			</tr>
 			<tr>
 				<th>상품가격</th>
-				<td><input type="text" name="carprice" class="form-control" style="width: 150px;" required></td>
+				<td><input type="text" name="carprice" class="form-control" style="width: 150px;" value="${dto.carprice }"></td>
 			</tr>
 			<tr>
 				<th>상품입고일</th>
-				<td><input type="date" name="carguip" class="form-control" style="width: 250px;" required></td>
+				<td><input type="date" name="carguip" class="form-control" style="width: 250px;" value="${dto.carguip }"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><button type="submit" class="btn btn-outline-success">DB저장</button></td>
+				<td colspan="2" align="center">
+					<button type="submit" class="btn btn-outline-warning">DB수정</button>
+					<input type="hidden" name="num" value="${dto.num }"> <!-- 추가필수 -->
+				</td>
 			</tr>
 		</table>
 	</form>

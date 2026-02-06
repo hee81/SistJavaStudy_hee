@@ -46,17 +46,29 @@ public class CarController {
 		mv.setViewName("redirect:list");
 		return mv;
 	}
+
+	//삭제 후 list로 이동
+	@GetMapping("/delete")
+	public String delete(@RequestParam String num) {
+		dao.deleteCar(num);
+		return "redirect:list";
+	}
 	
 	//수정폼으로 이동
 	@GetMapping("/updateform")
-	public String uform() {
+	public String uform(String num,Model model) //@RequestParam 생략가능
+	{	
+		CarDto dto=dao.getOneData(num);
+		model.addAttribute("dto", dto);
+		
 		return "carinfo/updateform";
 	}
 	
-	//삭제 후 list로 이동
-	@GetMapping("/delete")
-	public String delete(@RequestParam int num) {
-		dao.deleteCar(num);
+	//수정 후 list로 이동
+	@PostMapping("/update")
+	public String update(@ModelAttribute CarDto dto)
+	{
+		dao.updateCar(dto);
 		return "redirect:list";
 	}
 	
