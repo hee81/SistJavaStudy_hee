@@ -13,4 +13,28 @@
 	<select id="selectPageListOfBoard" resultType="bdto" parameterType="HashMap"> 
 		select * from board order by num desc limit #{start},#{perpage}
 	</select>
+	<!-- readcount -->
+	<update id="updateReadCountOfBoard" parameterType="int">
+		update board set readcount=#{readcount+1} where num=#{num}
+	</update>
+	<!-- onedata -->
+	<select id="getOneDataOfBoard" parameterType="int" resultType="bdto">
+		select * from board where num=#{num}
+	</select>
+	<!-- 비밀번호체크(num,pass가 맞으면 1 아니면 0) -->
+	<select id="checkPassEqualOfBoard" parameterType="HashMap" resultType="int">
+		select count(*) from board where num=#{num} and pass=#{pass}
+	</select>
+	<!-- 수정 -->
+	<update id="updateOfBoard" parameterType="bdto">
+		update board set writer=#{writer},subject=#{subject},content=#{content}
+		<if test="photo!=null"> <!-- 선택을 안할경우 null로 보낼것임 --><!-- null/'no' -->
+			,photo=#{photo}
+		</if>
+		where num=#{num}
+	</update>
+	<!-- 삭제 -->
+	<delete id="deleteOfBoard" parameterType="int">
+		delete from board where num=#{num}
+	</delete>
 </mapper>

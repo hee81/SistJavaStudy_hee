@@ -30,7 +30,7 @@
 	        <td><textarea name="content" class="form-control" rows="3" style="width: 300px;" required></textarea></td>
 	      </tr>
 	      <tr>
-	        <th>파일</th>
+	        <th>파일</th> <!-- 파일은 name db명과 다르게하기 -->
 	        <td><input type="file" name="upload" class="form-control" style="width: 300px;" multiple></td>
 	      </tr>
 	      <tr>
