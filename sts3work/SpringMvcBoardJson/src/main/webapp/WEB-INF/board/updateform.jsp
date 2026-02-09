@@ -39,6 +39,5 @@
 	    <input type="hidden" name="num" value="${dto.num }">
 		<input type="hidden" name="currentPage" value="${currentPage }">
 	</form>
-
 </body>
 </html>

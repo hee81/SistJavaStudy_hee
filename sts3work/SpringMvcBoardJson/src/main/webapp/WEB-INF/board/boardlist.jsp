@@ -15,7 +15,7 @@
 <body>
 	<div class="alert alert-info" style="width: 500px;">
 		총 ${totalCount }개의 게시글이 있습니다.
-	</div>
+	</div>  
 	<br>
 	<button type="button" class="btn btn-outline-info" onclick="location.href='addform'">글쓰기</button>
 	

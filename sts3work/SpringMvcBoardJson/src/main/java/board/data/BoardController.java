@@ -35,7 +35,6 @@ public class BoardController {
 			) {
 		ModelAndView mv=new ModelAndView();
 		
-		
 		//페이징에 필요한 변수들
 		  int totalCount=dao.getTotalCount(); //전체갯수
 		  int perPage=5; //한페이지에 보여질 글갯수
@@ -47,7 +46,6 @@ public class BoardController {
 		  
 		  int no; //각페이지당 출력할 시작번호
 		   
-		  
 		  //총페이지구하기
 		  //총페이지갯수/한페이지에 보여질 갯수로 나눔(7/5=1)
 		  //나머지가 1이라도 있으면 무조건 1페이지 추가(1+1=2페이지 필요)
@@ -72,7 +70,6 @@ public class BoardController {
 		  //페이지에서 보여질 글만 가져오기
 		  //List<BoardDto> list=dao.getPagingList(startNum, perPage);
 		  List<BoardDto> list=dao.getPagingList(startNum, perPage);
-
 
 		//request
 		mv.addObject("list", list);
@@ -155,6 +152,48 @@ public class BoardController {
 		return "board/content";
 	}
 	
+	//삭제pass폼으로
+	@GetMapping("/dpassform")
+	public String delete(Model model,String num,String currentPage) {
+		model.addAttribute("num", num);
+		model.addAttribute("currentPage", currentPage);
+		return "board/deletepassform";
+	}
+	
+	//삭제-비밀번호 check
+	@PostMapping("/deletepass")
+	public ModelAndView delete(@RequestParam int num,
+			@RequestParam int pass,
+			@RequestParam int currentPage,
+			HttpSession session) {
+		ModelAndView mv=new ModelAndView();
+		
+		int pcheck=dao.getCheckPass(num, pass);
+		
+		if(pcheck==0) {
+			mv.setViewName("board/passfail");
+		}else {
+			
+			//photo폴더 사진삭제
+			String oldphoto=dao.getOneData(num).getPhoto();
+			if(!oldphoto.equals("no")) {
+				//,로 분리해서 배열에 담기
+				String [] fName=oldphoto.split(",");
+				//실제업로드
+				String path=session.getServletContext().getRealPath("/WEB-INF/photo");
+				
+				for(String f:fName) {
+					File file=new File(path+"\\"+f);
+					file.delete();
+				}
+			}
+			
+			dao.deleteBoard(num);
+			mv.setViewName("redirect:list");
+		}
+		return mv;
+	}
+	
 
 	
 	//수정pass폼으로
@@ -231,19 +270,7 @@ public class BoardController {
 		return "redirect:detail?num="+dto.getNum()+"&currentPage="+currentPage;
 	}
 	
-	//삭제pass폼으로
-	@GetMapping("/dpassform")
-	public String delete(Model model,String num,String currentPage) {
-		model.addAttribute("num", num);
-		model.addAttribute("currentPage", currentPage);
-		return "board/deletepassform";
-	}
-	
-	//삭제-비밀번호 check
-	@GetMapping("/deletepass")
-	public String delete(@RequestParam int num) {
-		return "redirect:list";
-	}
+
 	
 
 	
