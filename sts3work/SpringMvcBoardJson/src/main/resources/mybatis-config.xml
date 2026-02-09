@@ -4,5 +4,6 @@
 	<typeAliases>
 		<typeAlias alias="fdto" type="sts.mvc.json.FoodDto"/>
 		<typeAlias alias="bdto" type="board.data.BoardDto"/>
+		<typeAlias alias="adto" type="board.answer.data.AnswerDto"/>
 	</typeAliases>
 </configuration>

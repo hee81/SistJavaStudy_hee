@@ -14,7 +14,7 @@
 </head>
 <body>
 
-	<table class="table table-bordered" style="width: 500px; margin: 30px 30px;">
+	<table class="table table-bordered" style="width: 600px; margin: 30px 30px;">
 		<tr>
 			<td>
 				<h3>제목:${dto.subject }</h3>
@@ -38,15 +38,34 @@
 						</a>
 					</c:forTokens>
 				</c:if>
-				
 			</td>
 		</tr>
+		
+		<!-- 댓글추가 -->
 		<tr>
-			<td>	
-				<button type="button" onclick="location.href='addform'">글쓰기</button>
-				<button type="button" onclick="location.href='upassform?num=${dto.num}&currentPage=${currentPage}'">수정</button>
-				<button type="button" onclick="location.href='dpassform?num=${dto.num}&currentPage=${currentPage}'">삭제</button>
-				<button type="button" onclick="location.href='list?currentPage=${currentPage}'">목록으로</button>
+			<td>
+				<div id="alist">댓글리스트 출력 예정</div>
+				<form action="ainsert" method="post">
+					<div class="d-flex">
+						<input type="text" name="nickname" class="form-control" style="width:120px;" placeholder="닉네임">
+						<input type="password" name="pass" class="form-control" style="width:120px;" placeholder="비밀번호">
+					</div>
+					<div class="d-flex">
+						<input type="text" name="content" class="form-control" style="width:500px;" placeholder="댓글입력">
+						<button type="submit" class="btn btn-outline-success btn-sm">확인</button>	
+					</div>
+					<input type="hidden" name="num" value="${dto.num }">
+					<input type="hidden" name="currentPage" value="${currentPage}">
+				</form>
+			</td>
+		</tr>
+		
+		<tr>
+			<td align="right">	
+				<button type="button" class="btn btn-outline-primary btn-sm" onclick="location.href='addform'">글쓰기</button>
+				<button type="button" class="btn btn-outline-warning btn-sm" onclick="location.href='upassform?num=${dto.num}&currentPage=${currentPage}'">수정</button>
+				<button type="button" class="btn btn-outline-danger btn-sm" onclick="location.href='dpassform?num=${dto.num}&currentPage=${currentPage}'">삭제</button>
+				<button type="button" class="btn btn-outline-info btn-sm" onclick="location.href='list?currentPage=${currentPage}'">목록으로</button>
 			</td>	
 		</tr>
 	</table>
