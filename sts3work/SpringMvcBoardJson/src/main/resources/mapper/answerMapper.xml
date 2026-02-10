@@ -8,4 +8,10 @@
 		select * from boardanswer where num=#{num} order by idx 
 	</select>
 	
+	<select id="passCheckOfAnswer" parameterType="HashMap" resultType="int">
+     select count(*) from boardanswer where idx=#{idx} and pass=#{pass}
+   </select>
+   <delete id="DeleteOfAnswer" parameterType="int">
+     delete from boardanswer where idx=#{idx}
+   </delete>
 </mapper>

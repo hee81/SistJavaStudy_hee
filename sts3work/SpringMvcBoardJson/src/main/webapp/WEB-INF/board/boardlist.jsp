@@ -41,7 +41,13 @@
 					<tr>
 						<td>${no }</td>
 						<c:set var="no" value="${no-1 }"/> <!-- 출력 후 감소 , 증감식은 안됨 -->
-						<td><a href="detail?num=${li.num }&currentPage=${currentPage}">${li.subject }</a></td>
+						<td>
+							<a href="detail?num=${li.num }&currentPage=${currentPage}">${li.subject }</a>
+						 	<!-- 댓글갯수출력 -->
+			               <c:if test="${li.acount>0 }">
+			                  <a style="color: red;" href="detail?num=${li.num }&currentPage=${currentPage}">[${dto.acount }]</a>
+			               </c:if>
+						</td>
 						<td>${li.writer}</td>
 						<td><fmt:formatDate value="${li.writeday}" pattern="yyyy-MM-dd"/></td>
 						<td>${li.readcount}</td>

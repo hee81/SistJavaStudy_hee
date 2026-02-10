@@ -11,6 +11,42 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <title>content</title>
+<script type="text/javascript">
+	//댓글출력
+	
+
+
+
+
+	//댓글삭제
+	$("i.del").click(function(){
+		var idx=$(this).attr("idx");
+		//alert(idx);
+		
+		//비번입력
+		var pass=prompt("비밀번호를 입력해주세요");
+		alert(pass);
+		if(pass==null)
+			return; //취소시 함수종료
+		
+			$.ajax({
+				type:"get",
+				dataType:"json",
+				url:"adelete",
+				data:{"idx":idx,"pass":pass},
+				success: function(res){
+					if(res.check==0){
+						alert("비밀번호가 틀렸습니다");
+					}else{
+						alert("댓글이 삭제되었습니다");
+						location.reload();
+					}
+				}
+			})
+		
+	})
+</script>
+
 </head>
 <body>
 
@@ -44,7 +80,18 @@
 		<!-- 댓글추가 -->
 		<tr>
 			<td>
-				<div id="alist">댓글리스트 출력 예정</div>
+				<div id="alist">
+					<b>댓글  ${acount }</b><br><br>
+		           <c:forEach var="a"  items="${alist }">
+		           <i class="bi bi-person-circle"></i>
+		             ${a.nickname }: ${a.content } &nbsp;&nbsp;
+		             <span style="color: gray; font-size: 0.9em;"><fmt:formatDate value="${a.writeday }" pattern="yyyy-MM-dd"/>  </span>
+		             <i class="amod bi bi-pencil-square" style="cursor: pointer;"></i>
+		             <i class="adel bi bi-file-earmark-x" style="cursor: pointer;" idx="${a.idx }"></i><br>
+		           </c:forEach>
+				
+				</div>
+				
 				<form action="ainsert" method="post">
 					<div class="d-flex">
 						<input type="text" name="nickname" class="form-control" style="width:120px;" placeholder="닉네임">
@@ -59,6 +106,9 @@
 				</form>
 			</td>
 		</tr>
+		
+		
+		
 		
 		<tr>
 			<td align="right">	
