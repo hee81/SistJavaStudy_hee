@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TestController {
-	@GetMapping("/")
+	@GetMapping("/list")
 	public ModelAndView list() {
 		ModelAndView mv=new ModelAndView();
 		
