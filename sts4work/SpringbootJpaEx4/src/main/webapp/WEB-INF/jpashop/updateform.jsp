@@ -10,34 +10,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-<title>addform</title>
+<title>updateform</title>
 </head>
 <body>
 	<div style="margin: 100px 100px;">
-	<form action="add" method="post">
+	<form action="update" method="post">
+		<input type="hidden" name="num" value="${dto.num }">
 		<table class="table table-bordered" style="width: 500px;">
 			<tr>
 				<th class="table-info">상품명</th>
-				<td><input type="text" name="sangpum" class="form-control" style="width: 120px;" required></td>
+				<td><input type="text" name="sangpum" class="form-control" style="width: 120px;" value="${dto.sangpum }"></td>
 			</tr>
 			<tr>
 				<th class="table-info">가격</th>
-				<td><input type="text" name="price" class="form-control" style="width: 250px;" required></td>
+				<td><input type="text" name="price" class="form-control" style="width: 250px;" value="${dto.price }"></td>
 			</tr>
 			<tr>
 				<th class="table-info">이미지</th>
 				<td>
 					<select	name="photo">
-						<option value="acc01.png">시계</option>
-						<option value="acc02.png">스카프</option>
-						<option value="acc03.png">향수</option>
-						<option value="bag01.png">가방</option>
+						<option value="acc01.png" ${dto.photo == 'acc01.png'? 'selected' : '' }>시계</option>
+						<option value="acc02.png" ${dto.photo == 'acc02.png'? 'selected' : '' }>스카프</option>
+						<option value="acc03.png" ${dto.photo == 'acc03.png'? 'selected' : '' }>향수</option>
+						<option value="bag01.png" ${dto.photo == 'bag01.png'? 'selected' : '' }>가방</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th class="table-info">입고일</th>
-				<td><input type="date" name="ipgoday" class="form-control" style="width: 250px;" required></td>
+				<td><input type="date" name="ipgoday" class="form-control" style="width: 250px;" value="${dto.ipgoday }"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">

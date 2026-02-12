@@ -11,8 +11,40 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 <title>shoplist</title>
+<style type="text/css">
+	.img{
+	width: 50px;
+	}
+</style>
 </head>
 <body>
-
+<div>
+	<button type="button" class="btn btn-outline-info" onclick="location.href='shop'">상품등록</button>
+	<h4>총 ${count }개의 상품이 있습니다</h4>
+	<table class="table table-bordered" style="width: 600px;">
+		<tr>
+			<th>번호</th>
+			<th>상품명</th>
+			<th>가격</th>
+			<th>이미지</th>
+			<th>구입일</th>
+			<th>편집</th>
+		</tr>
+		<c:forEach items="${list }" var="dto" varStatus="i">
+			<tr>
+				<td>${i.count }</td>
+				<td>${dto.sangpum }</td>
+				<td><fmt:formatNumber value="${dto.price }" type="currency"/></td>
+				<td><img src="../image/logoImg/${dto.photo }" class="img"></td>
+				<td>${dto.ipgoday }</td>
+				<td>
+					<button type="button" class="btn btn-outline-success" onclick="location.href='updateform?num=${dto.num}'">수정</button>
+					<button type="button" class="btn btn-outline-danger" onclick="location.href='delete?num=${dto.num}'">삭제</button>
+				</td>
+			</tr>
+		</c:forEach>
+		
+	</table>
+</div>
 </body>
 </html>
