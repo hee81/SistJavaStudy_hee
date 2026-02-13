@@ -4,6 +4,7 @@ import OneApp from './components/OneApp';
 import TwoApp from './components/TwoApp';
 import ThreeApp from './components/ThreeApp';
 import FourApp from './components/FourApp';
+import FiveApp from './components/FiveApp';
 
 function App() {
   const [index, setIndex] = useState(4);
@@ -20,13 +21,14 @@ function App() {
           <option value="2">TwoApp</option>
           <option value="3">ThreeApp</option>
           <option value="4">FourApp</option>
+          <option value="5">FiveApp</option>
         </select>
 
-        {/* 리엑트에서 삼항연산자 안씀 */}
         {index===1?<OneApp/>:
         index===2?<TwoApp/>:
         index===3?<ThreeApp/>:
-        <FourApp/>}
+        index===4?<FourApp/>:
+        <FiveApp/>}
 
       </div>
     </>
