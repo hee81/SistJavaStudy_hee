@@ -60,13 +60,11 @@ public class BoardUpdateController {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			
+			}		
 		}else {
 			//업데이트X 기존사진 유지
 			dto.setPhoto(oldphoto);
-		}
-		
+		}	
 		dao.updateBoard(dto);
 		return "redirect:detail?num="+dto.getNum();
 	}

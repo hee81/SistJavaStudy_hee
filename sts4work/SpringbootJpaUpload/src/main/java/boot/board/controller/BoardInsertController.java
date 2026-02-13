@@ -12,22 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import boot.board.data.BoardDao;
-import boot.board.data.BoardDaoInter;
 import boot.board.data.BoardDto;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardInsertController {
 
-    private final BoardDaoInter boardDaoInter;
-	
 	@Autowired
 	BoardDao dao;
 
-    BoardInsertController(BoardDaoInter boardDaoInter) {
-        this.boardDaoInter = boardDaoInter;
-    }
-	
 	//writeform으로
 	@GetMapping("/board/addform")
 	public String form() {
@@ -39,7 +32,6 @@ public class BoardInsertController {
 	public String insert(@ModelAttribute BoardDto dto,
 			@RequestParam MultipartFile upload,
 			HttpSession session) {
-		
 		//실제경로
 		String realPath=session.getServletContext().getRealPath("/boardsave");
 		System.out.println(realPath);
@@ -64,7 +56,6 @@ public class BoardInsertController {
 		}
 		//db에 저장
 		dao.insertBoard(dto);
-		
 		return "redirect:list";
 	}
 }
