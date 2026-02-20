@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>updateform</title>
@@ -9,6 +9,39 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 </head>
 <body>
-
+<div style="margin: 50px 50px">
+	<form action="update" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="num" th:value="${dto.num}">
+		<table class="table table-bordered" style="width: 500px;">
+			<caption align="top"><b>자동차정보입력</b></caption>
+			<tr>
+				<th class="table-info">자동차명</th>
+				<td><input type="text" name="carname" class="form-control" style="width: 120px;" th:value="${dto.carname}"></td>
+			</tr>
+			<tr>
+				<th class="table-info">색상</th>
+				<td><input type="color" name="carcolor" class="form-control" style="width: 250px;" th:value="${dto.carcolor}"></td>
+			</tr>
+			<tr>
+				<th class="table-info">이미지</th>
+				<td><input type="file" name="carupload" class="form-control" style="width: 250px;"></td>
+			</tr>
+			<tr>
+				<th class="table-info">상품가격</th>
+				<td><input type="text" name="carprice" class="form-control" style="width: 150px;" th:value="${dto.carprice}"></td>
+			</tr>
+			<tr>
+				<th class="table-info">상품입고일</th>
+				<td><input type="date" name="carguip" class="form-control" style="width: 250px;" th:value="${dto.carguip}"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button type="submit" class="btn btn-outline-success">DB수정</button>
+					<button type="button" class="btn btn-outline-success" onclick="location.href='/list'">목록</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
 </body>
 </html>

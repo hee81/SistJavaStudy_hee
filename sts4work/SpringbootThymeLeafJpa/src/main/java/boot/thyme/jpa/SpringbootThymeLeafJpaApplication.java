@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan({"data.*"})
 @EntityScan("data.dto") //dto
-@EnableJpaRepositories("dato.dao") //dao인식
+@EnableJpaRepositories("data.dao") //dao인식
 public class SpringbootThymeLeafJpaApplication {
 
 	public static void main(String[] args) {

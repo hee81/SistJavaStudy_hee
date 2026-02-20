@@ -3,46 +3,47 @@ package data.dto;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Table(name="jpacar")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MycarDto {
+@Entity
+@Table(name = "jpacar_comment")
+public class MycarCommentDto {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long num;
-	@Column(name="carname",length = 30) //기본length=255
-	private String carname;
-	@Column(length = 30)
-	private int carprice;
-	@Column(length = 30)
-	private String carcolor;
-	@Column(length = 100)
-	private String carphoto;
+	private int idx;
+	
+	@JoinColumn(name = "num")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne // 댓글 M:1 // 여러개가 하나를 참조// 외래키 존재하는 엔티티 테이블에 생성
+	private MycarDto mycar;
+	
 	@Column
-	private String carguip;
+	private String comment;
+	
 	@CreationTimestamp
 	@Column(updatable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Timestamp writeday;
-	
-	@Transient //table의 컬럼 생성X, 객체에서만 사용 가능한 변수
-	private int commentcount;
-	@Transient
-	private String message;
 	
 }
