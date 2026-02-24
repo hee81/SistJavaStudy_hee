@@ -20,25 +20,28 @@
 
 <a href="${root} "><img src="${root }/image2/title_two.png"></a>
 
-<ul>
-	<li>
-		<a href="${root}/ ">Home</a>
-	</li>
-	<li>
-		<a href="${root}/ipgo/list">상품목록</a>
-	</li>
-	<li>
-		<a href="${root}/member/form">회원가입</a>
-	</li>
-	<li>
-		<a href="${root}/member/list">회원목록</a>
-	</li>
-	<li>
-		<a href="${root}/board/list">회원게시판</a>
-	</li>
-	<li>
-		<a href="${root}/login/form">로그인</a>
-	</li>
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/ipgo/list">상품목록</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/member/form">회원가입</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/member/list">회원목록</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/board/list">회원게시판</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/login/form">로그인</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark" href="${root}/member/myinfo">나의정보</a>
+    </li>
 </ul>
 
 
