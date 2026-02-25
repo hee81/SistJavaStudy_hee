@@ -14,5 +14,42 @@
 </head>
 <body>
 
+<jsp:include page="../../layout/title.jsp"></jsp:include>
+
+<div class="container">
+	<form action="loginprocess" method="post">
+		<table class="table table-bordered" style="width: 300px;">
+			<caption align="top"><b>세션 로그인</b></caption>
+			<tr>
+				<td  colspan="2" align="center">
+					<input type="checkbox" name="cbsave" class="form-check-input"
+					${sessionScope.saveok==null?"":"checked"} }>아이디저장
+				</td>
+			</tr>
+			<tr>
+				<th width="100" class="table-secondary">아이디</th>
+				<td>
+					<input type="text" name="id" class="form-control"
+					autofocus="autofocus" required="required"
+					style="width: 120px;" value="${sessionScope.saveok==null?"":sessionScope.myid}">					
+				</td>
+			</tr>
+			<tr>
+				<th width="100" class="table-secondary">비밀번호</th>
+				<td>
+					<input type="password" name="pass" class="form-control"
+					required="required"	style="width: 150px;">					
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<button type="submit" class="btn btn-success"
+					style="width: 100px;">로그인</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
 </body>
 </html>

@@ -17,4 +17,7 @@ public interface MemberMapperInter {
 	public MemberDto getDataByNum(String num);
 	public void updatePhoto(Map<String, String> map);
 	public void updateMember(MemberDto dto);
+	public String getName(String id);
+	public int loginCheck(Map<String, String> map);
+	public MemberDto getDataById(String id);
 }

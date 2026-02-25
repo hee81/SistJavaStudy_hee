@@ -70,4 +70,16 @@ public class MemberService {
 	public void updateMember(MemberDto dto) {
 		mapper.updateMember(dto);
 	}
+	public String getName(String id) {
+		return mapper.getName(id);
+	}
+	public int loginCheck(String id,String pass) {
+		Map<String, String> map=new HashMap<>();
+		map.put("id", id);
+		map.put("pass", pass);
+		return mapper.loginCheck(map);
+	}
+	public MemberDto getDataById(String id) {
+		return mapper.getDataById(id);
+	}
 }
